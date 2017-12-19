@@ -1,35 +1,78 @@
+# coding:utf-8
 from django.shortcuts import render
-from app1 import models
-from django.core.paginator import PageNotAnInteger, Paginator, InvalidPage, EmptyPage
-from django.template.loader import get_template
-from django.template import loader, RequestContext
-from django.http import HttpResponse
+import json
+from .forms import customersForm,managersForm
+from .models import customers,managers   #这个点必须要加
+
+
+from django.http import HttpResponse,HttpResponseRedirect
 
 # Create your views here.
-def index(request,cat_id=0):
-    all_products=None
-    if cat_id > 0:
-        try:
-            category=models.goods.type.get(id=cat_id)
-        except:
-            category=None
-        if category is not None:
-            all_products=models.goods.objects.filter(category=type)
-    if all_products is None:
-        all_products=models.goods.objects.all()
 
-    paginator=Paginator(all_products,4)
-    p=request.GET.get('p')
-    try:
-        products=paginator.page(p)
-    except PageNotAnInteger:
-        products=paginator.page(1)
-    except EmptyPage:
-        products=paginator.page(paginator.num_pages)
+#注册
+def regist(request):
+    if request.method =='GET':
+        cf=customersForm(request.GET)
+        if cf.is_valid():
+            name=cf.cleaned_data['name']
+            email = cf.cleaned_data['email']
+            address = cf.cleaned_data['address']
+            telephone = cf.cleaned_data['telephone']
+            password = cf.cleaned_data['password']
+            confirm_password = cf.cleaned_data['confirm_password']
+            customers.objects.create(name=name, email=email, telephone=telephone, address=address, password=password)
+            success={"info":"regist success"}
+            return HttpResponse(json.dumps(success), content_type="application/json")
+    else:
+        cf=customersForm()
+    return render(request,'register.html', locals())   #把默认模板文件夹改成了app1下的static，所以这些html文件都在static里
 
-    template=get_template('index.html')
-    request_context=RequestContext(request)
-    request_context.push(locals())
-    html=template.render(request_context)
-    all_categories=models.goods.type.all()
-    return HttpResponse(html)
+#登录
+def login(request):
+    if(request.method=='GET'):
+        cf=customersForm(request.GET)
+        mf=managersForm(request.GET)
+        if cf.is_valid():
+            name=cf.cleaned_data['name']
+            password=cf.cleaned_data['password']
+            customer=customers.objects.filter(name_exact=name, password_exact=password)
+            if customer:
+                response=HttpResponseRedirect('/static/index1/')   #顾客登陆成功就跳转到index
+                response.set_cookie('name', name, 3600)
+                return response
+            else:
+                return HttpResponseRedirect('/static/login/')
+        else:
+            if mf.is_valid():
+                name = cf.cleaned_data['name']
+                password = cf.cleaned_data['password']
+                manager = managers.objects.filter(name_exact=name, password_exact=password)
+                if manager:
+                    response = HttpResponseRedirect('/static/index2/')  #管理员登陆成功就跳转到index2
+                    response.set_cookie('name', name, 3600)
+                    return response
+                else:
+                    return HttpResponseRedirect('/static/login/')
+    else:
+        cf=customersForm()
+    return render(request,'login.html', locals())
+
+#登陆成功
+def index1(request):
+    name=request.COOKIES.get('name', '')
+    return render(request, 'index1.html', locals())
+
+def index2(request):
+    name=request.COOKIES.get('name', '')
+    return render(request, 'index2.html', locals())
+
+#登录失败
+def logout(request):
+    fail = {"info": "regist success"}
+    response=HttpResponse(json.dumps(fail), content_type="application/json")
+    response.delete_cookie('name')
+    return response
+
+
+def home(request):
+    return render(request, 'home.html')
