@@ -25,7 +25,7 @@ def regist(request):
             return HttpResponse(json.dumps(success), content_type="application/json")
     else:
         cf=customersForm()
-    return render(request,'register.html', locals())   #把默认模板文件夹改成了app1下的static，所以这些html文件都在static里
+    return render(request,'register.html', locals())
 
 #登录
 def login(request):
@@ -37,22 +37,22 @@ def login(request):
             password=cf.cleaned_data['password']
             customer=customers.objects.filter(name_exact=name, password_exact=password)
             if customer:
-                response=HttpResponseRedirect('/static/index1/')   #顾客登陆成功就跳转到index
+                response=HttpResponseRedirect('/index1/')   #顾客登陆成功就跳转到index
                 response.set_cookie('name', name, 3600)
                 return response
             else:
-                return HttpResponseRedirect('/static/login/')
+                return HttpResponseRedirect('/login/')
         else:
             if mf.is_valid():
                 name = cf.cleaned_data['name']
                 password = cf.cleaned_data['password']
                 manager = managers.objects.filter(name_exact=name, password_exact=password)
                 if manager:
-                    response = HttpResponseRedirect('/static/index2/')  #管理员登陆成功就跳转到index2
+                    response = HttpResponseRedirect('/index2/')  #管理员登陆成功就跳转到index2
                     response.set_cookie('name', name, 3600)
                     return response
                 else:
-                    return HttpResponseRedirect('/static/login/')
+                    return HttpResponseRedirect('/login/')
     else:
         cf=customersForm()
     return render(request,'login.html', locals())
