@@ -29,6 +29,7 @@ urlpatterns =[
     url(r'^index1/$',views.index1,name='index1'),
     url(r'^index2/$',views.index2,name='index2'),
     url(r'^logout/$',views.logout,name='logout'),
+    url(r'^')
 ]
 
 urlpatterns += static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
