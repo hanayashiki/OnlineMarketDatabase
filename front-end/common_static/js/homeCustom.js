@@ -36,7 +36,7 @@ $(document).ready(function() {
     function addComplaintEntry(cmplt_id, text, link, date, status) {
         var new_node = $("<li></li>");
         new_node.attr({
-            "class": "complaint_entry",
+            "class": "complaint_entry"
         });
 
         var new_table = $("<table></table>");

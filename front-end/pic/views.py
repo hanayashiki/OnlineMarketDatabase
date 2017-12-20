@@ -33,12 +33,6 @@ def get_recommendations(request):
     ]
     return HttpResponse(json.dumps(recom), content_type="application/json")
 
-def get_customer_info_display(request):
-    recom = {
-        "customer_id": 1234,
-        "name": "李剑锋"
-    }
-    return HttpResponse(json.dumps(recom), content_type="application/json")
 
 def get_customer_info_display(request):
     recom = {
@@ -46,6 +40,7 @@ def get_customer_info_display(request):
         "name": "李剑锋"
     }
     return HttpResponse(json.dumps(recom), content_type="application/json")
+
 
 def get_complaint_display(request):
     recom = [
@@ -88,3 +83,87 @@ def get_complaint_display(request):
     ]
 
     return HttpResponse(json.dumps(recom), content_type="application/json")
+
+
+def get_good_display(request):
+    recom =\
+    [
+        {
+            "good_id": 114514,
+            "name": "DDF战甲",
+            "price": 233,
+            "image_path": "/static/images/cont/main_img1.jpg",
+            "remain": 114,
+        },
+        {
+            "good_id": 115514,
+            "name": "假发",
+            "price": 15,
+            "image_path": "/static/images/cont/main_img2.jpg",
+            "remain": 24,
+        },
+        {
+            "good_id": 112514,
+            "name": "水手服",
+            "price": 12,
+            "image_path": "/static/images/cont/main_img3.jpg",
+            "remain": 28,
+        },
+        {
+            "good_id": 114514,
+            "name": "DDF战甲",
+            "price": 233,
+            "image_path": "/static/images/cont/main_img1.jpg",
+            "remain": 114,
+        },
+        {
+            "good_id": 115514,
+            "name": "假发",
+            "price": 15,
+            "image_path": "/static/images/cont/main_img2.jpg",
+            "remain": 24,
+        },
+        {
+            "good_id": 112514,
+            "name": "水手服",
+            "price": 12,
+            "image_path": "/static/images/cont/main_img3.jpg",
+            "remain": 28,
+        },
+        {
+            "good_id": 114514,
+            "name": "DDF战甲",
+            "price": 233,
+            "image_path": "/static/images/cont/main_img1.jpg",
+            "remain": 114,
+        },
+        {
+            "good_id": 115514,
+            "name": "假发",
+            "price": 15,
+            "image_path": "/static/images/cont/main_img2.jpg",
+            "remain": 24,
+        },
+        {
+            "good_id": 112514,
+            "name": "水手服",
+            "price": 12,
+            "image_path": "/static/images/cont/main_img3.jpg",
+            "remain": 28,
+        },
+    ]
+
+    if request.GET.get("category") == "女装":
+        recom.append({
+            "good_id": 112514,
+            "name": "黑框眼镜",
+            "price": 12,
+            "image_path": "/static/images/cont/main_img3.jpg",
+            "remain": 28,
+        })
+
+    return HttpResponse(json.dumps(recom), content_type="application/json")
+
+
+def response_add_good(request):
+    return HttpResponse(json.dumps({"info": "success"}), content_type="application/json")

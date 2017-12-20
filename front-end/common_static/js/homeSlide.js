@@ -75,8 +75,8 @@ function wallterFall() {
               $.each(data, function(infoIndex, info) {
                   var new_node = newDisplayNode(info["title"], info["price"], info["pic_src"]);
                   that.$slider_wrap.append(new_node);
-                  console.log(new_node)
-                  console.log(that.$slider_wrap)
+                  console.log(new_node);
+                  console.log(that.$slider_wrap);
               });
               display_ready = true;
               that.$oWrapper = elem;

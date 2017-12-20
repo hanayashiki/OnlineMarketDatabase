@@ -16,11 +16,13 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 from pic.views import get_recommendations, get_customer_info_display,\
-    get_complaint_display
+    get_complaint_display, get_good_display, response_add_good
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^getRecommendations/', get_recommendations),
     url(r'^customerInfoDisplay/', get_customer_info_display),
-    url(r'^complaintDisplay/', get_complaint_display)
+    url(r'^complaintDisplay/', get_complaint_display),
+    url(r'^goodDisplay/', get_good_display),
+    url(r'^addGood/', response_add_good)
 ]
