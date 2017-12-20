@@ -122,8 +122,9 @@ class supply_orders(models.Model):
         return self.name
 
 @python_2_unicode_compatible
-class complains(models.Model):
+class complaints(models.Model):
     complaint_id=models.IntegerField(primary_key=True,default=0)
+    customer_id=models.IntegerField()
     text=models.TextField()
     submit_date=models.DateField()
     proceed_date=models.DateField()
@@ -135,7 +136,7 @@ class complains(models.Model):
     source_cmplt_id=models.IntegerField()
 
     class Meta:
-        db_table="complains"
+        db_table="complaints"
 
     def _str_(self):
         return self.name

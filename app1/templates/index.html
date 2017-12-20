@@ -1,0 +1,182 @@
+
+{% extends "base.html" %}
+{% load  staticfiles %}
+{% block content %}
+<body>
+	<div class="container">
+		<div class="main-header">
+			<div class="inner-side">
+				<div class="header">
+					<div class="head-top">
+						<div class="top-menu">
+						<span class="menu"><img src="images/nav.png" alt=""/> </span>
+							<ul>
+								<li class="active"><a href="index.html"><span>Home</span></a></li>
+								<li><a href="about"><span>About us</span></a></li>
+								<li><a href="signup"><span>注册</span></a></li>
+								<li><a href="products.html"><span>Products</span></a></li>
+								<li class="has-sub"><a href="services.html"><span>Services</span></a></li>
+								<li><a href="typo.html"><span>typo</span></a></li>
+								<li class="last"><a href="contact.html"><span>Contact</span></a></li>
+								<li><a href="logout"><span>退出</span></a></li>
+								{% if  request.user.id %}
+								<li><span>你好:{{user.username}}</span></a></li>
+								{%  endif %}
+							</ul>
+
+						</div>
+						<div class="social-icons">
+							<a href="#"><i class="icon1"></i></a>
+							<a href="#"><i class="icon2"></i></a>
+							<a href="#"><i class="icon3"></i></a>
+						</div>	
+						<!-- script for menu -->
+									
+							 <script>
+							 $("span.menu").click(function(){
+							 $(".top-menu ul").slideToggle("slow" , function(){
+							 });
+							 });
+							 </script>
+						<!-- //script for menu -->
+
+						<div class="clearfix"></div>
+					</div>
+					<div class="logo">
+						<h1>繁花社长{{ time }} </h1>
+					</div>
+				</div>
+				<div class="fluid_container">
+					<div class="camera_wrap camera_azure_skin" id="camera_wrap_1">
+						<div data-thumb="images/thumbs/slider1.jpg" data-src="images/slider1.jpg"></div>
+						<div data-thumb="images/thumbs/slider2.jpg" data-src="images/slider2.jpg"></div>
+						<div data-thumb="images/thumbs/slider3.jpg" data-src="images/slider5.jpg"></div>
+						<div data-thumb="images/thumbs/slider4.jpg" data-src="images/slider4.jpg"></div>            
+					</div>
+					<!-- #camera_wrap_1 -->
+					<div class="clearfix"></div>
+				</div>
+                <div class="copyrights">Collect from <a href="http://www.cssmoban.com/" >企业网站模板</a></div>
+				<div class="interior-grids">
+					<div class="col-md-6 interior-grid">
+						<h3>welcome</h3>
+						<div class="gallery">
+							<a href="images/pic1.jpg"><img src="images/pic1.jpg" class="img-responsive" alt="/" title="image-name"></a>
+						</div>		
+						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt labore dolore magna aliqua.</p>
+						<div class="plus_btn">
+							<a href="#"><span></span></a>
+						</div>
+					</div>
+					<div class="col-md-3 interior-grid">
+						<h3>our history</h3>
+						<div class="gallery">
+							<a href="images/pic2.jpg"><img src="images/pic2.jpg" class="img-responsive" alt="/" title="image-name"></a>
+						</div>		
+						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt labore dolore magna aliqua.</p>
+						<div class="plus_btn">
+							<a href="#"><span></span></a>
+						</div>
+					</div>
+					<div class="col-md-3 interior-grid">
+						<h3>our services</h3>
+						<div class="gallery">
+							<a href="images/pic3.jpg"><img src="images/pic3.jpg" class="img-responsive" alt="/" title="image-name"></a>
+						</div>		
+						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt labore dolore magna aliqua.</p>
+						<div class="plus_btn">
+							<a href="#"><span></span></a>
+						</div>
+					</div>
+					<div class="clearfix"></div>
+				</div>
+				<div class="bottom-grids">
+				<div class="col-md-4 bottom-grid">
+				<h3>Lorem Ipsum dolor</h3>
+					<div class="text1-nav">
+						<ul>
+							<li><a href="#">The standard chunk of Lorem Ipsum</a></li>
+							<li><a href="#">The standard chunk of Lorem Ipsum</a></li>
+							<li><a href="#">The standard chunk of Lorem Ipsum</a></li>
+							<li><a href="#">The standard chunk of Lorem Ipsum</a></li>
+							<li><a href="#">The standard chunk of Lorem Ipsum</a></li>
+
+					    </ul>
+					</div>
+				</div>
+				<div class="col-md-4 bottom-grid">
+				<h3>Vestibulum vel</h3>
+					<h4>The standard chunk of Lorem Ipsum dolor sit amet</h4>
+					<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage</p>
+				</div>
+				<div class="col-md-4 bottom-grid">
+				<h3>Quisque non ligula</h3>
+					<h4>The standard chunk of Lorem Ipsum dolor sit amet</h4>
+					<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage</p>
+				</div>
+				<div class="clearfix"></div>
+				</div>
+				<div class="product-section">
+					<h3>furniture</h3>
+				<div class="product-grids">
+						<div class="col-md-3 product-grid">
+						<a href="#" class="mask">
+				     <img src="images/e1.jpg" class="img-responsive zoom-img" alt="">
+					</a>
+						</div>
+						<div class="col-md-3 product-grid1">
+							<h4><a href="#">Mauris non magna ul</a></h4>
+							<p>Fusce feugiat malesuada odio. Morbi orci. Donec sit amet eros. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Mauris fermentum dictum magna.</p>
+							<a href="#" class="button1">more</a>
+						</div>
+						<div class="col-md-3 product-grid">
+						<a href="#" class="mask">
+				     <img src="images/e2.jpg" class="img-responsive zoom-img" alt="">
+					</a>
+						</div>
+						<div class="col-md-3 product-grid1">
+						<h4><a href="#">Mauris non magna ul</a> </h4>
+							<p>Fusce feugiat malesuada odio. Morbi orci. Donec sit amet eros. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Mauris fermentum dictum magna.</p>
+							<a href="#" class="button1">more</a>
+						</div>
+						<div class="clearfix"></div>
+						</div>
+				</div>
+				<div class="new-section">
+					<div class="new-grids">
+					<div class="col-md-6 new-grid">
+					<div class="new-number">
+					<h4>09</h4>
+					</div>
+				<div class="new-text">
+				<h5>Lorem Ipsum is simply text </h5>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt labore dolore magna aliqua.</p>	
+				</div>
+				<div class="clearfix"></div>
+				</div>
+				<div class="col-md-6 new-grid">
+					<div class="new-number">
+					<h4>19</h4>
+					</div>
+				<div class="new-text">
+				<h5>Lorem Ipsum is simply text </h5>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt labore dolore magna aliqua.</p>	
+				</div>
+				<div class="clearfix"></div>
+				</div>
+				<div class="clearfix"></div>
+			</div>
+		</div>
+				<!--start-footer-section-->
+				<div class="footer-section">
+					<div class="footer-top">
+						<p>Copyright &copy; 2015.Company name All rights reserved.More Templates </p>
+					</div>
+				</div>
+				<!--end-footer-section-->
+			</div>
+		</div>
+	</div>
+	 </body>
+</html> 
+{% endblock %}
