@@ -15,9 +15,12 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from pic.views import get_recommendations
+from pic.views import get_recommendations, get_customer_info_display,\
+    get_complaint_display
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^getRecommandations/', get_recommendations)
+    url(r'^getRecommendations/', get_recommendations),
+    url(r'^customerInfoDisplay/', get_customer_info_display),
+    url(r'^complaintDisplay/', get_complaint_display)
 ]

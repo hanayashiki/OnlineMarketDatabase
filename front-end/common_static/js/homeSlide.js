@@ -70,7 +70,7 @@ function wallterFall() {
       this.$slider_wrap = this.$oWrapper.find('.slider-wrapper');
       this.$slider_item = this.$slider_wrap.find('.item');
       this.slider_len = this.$slider_item.length;
-      $.getJSON("/getRecommandations", function(data, status) {
+      $.getJSON("/getRecommendations", function(data, status) {
           if (status === "success") {
               $.each(data, function(infoIndex, info) {
                   var new_node = newDisplayNode(info["title"], info["price"], info["pic_src"]);
@@ -80,10 +80,10 @@ function wallterFall() {
               });
               display_ready = true;
               that.$oWrapper = elem;
-              that.$slider_wrap = that.$oWrapper.find('.slider-wrapper');
+              /*that.$slider_wrap = that.$oWrapper.find('.slider-wrapper');
               that.$slider_item = that.$slider_wrap.find('.item');
               that.slider_len = that.$slider_item.length;
-              console.log(that.slider_len)
+              console.log(that.slider_len)*/
 
               var plugin = new Plugin(elem);
               plugin.initial();

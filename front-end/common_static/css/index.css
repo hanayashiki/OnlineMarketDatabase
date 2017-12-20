@@ -360,19 +360,19 @@ body {
 }
 .banner-info .news {
   width: 466px;
-  height: 290px;
+  height: 445px;
   margin-bottom: 20px;
 }
 .banner-info .news ul {
   padding: 0 32px;
 }
-.banner-info .news li {}
+
 .banner-info .news li.title,
 .banner-info .news li.choose,
 .banner-info .news li.assistant {
-  height: 50px;
+  height: 45px;
   line-height: 50px;
-  border-bottom: 1px solid #ebebeb;
+  #border-bottom: 1px solid #ebebeb;
 }
 .banner-info .news li.title {
   font-size: 16px;
@@ -383,6 +383,34 @@ body {
   border-bottom: 1px dashed #ebebeb;
   font-size: 0;
 }
+
+.banner-info .news button.info_btn{
+  background-color: #f14382;
+  border: none;
+  color: white;
+  padding: 12px 28px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 8px 4px;
+  cursor: pointer;
+}
+
+.banner-info .news li.complaint_entry {
+  padding: 8px 0;
+  border-bottom: 1px dashed #ebebeb;
+  font-size: 12px;
+}
+
+.banner-info .news li.complaint_entry .text{
+  width: 280px;
+}
+
+.banner-info .news li.complaint_entry .date{
+  width: 70px;
+}
+
 .banner-info .news li.link a {
   font-size: 13px;
   line-height: 24px;
@@ -395,6 +423,7 @@ body {
   margin: 0 16px;
   background-color: #ddd;
 }
+
 .banner-info .news li.choose {}
 .banner-info .news li.choose a {}
 .banner-info .news li.choose span {
