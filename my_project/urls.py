@@ -21,15 +21,13 @@ from django.conf.urls import url, include
 from app1 import views
 
 urlpatterns =[
-    url(r'^admin/', admin.site.urls,name="admin"),
+    url(r'^admin/', admin.site.urls, name="admin"),
     url(r'^filer/', include('filer.urls')),
-    url(r'^$',views.home,name='home'),
-    url(r'^login/$',views.login,name='login'),
-    url(r'^register/$',views.regist,name='register'),
-    url(r'^index1/$',views.index1,name='index1'),
-    url(r'^index2/$',views.index2,name='index2'),
-    url(r'^logout/$',views.logout,name='logout'),
-    url(r'^')
+    url(r'^$',views.home, name='home'),   #开始可以是home页，也可以改为login页，login页有register页的链接
+    url(r'^login/$', views.login, name='login'),
+    url(r'^register/$', views.register, name='register'),
+    url(r'^goodDisplay/$', views.goodDisplay, name='index1'), #和顾客登陆后页面是同一个，只不过返回的参数变成了类别商品
+    url(r'^getcomplaintEntry/$', views.complaintEntry, name='complaintEntry'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

@@ -137,34 +137,33 @@ body {
   height: 350px;
   background-color: #fff;
 }
-.header .search {
-  float: left;
+.search {
+  #float: left;
   width: 364px;
   height: 30px;
-  border: 1px solid #c5c5c5;
-  margin-top: 16px;
 }
-.header .search-text {
-  float: left;
+.search-text {
+  #float: left;
   width: 332px;
-  height: 30px;
-  line-height: 30px;
-  padding-left: 4px;
+  height: 35px;
+  line-height: 35px;
+  margin-left: 8px;
   color: #c5c5c5;
+  background: white;
+  border: 1px solid #c5c5c5;
   box-sizing: border-box;
 }
-.header .search-btn {
-  float: left;
+.search-btn {
+  #float: left;
   width: 32px;
   height: 30px;
+
+  margin-top: 10px;
+
   cursor: pointer;
+  background: url(../images/icon_search.png) no-repeat center;
 }
-.header .icon-search {
-  display: block;
-  width: 32px;
-  height: 30px;
-  background: url(../images/icon_search.png) no-repeat 4px center;
-}
+
 .header-nav {
   float: right;
 }
@@ -360,19 +359,19 @@ body {
 }
 .banner-info .news {
   width: 466px;
-  height: 290px;
+  height: 445px;
   margin-bottom: 20px;
 }
 .banner-info .news ul {
   padding: 0 32px;
 }
-.banner-info .news li {}
+
 .banner-info .news li.title,
 .banner-info .news li.choose,
 .banner-info .news li.assistant {
-  height: 50px;
+  height: 45px;
   line-height: 50px;
-  border-bottom: 1px solid #ebebeb;
+  /*border-bottom: 1px solid #ebebeb;*/
 }
 .banner-info .news li.title {
   font-size: 16px;
@@ -383,6 +382,34 @@ body {
   border-bottom: 1px dashed #ebebeb;
   font-size: 0;
 }
+
+button.info_btn{
+  background-color: #f14382;
+  border: none;
+  color: white;
+  padding: 12px 28px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 8px 4px;
+  cursor: pointer;
+}
+
+.banner-info .news li.complaint_entry {
+  padding: 8px 0;
+  border-bottom: 1px dashed #ebebeb;
+  font-size: 12px;
+}
+
+.banner-info .news li.complaint_entry .text{
+  width: 280px;
+}
+
+.banner-info .news li.complaint_entry .date{
+  width: 70px;
+}
+
 .banner-info .news li.link a {
   font-size: 13px;
   line-height: 24px;
@@ -395,6 +422,7 @@ body {
   margin: 0 16px;
   background-color: #ddd;
 }
+
 .banner-info .news li.choose {}
 .banner-info .news li.choose a {}
 .banner-info .news li.choose span {
@@ -429,10 +457,17 @@ body {
   margin-top: 40px;
   border-top: 1px solid #d4d5d5;
 }
-.main-cont__title h3 {
+
+.main-cont__title .title {
   font-size: 18px;
   line-height: 88px;
+  width: 100px;
 }
+
+.main-cont__title .category {
+  margin-left: 12px;
+}
+
 .main-cont__title .more {
   position: absolute;
   right: 0;
@@ -458,12 +493,48 @@ body {
   float: left;
   width: 224px;
   margin-right: 20px;
+  margin-bottom: 20px;
   border: 1px solid #dedfe0;
   background-color: #fff;
   box-sizing: border-box;
 
   transition: top 0.2s;
 }
+
+.main-cont__list .item .pic_area {
+    width: 224px;
+    height: 224px;
+    background: url("/static/shojo.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.main-cont__list .item .title {
+  text-align: center;
+  width: 224px;
+}
+
+.main-cont__list .item .info {
+  padding-left: 0px;
+}
+
+.main-cont__list .item .price {
+  text-align: center;
+  width: 112px;
+}
+
+.main-cont__list .item .info_btn {
+  text-align: center;
+  margin-top: 16px;
+  margin-left: 32px;
+}
+
+
+.main-cont__list .item .remain {
+  text-align: center;
+  width: 112px;
+}
+
 .main-cont__list .item:hover {
   top: -3px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, .3);
@@ -499,6 +570,11 @@ body {
   right: 10px;
   font-size: 0;
 }
+
+.main-recommend .main-cont__title .category .selector {
+    height: 34px;
+}
+
 .main-recommend .list em,
 .main-recommend .list a,
 .main-recommend .list span {
@@ -515,7 +591,7 @@ body {
 }
 .main-recommend .item {
   position: relative;
-  height: 298px;
+  height: 370px;
 }
 .main-recommend .info {
   padding-left: 12px;

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from app1.models import goods, managers, customers, orders, suppliers, contacts, supply_orders, complains
+from app1.models import goods, managers, customers, orders, suppliers, contacts, supply_orders, complaints
 # Register your models here.
 
 
@@ -14,4 +14,4 @@ admin.site.register(orders)
 admin.site.register(suppliers)
 admin.site.register(contacts)
 admin.site.register(supply_orders)
-admin.site.register(complains)
+admin.site.register(complaints)

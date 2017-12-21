@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'filer',
     'mptt',
 
+    'pic',
 ]
 
 MIDDLEWARE = [
@@ -81,7 +82,7 @@ WSGI_APPLICATION = 'my_project.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'app1_base',
+        'NAME': 'app1_base1',
         'USER':'root',
         'PASSWORD':'19681217Li',
         'HOST':'127.0.0.1',

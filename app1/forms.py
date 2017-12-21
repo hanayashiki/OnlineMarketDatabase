@@ -14,7 +14,7 @@ class customersregistForm(forms.Form):
         password = self.cleaned_data.get("password", False)
         confirm_password = self.cleaned_data["confirm_password"]
         if not (password == confirm_password):
- #           fail = {"info": "confirm_password and password are different"}
+            fail = {"info": "confirm_password and password are different"}
             raise forms.ValidationError("confirm_password and password are different")
         return confirm_password
 

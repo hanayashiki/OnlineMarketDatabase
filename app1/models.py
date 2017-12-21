@@ -16,11 +16,11 @@ class goods(models.Model):
     count=models.IntegerField()
     remain=models.IntegerField()
     type=models.CharField(max_length=10)
-    image_path=models.URLField(null=True)
-    website=models.URLField(null=True)
+    image_path=models.CharField(null=True, max_length=100)
+    website=models.CharField(null=True, max_length=100)
 
     class Meta:
-        db_table="goods"
+        db_table = "goods"
 
     def _str_(self):
         return self.name
