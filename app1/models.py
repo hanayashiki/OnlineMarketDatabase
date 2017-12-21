@@ -5,8 +5,8 @@ from django.utils.encoding import python_2_unicode_compatible
 #没有改变或继承原有的USER，试试可不可以自定义
 # Create your models here.
 @python_2_unicode_compatible
-class goods(models.Model):
-    good_id=models.IntegerField(primary_key=True,default=0)
+class Goods(models.Model):
+    good_id=models.IntegerField(primary_key=True)
     name=models.CharField(max_length=30)
     comment=models.TextField()
     place=models.CharField(max_length=20)
@@ -16,18 +16,18 @@ class goods(models.Model):
     count=models.IntegerField()
     remain=models.IntegerField()
     type=models.CharField(max_length=10)
-    image_path=models.CharField(null=True, max_length=100)
-    website=models.CharField(null=True, max_length=100)
+    image_path=models.CharField(blank=True, max_length=100)
+    website=models.CharField(blank=True, max_length=100)
 
     class Meta:
-        db_table = "goods"
+        db_table = "Goods"
 
     def _str_(self):
         return self.name
 
 @python_2_unicode_compatible
-class managers(models.Model):
-    manager_id=models.IntegerField(primary_key=True,default=0)
+class Managers(models.Model):
+    manager_id=models.IntegerField(primary_key=True)
     name=models.CharField(max_length=10)
     address=models.CharField(max_length=50)
     telephone=models.CharField(max_length=15)
@@ -36,30 +36,33 @@ class managers(models.Model):
     password=models.CharField(max_length=20)
 
     class Meta:
-        db_table="managers"
+        db_table="Managers"
 
     def _str_(self):
         return self.name
 
 @python_2_unicode_compatible
-class customers(models.Model):
-    customer_id=models.IntegerField(primary_key=True,db_column='Fld')
-    name=models.CharField(max_length=10)
+class Customers(models.Model):
+#    customer_id=models.AutoField(primary_key=True)
+    name=models.CharField(max_length=20)
     address=models.CharField(max_length=50)
     telephone=models.CharField(max_length=15)
     email=models.EmailField()
     password=models.CharField(max_length=20)
-    temp_order=models.IntegerField(null=True)
+    temp_order=models.IntegerField(blank=True,null=True)
+    @property
+    def customer_id(self):
+        return self.id
 
     class Meta:
-        db_table="customers"
+        db_table="Customers"
 
     def _str_(self):
         return self.name
 
 @python_2_unicode_compatible
-class orders(models.Model):
-    order_id=models.IntegerField(primary_key=True,default=0)
+class Orders(models.Model):
+    order_id=models.IntegerField(primary_key=True)
     is_temp=models.IntegerField()
     good_str=models.CharField(max_length=50)
     good_num=models.CharField(max_length=50)
@@ -70,26 +73,26 @@ class orders(models.Model):
     finish_date=models.DateField()
 
     class Meta:
-        db_table="orders"
+        db_table="Orders"
 
     def _str_(self):
         return self.name
 
 @python_2_unicode_compatible
-class suppliers(models.Model):
-    supplier_id=models.IntegerField(primary_key=True,default=0)
+class Suppliers(models.Model):
+    supplier_id=models.IntegerField(primary_key=True)
     name=models.CharField(max_length=50)
     address=models.CharField(max_length=50)
 
     class Meta:
-        db_table="suppliers"
+        db_table="Suppliers"
 
     def _str_(self):
         return self.name
 
 @python_2_unicode_compatible
-class contacts(models.Model):
-    contact_id=models.IntegerField(primary_key=True,default=0)
+class Contacts(models.Model):
+    contact_id=models.IntegerField(primary_key=True)
     name=models.CharField(max_length=10)
     address=models.CharField(max_length=50)
     telephone=models.CharField(max_length=15)
@@ -98,14 +101,14 @@ class contacts(models.Model):
     supplier_id=models.IntegerField()
 
     class Meta:
-        db_table="contacts"
+        db_table="Contacts"
 
     def _str_(self):
         return self.name
 
 @python_2_unicode_compatible
-class supply_orders(models.Model):
-    supply_order_id=models.IntegerField(primary_key=True,default=0)
+class Supply_orders(models.Model):
+    supply_order_id=models.IntegerField(primary_key=True)
     supplier_id=models.IntegerField()
     good_str=models.CharField(max_length=50)
     goods_num=models.CharField(max_length=50)
@@ -116,14 +119,14 @@ class supply_orders(models.Model):
     manager_id = models.IntegerField()
 
     class Meta:
-        db_table="supply_orders"
+        db_table="Supply_orders"
 
     def _str_(self):
         return self.name
 
 @python_2_unicode_compatible
-class complaints(models.Model):
-    complaint_id=models.IntegerField(primary_key=True,default=0)
+class Complaints(models.Model):
+    complaint_id=models.IntegerField(primary_key=True)
     customer_id=models.IntegerField()
     text=models.TextField()
     submit_date=models.DateField()
@@ -136,7 +139,7 @@ class complaints(models.Model):
     source_cmplt_id=models.IntegerField()
 
     class Meta:
-        db_table="complaints"
+        db_table="Complaints"
 
     def _str_(self):
         return self.name
