@@ -20,12 +20,8 @@ def register(request):
             address = cf.cleaned_data['address']
             telephone = cf.cleaned_data['telephone']
             password = cf.cleaned_data['password']
-            confirm_password = cf.cleaned_data['confirm_password']
-            if not (password == confirm_password):
-                fail = {"info": "confirm_password and password are different"}
-                return HttpResponse(json.dumps(fail), content_type="application/json")
             Customers.objects.create(name=name, email=email, telephone=telephone, address=address, password=password)
-            success={'info': "regist success"}
+            success={'info': "success"}
             return HttpResponse(json.dumps(success), content_type="application/json") #注册成功就跳到登录页面
     else:
         cf=CustomersForm()
@@ -44,18 +40,18 @@ def login(request):
             customer=Customers.objects.filter(name=name, password=password) #返回符合姓名和密码的顾客
             manager=Managers.objects.filter(name=name, password=password)#返回符合姓名和密码的管理员
             if customer:#顾客的匹配上了
-                success = {'info': "login success"}
+                success = {'info': "success"}
                 response= HttpResponse(json.dumps(success), content_type="application/json")
                 response.set_cookie('name', name, 3600)  #cookies操作
                 return response
             else:  #顾客的没匹配上（要求manager和顾客不能重名）
                 if manager: #管理员的匹配上了
-                    success = {'info': "login success"}
+                    success = {'info': "success"}
                     response = HttpResponse(json.dumps(success), content_type="application/json")
                     response.set_cookie('name', name, 3600)
                     return response
                 else:
-                    fail= {'info': "login fail"}
+                    fail= {'info': "failure"}
                     response=HttpResponse(json.dumps(fail), content_type="application/json")
                     response.delete_cookie('name')
                     return response #顾客和管理员都登录不成功就返回登录失败页面
