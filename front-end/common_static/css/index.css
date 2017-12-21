@@ -889,3 +889,19 @@ button.info_btn{
   line-height: 36px;
   color: #888;
 }
+
+/* ======= login ======= */
+
+.login_main {
+  position: relative;
+  padding-top: 250px;
+  padding-bottom: 600px;
+  background-color: #f1f2f3;
+}
+
+.login_inner {
+  position: relative;
+  padding-top: 65px;
+  padding-bottom: 65px;
+  background-color: #f14382;
+}
