@@ -987,3 +987,11 @@ button.info_btn{
   margin-top: 18px;
   margin-bottom: 18px;
 }
+
+.order_entry .info_btn
+{
+  float:right;
+  background: #5fffdd;
+  margin-top: 120px;
+  color: #ff5476;
+}

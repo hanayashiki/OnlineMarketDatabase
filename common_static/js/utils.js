@@ -1,10 +1,14 @@
 utils = {
     jumpAndLink: function(node, dst) {
         console.log("jal");
-        console.log(node.text());
-        console.log(dst);
         node.click(function() {
-            $(location).attr('href', dst + "?" + "from=" + window.location.href)
+            $(location).attr('href', dst + "?" + "from=" + window.location.href);
+        });
+    },
+    jump: function(node, dst) {
+        console.log("j");
+        node.click(function() {
+            $(location).attr('href', dst);
         });
     },
     checkEmail: function(str){
@@ -20,4 +24,5 @@ $(document).ready(function() {
     $(".register").click(function() {
         $(location).attr('href', 'register.html');
     });
+    utils.jumpAndLink($("#login_btn"), "login.html");
 });
