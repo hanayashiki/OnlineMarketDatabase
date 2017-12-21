@@ -944,3 +944,46 @@ button.info_btn{
   left: 25%;
   width: 50%;
 }
+
+.complaint_entry_main {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  background: #f1f2f3;
+}
+
+
+.complaint_entry_inner {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.complaint_entry_inner .complaint {
+  margin: auto;
+  background: #e03c5a;
+  margin-bottom: 15px;
+  width: 800px;
+
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, .4);
+}
+
+.complaint_entry_inner .complaint .status,
+.complaint_entry_inner .complaint .content
+{
+  color: whitesmoke;
+  margin: auto;
+  width: 750px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  font-size: 16px;
+}
+
+.complaint_entry_inner .complaint .separator
+{
+  color: #bbbbbb;
+  margin-top: 18px;
+  margin-bottom: 18px;
+}
