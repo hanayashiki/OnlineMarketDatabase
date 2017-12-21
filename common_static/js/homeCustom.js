@@ -33,6 +33,8 @@ $(document).ready(function() {
         }
     });
 
+    utils.jumpAndLink($("#login_btn"), "login.html");
+
     function addComplaintEntry(cmplt_id, text, link, date, status) {
         var new_node = $("<li></li>");
         new_node.attr({

@@ -15,7 +15,7 @@ def register(request):
     if request.method =='POST':   #POST!!
         cf=CustomersregistForm(request.POST)
         if cf.is_valid():
-            name=cf.cleaned_data['name']
+            name = cf.cleaned_data['name']
             email = cf.cleaned_data['email']
             address = cf.cleaned_data['address']
             telephone = cf.cleaned_data['telephone']

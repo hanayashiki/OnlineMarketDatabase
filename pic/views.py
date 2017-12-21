@@ -167,3 +167,30 @@ def get_good_display(request):
 
 def response_add_good(request):
     return HttpResponse(json.dumps({"info": "success"}), content_type="application/json")
+
+def response_search(request):
+    recom =\
+    [
+        {
+            "good_id": 114514,
+            "name": "DDF战甲",
+            "price": 233,
+            "image_path": "/static/images/cont/main_img1.jpg",
+            "remain": 114,
+        },
+        {
+            "good_id": 115514,
+            "name": "假发",
+            "price": 15,
+            "image_path": "/static/images/cont/main_img2.jpg",
+            "remain": 24,
+        },
+        {
+            "good_id": 112514,
+            "name": "水手服",
+            "price": 12,
+            "image_path": "/static/images/cont/main_img3.jpg",
+            "remain": 28,
+        },
+    ]
+    return HttpResponse(json.dumps(recom), content_type="application/json")

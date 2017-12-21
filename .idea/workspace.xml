@@ -2,9 +2,58 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="57a12b0a-1751-4b79-bf21-ea3198d7c922" name="Default" comment="">
+      <change beforePath="" afterPath="$PROJECT_DIR$/common_static/js/login.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/common_static/js/register.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/common_static/js/utils.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/front-end/.idea/workspace.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/front-end/db.sqlite3" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/pic/static/login.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/pic/static/register.html" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change beforePath="$PROJECT_DIR$/.idea/my_project.iml" afterPath="$PROJECT_DIR$/.idea/my_project.iml" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/app1/forms.py" afterPath="$PROJECT_DIR$/app1/forms.py" />
       <change beforePath="$PROJECT_DIR$/app1/views.py" afterPath="$PROJECT_DIR$/app1/views.py" />
+      <change beforePath="$PROJECT_DIR$/common_static/css/index.css" afterPath="$PROJECT_DIR$/common_static/css/index.css" />
+      <change beforePath="$PROJECT_DIR$/common_static/js/homeCustom.js" afterPath="$PROJECT_DIR$/common_static/js/homeCustom.js" />
+      <change beforePath="$PROJECT_DIR$/common_static/js/jquery.js" afterPath="$PROJECT_DIR$/common_static/js/jquery.js" />
+      <change beforePath="$PROJECT_DIR$/common_static/js/script.js" afterPath="$PROJECT_DIR$/common_static/js/script.js" />
+      <change beforePath="$PROJECT_DIR$/media/filer/filer_public/4a/76/4a76ceea-d578-4b53-8df6-f1c52aa15629/1-14042z01t4159.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/media/filer/filer_public/59/d5/59d5ef74-d57e-4f03-bc21-246f2a01e507/584_20131026154332143.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/media/filer/filer_public/63/1f/631f492d-75db-458b-8ba1-cd4666db22ee/20140323212619_nykptthumb600_0.jpeg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/media/filer/filer_public/76/c7/76c77925-8d89-4f24-8acb-65d8a9e5a529/20131018180243_xhkjfthumb600_0.jpeg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/media/filer/filer_public/d1/4d/d14d6b89-cc36-4d61-ba21-e57c5dbc045d/902397dda144ad34dda15a1fd1a20cf431ad8508.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/media/filer_thumbnails/filer_public_thumbnails/filer_public/4a/76/4a76ceea-d578-4b53-8df6-f1c52aa15629/1-14042z01t4159.jpg__16x16_q85_crop_subsampling-2_upscale.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/media/filer_thumbnails/filer_public_thumbnails/filer_public/4a/76/4a76ceea-d578-4b53-8df6-f1c52aa15629/1-14042z01t4159.jpg__180x180_q85_crop_subsampling-2_upscale.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/media/filer_thumbnails/filer_public_thumbnails/filer_public/4a/76/4a76ceea-d578-4b53-8df6-f1c52aa15629/1-14042z01t4159.jpg__210x10000_q85_subsampling-2_upscale.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/media/filer_thumbnails/filer_public_thumbnails/filer_public/4a/76/4a76ceea-d578-4b53-8df6-f1c52aa15629/1-14042z01t4159.jpg__32x32_q85_crop_subsampling-2_upscale.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/media/filer_thumbnails/filer_public_thumbnails/filer_public/4a/76/4a76ceea-d578-4b53-8df6-f1c52aa15629/1-14042z01t4159.jpg__48x48_q85_crop_subsampling-2_upscale.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/media/filer_thumbnails/filer_public_thumbnails/filer_public/4a/76/4a76ceea-d578-4b53-8df6-f1c52aa15629/1-14042z01t4159.jpg__64x64_q85_crop_subsampling-2_upscale.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/media/filer_thumbnails/filer_public_thumbnails/filer_public/59/d5/59d5ef74-d57e-4f03-bc21-246f2a01e507/584_20131026154332143.jpg__16x16_q85_crop_subsampling-2_upscale.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/media/filer_thumbnails/filer_public_thumbnails/filer_public/59/d5/59d5ef74-d57e-4f03-bc21-246f2a01e507/584_20131026154332143.jpg__180x180_q85_crop_subsampling-2_upscale.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/media/filer_thumbnails/filer_public_thumbnails/filer_public/59/d5/59d5ef74-d57e-4f03-bc21-246f2a01e507/584_20131026154332143.jpg__32x32_q85_crop_subsampling-2_upscale.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/media/filer_thumbnails/filer_public_thumbnails/filer_public/59/d5/59d5ef74-d57e-4f03-bc21-246f2a01e507/584_20131026154332143.jpg__48x48_q85_crop_subsampling-2_upscale.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/media/filer_thumbnails/filer_public_thumbnails/filer_public/59/d5/59d5ef74-d57e-4f03-bc21-246f2a01e507/584_20131026154332143.jpg__64x64_q85_crop_subsampling-2_upscale.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/media/filer_thumbnails/filer_public_thumbnails/filer_public/63/1f/631f492d-75db-458b-8ba1-cd4666db22ee/20140323212619_nykptthumb600_0.jpeg__16x16_q85_crop_subsampling-2_upscale.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/media/filer_thumbnails/filer_public_thumbnails/filer_public/63/1f/631f492d-75db-458b-8ba1-cd4666db22ee/20140323212619_nykptthumb600_0.jpeg__180x180_q85_crop_subsampling-2_upscale.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/media/filer_thumbnails/filer_public_thumbnails/filer_public/63/1f/631f492d-75db-458b-8ba1-cd4666db22ee/20140323212619_nykptthumb600_0.jpeg__210x10000_q85_subsampling-2_upscale.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/media/filer_thumbnails/filer_public_thumbnails/filer_public/63/1f/631f492d-75db-458b-8ba1-cd4666db22ee/20140323212619_nykptthumb600_0.jpeg__32x32_q85_crop_subsampling-2_upscale.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/media/filer_thumbnails/filer_public_thumbnails/filer_public/63/1f/631f492d-75db-458b-8ba1-cd4666db22ee/20140323212619_nykptthumb600_0.jpeg__48x48_q85_crop_subsampling-2_upscale.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/media/filer_thumbnails/filer_public_thumbnails/filer_public/63/1f/631f492d-75db-458b-8ba1-cd4666db22ee/20140323212619_nykptthumb600_0.jpeg__64x64_q85_crop_subsampling-2_upscale.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/media/filer_thumbnails/filer_public_thumbnails/filer_public/76/c7/76c77925-8d89-4f24-8acb-65d8a9e5a529/20131018180243_xhkjfthumb600_0.jpeg__16x16_q85_crop_subsampling-2_upscale.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/media/filer_thumbnails/filer_public_thumbnails/filer_public/76/c7/76c77925-8d89-4f24-8acb-65d8a9e5a529/20131018180243_xhkjfthumb600_0.jpeg__180x180_q85_crop_subsampling-2_upscale.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/media/filer_thumbnails/filer_public_thumbnails/filer_public/76/c7/76c77925-8d89-4f24-8acb-65d8a9e5a529/20131018180243_xhkjfthumb600_0.jpeg__32x32_q85_crop_subsampling-2_upscale.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/media/filer_thumbnails/filer_public_thumbnails/filer_public/76/c7/76c77925-8d89-4f24-8acb-65d8a9e5a529/20131018180243_xhkjfthumb600_0.jpeg__48x48_q85_crop_subsampling-2_upscale.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/media/filer_thumbnails/filer_public_thumbnails/filer_public/76/c7/76c77925-8d89-4f24-8acb-65d8a9e5a529/20131018180243_xhkjfthumb600_0.jpeg__64x64_q85_crop_subsampling-2_upscale.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/media/filer_thumbnails/filer_public_thumbnails/filer_public/d1/4d/d14d6b89-cc36-4d61-ba21-e57c5dbc045d/902397dda144ad34dda15a1fd1a20cf431ad8508.jpg__16x16_q85_crop_subsampling-2_upscale.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/media/filer_thumbnails/filer_public_thumbnails/filer_public/d1/4d/d14d6b89-cc36-4d61-ba21-e57c5dbc045d/902397dda144ad34dda15a1fd1a20cf431ad8508.jpg__180x180_q85_crop_subsampling-2_upscale.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/media/filer_thumbnails/filer_public_thumbnails/filer_public/d1/4d/d14d6b89-cc36-4d61-ba21-e57c5dbc045d/902397dda144ad34dda15a1fd1a20cf431ad8508.jpg__32x32_q85_crop_subsampling-2_upscale.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/media/filer_thumbnails/filer_public_thumbnails/filer_public/d1/4d/d14d6b89-cc36-4d61-ba21-e57c5dbc045d/902397dda144ad34dda15a1fd1a20cf431ad8508.jpg__48x48_q85_crop_subsampling-2_upscale.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/media/filer_thumbnails/filer_public_thumbnails/filer_public/d1/4d/d14d6b89-cc36-4d61-ba21-e57c5dbc045d/902397dda144ad34dda15a1fd1a20cf431ad8508.jpg__64x64_q85_crop_subsampling-2_upscale.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/my_project/settings.py" afterPath="$PROJECT_DIR$/my_project/settings.py" />
+      <change beforePath="$PROJECT_DIR$/my_project/urls.py" afterPath="$PROJECT_DIR$/my_project/urls.py" />
+      <change beforePath="$PROJECT_DIR$/pic/static/home.html" afterPath="$PROJECT_DIR$/pic/static/home.html" />
+      <change beforePath="$PROJECT_DIR$/pic/views.py" afterPath="$PROJECT_DIR$/pic/views.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -18,7 +67,7 @@
       <file leaf-file-name="settings.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/my_project/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="189">
+            <state relative-caret-position="874">
               <caret line="38" column="0" lean-forward="false" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
               <folding />
             </state>
@@ -28,8 +77,8 @@
       <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/my_project/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="483">
-              <caret line="21" column="51" lean-forward="false" selection-start-line="21" selection-start-column="51" selection-end-line="21" selection-end-column="51" />
+            <state relative-caret-position="460">
+              <caret line="22" column="51" lean-forward="false" selection-start-line="22" selection-start-column="51" selection-end-line="22" selection-end-column="51" />
               <folding>
                 <element signature="e#645#677#0" expanded="true" />
               </folding>
@@ -40,7 +89,7 @@
       <file leaf-file-name="admin.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app1/admin.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="299">
+            <state relative-caret-position="276">
               <caret line="13" column="30" lean-forward="false" selection-start-line="13" selection-start-column="30" selection-end-line="13" selection-end-column="30" />
               <folding>
                 <element signature="e#0#32#0" expanded="true" />
@@ -62,7 +111,7 @@
       <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app1/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-23">
+            <state relative-caret-position="230">
               <caret line="11" column="41" lean-forward="false" selection-start-line="11" selection-start-column="41" selection-end-line="11" selection-end-column="41" />
               <folding>
                 <element signature="e#23#51#0" expanded="true" />
@@ -74,8 +123,8 @@
       <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app1/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="373">
-              <caret line="147" column="0" lean-forward="true" selection-start-line="147" selection-start-column="0" selection-end-line="147" selection-end-column="0" />
+            <state relative-caret-position="207">
+              <caret line="9" column="28" lean-forward="true" selection-start-line="9" selection-start-column="28" selection-end-line="9" selection-end-column="28" />
               <folding>
                 <element signature="e#15#50#0" expanded="true" />
               </folding>
@@ -86,8 +135,8 @@
       <file leaf-file-name="forms.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app1/forms.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="276">
-              <caret line="12" column="32" lean-forward="true" selection-start-line="12" selection-start-column="32" selection-end-line="12" selection-end-column="32" />
+            <state relative-caret-position="207">
+              <caret line="9" column="87" lean-forward="true" selection-start-line="9" selection-start-column="87" selection-end-line="9" selection-end-column="87" />
               <folding />
             </state>
           </provider>
@@ -151,6 +200,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -167,11 +218,6 @@
               <item name="my_project" type="b2602c69:ProjectViewProjectNode" />
               <item name="my_project" type="462c0819:PsiDirectoryNode" />
               <item name="common_static" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="my_project" type="b2602c69:ProjectViewProjectNode" />
-              <item name="my_project" type="462c0819:PsiDirectoryNode" />
-              <item name="media" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="my_project" type="b2602c69:ProjectViewProjectNode" />
@@ -193,8 +239,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scratches" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -256,17 +300,18 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1050" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.128125" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32855567" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32855567" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -300,7 +345,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="23">
           <caret line="1" column="28" lean-forward="false" selection-start-line="1" selection-start-column="28" selection-end-line="1" selection-end-column="28" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -360,7 +404,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="23">
           <caret line="1" column="28" lean-forward="false" selection-start-line="1" selection-start-column="28" selection-end-line="1" selection-end-column="28" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -436,7 +479,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="23">
           <caret line="1" column="28" lean-forward="false" selection-start-line="1" selection-start-column="28" selection-end-line="1" selection-end-column="28" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -489,7 +531,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -497,7 +538,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="23">
           <caret line="1" column="28" lean-forward="false" selection-start-line="1" selection-start-column="28" selection-end-line="1" selection-end-column="28" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -530,7 +570,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -608,7 +647,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -616,13 +654,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="23">
           <caret line="1" column="28" lean-forward="false" selection-start-line="1" selection-start-column="28" selection-end-line="1" selection-end-column="28" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app1/admin.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="299">
+        <state relative-caret-position="276">
           <caret line="13" column="30" lean-forward="false" selection-start-line="13" selection-start-column="30" selection-end-line="13" selection-end-column="30" />
           <folding>
             <element signature="e#0#32#0" expanded="true" />
@@ -640,8 +677,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/my_project/urls.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="483">
-          <caret line="21" column="51" lean-forward="false" selection-start-line="21" selection-start-column="51" selection-end-line="21" selection-end-column="51" />
+        <state relative-caret-position="460">
+          <caret line="22" column="51" lean-forward="false" selection-start-line="22" selection-start-column="51" selection-end-line="22" selection-end-column="51" />
           <folding>
             <element signature="e#645#677#0" expanded="true" />
           </folding>
@@ -650,7 +687,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/my_project/settings.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
+        <state relative-caret-position="874">
           <caret line="38" column="0" lean-forward="false" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
           <folding />
         </state>
@@ -658,7 +695,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app1/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-23">
+        <state relative-caret-position="230">
           <caret line="11" column="41" lean-forward="false" selection-start-line="11" selection-start-column="41" selection-end-line="11" selection-end-column="41" />
           <folding>
             <element signature="e#23#51#0" expanded="true" />
@@ -668,16 +705,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app1/forms.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="276">
-          <caret line="12" column="32" lean-forward="true" selection-start-line="12" selection-start-column="32" selection-end-line="12" selection-end-column="32" />
+        <state relative-caret-position="207">
+          <caret line="9" column="87" lean-forward="true" selection-start-line="9" selection-start-column="87" selection-end-line="9" selection-end-column="87" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app1/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="373">
-          <caret line="147" column="0" lean-forward="true" selection-start-line="147" selection-start-column="0" selection-end-line="147" selection-end-column="0" />
+        <state relative-caret-position="207">
+          <caret line="9" column="28" lean-forward="true" selection-start-line="9" selection-start-column="28" selection-end-line="9" selection-end-column="28" />
           <folding>
             <element signature="e#15#50#0" expanded="true" />
           </folding>

@@ -17,6 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.conf.urls import url, include
 from app1 import views
+import os
 
 urlpatterns =[
     url(r'^admin/', admin.site.urls, name="admin"),
@@ -26,7 +27,3 @@ urlpatterns =[
     url(r'^goodDisplay/$', views.goodDisplay, name='index1'), #和顾客登陆后页面是同一个，只不过返回的参数变成了类别商品
     url(r'^getcomplaintEntry/$', views.complaintEntry, name='complaintEntry'),
 ]
-
-
-
-
