@@ -27,6 +27,3 @@ urlpatterns =[
     url(r'^goodDisplay/$', views.goodDisplay, name='index1'), #和顾客登陆后页面是同一个，只不过返回的参数变成了类别商品
     url(r'^getcomplaintEntry/$', views.complaintEntry, name='complaintEntry'),
 ]
-
-
-

@@ -1,8 +1,8 @@
 from django import forms
-import json
+
 
 #表单
-class customersregistForm(forms.Form):
+class CustomersregistForm(forms.Form):
     name = forms.CharField(label='用户名',required=True,max_length=10)
     address = forms.CharField(label='地址',required=True,max_length=50)
     telephone = forms.CharField(label='联系电话',required=True,max_length=15)
@@ -10,18 +10,10 @@ class customersregistForm(forms.Form):
     password = forms.CharField(label='密码', required=True, widget=forms.PasswordInput())
     confirm_password = forms.CharField(label='密码', required=True, widget=forms.PasswordInput())
 
-    def clean_confirm_password(self):
-        password = self.cleaned_data.get("password", False)
-        confirm_password = self.cleaned_data["confirm_password"]
-        if not (password == confirm_password):
-            fail = {"info": "confirm_password and password are different"}
-            raise forms.ValidationError("confirm_password and password are different")
-        return confirm_password
-
-class customersForm(forms.Form):
+class CustomersForm(forms.Form):
     name = forms.CharField(label='用户名', required=True, max_length=10)
     password = forms.CharField(label='密码', required=True, widget=forms.PasswordInput())
 
-class managersForm(forms.Form):   #其实这个定义并没有用。。。。
+class ManagersForm(forms.Form):   #其实这个定义并没有用。。。。
     name = forms.CharField(label='用户名', required=True, max_length=10)
     password = forms.CharField(label='密码', required=True, widget=forms.PasswordInput())
