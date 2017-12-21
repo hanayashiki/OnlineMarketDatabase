@@ -27,7 +27,7 @@ function wallterFall() {
       var minH_index = $.inArray(min_h, height_arr);
 
       if (i === 9 || i === 14) {
-        n ++;
+          n ++;
       }
 
       $(this).css({position: 'absolute', top: min_h + (n * 20), left: minH_index * item_w + minH_index * 20});

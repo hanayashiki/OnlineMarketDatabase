@@ -184,7 +184,7 @@ body {
 .header-nav li a {
   display: inline-block;
 }
-.header-nav li a.dreamer {}
+
 .header-nav li a.register {
   width: 52px;
   height: 28px;
@@ -888,4 +888,38 @@ button.info_btn{
 .fopter-copyright p {
   line-height: 36px;
   color: #888;
+}
+
+/*=========login_in=========*/
+
+.login_main {
+  padding-top: 250px;
+  background: #f1f2f3;
+}
+
+.login_inner {
+  padding-top: 50px;
+  padding-bottom: 50px;
+  background: #e03c5a;
+}
+
+.login_main .login_inner .login {
+
+}
+
+.login_main .login_inner .login input {
+  position:relative;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  line-height: 35px;
+  height: 35px;
+  background: #ffffff;
+  left: 42%;
+  border-radius:5px;
+}
+
+.login_main .login_inner .login button {
+  position:relative;
+  margin-top: 35px;
+  left: 44%;
 }
