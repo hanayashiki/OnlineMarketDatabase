@@ -3,13 +3,14 @@ from django.shortcuts import render
 import json
 from .forms import CustomersregistForm, CustomersForm
 from .models import Customers,Managers,Complaints, Goods   #这个点必须要加
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.views.decorators.csrf import csrf_exempt
 
 # Create your views here.
 #主页面（也可以上来就是登录页面，有个按钮跳到注册页面）
 def home(request):
-    return render(request, 'home.html')
+    return HttpResponseRedirect('/static/home.html')
+
 #注册
 def register(request):
     if request.method =='POST':   #POST!!
@@ -25,7 +26,7 @@ def register(request):
             return HttpResponse(json.dumps(success), content_type="application/json") #注册成功就跳到登录页面
     else:
         cf=CustomersForm()
-    return render(request, 'register.html', locals())
+    return HttpResponseRedirect('/static/register.html')
 
 #登录
 #登陆成功后的index1和index2页面的不同就在于右上角个人信息与投诉信息不同（分管理员的和顾客的）
@@ -34,11 +35,12 @@ def login(request):
     if(request.method=='POST'):     #POST！！
         cf=CustomersForm(request.POST)
         mf=cf
-        if ( cf.is_valid() and  mf.is_valid() ):  #这两个肯定可以同时接收到数据
+        if ( cf.is_valid() ):
             name=cf.cleaned_data['name']
-            password=cf.cleaned_data['password']
+            password = cf.cleaned_data['password']
             customer=Customers.objects.filter(name=name, password=password) #返回符合姓名和密码的顾客
             manager=Managers.objects.filter(name=name, password=password)#返回符合姓名和密码的管理员
+
             if customer:#顾客的匹配上了
                 success = {'info': "success"}
                 response= HttpResponse(json.dumps(success), content_type="application/json")
@@ -58,7 +60,7 @@ def login(request):
     else:
         cf=CustomersForm()
         mf=cf
-        return render(request, 'login.html', locals())
+        return HttpResponseRedirect('/static/login.html')
 
 
 def customerInfoDisplay(request):
@@ -143,5 +145,5 @@ def complaintEntry(request):
                                    'proceed_date': complaint.proceed_date,
                                    'status': complaint.status})          #把相关投诉的信息存到了complaint_list里
         complaint_list = json.dumps(list(complaint_list))
-        return render(request, 'complaint.html', {'complaint_list': complaint_list})
+        return render(request, 'complaint.html', {'complaint_list': complaint_list}) #此页面在模板下
 
