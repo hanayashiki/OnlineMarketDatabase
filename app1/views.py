@@ -14,7 +14,7 @@ def register(request):
     if request.method =='POST':   #POST!!
         cf=customersregistForm(request.POST)
         if cf.is_valid():
-            name=cf.cleaned_data['name']
+            name = cf.cleaned_data['name']
             email = cf.cleaned_data['email']
             address = cf.cleaned_data['address']
             telephone = cf.cleaned_data['telephone']
@@ -42,18 +42,18 @@ def login(request):
             customer=customers.objects.filter(name_exact=name, password_exact=password) #返回符合姓名和密码的顾客
             manager=managers.objects.filter(name_exact=name, password_exact=password)#返回符合姓名和密码的管理员
             if customer:#顾客的匹配上了
-                success = {'info': "login success"}
+                success = {'info': "success"}
                 response= HttpResponse(json.dumps(success), content_type="application/json")
                 response.set_cookie('name', name, 3600)  #cookies操作
                 return response
             else:  #顾客的没匹配上（要求manager和顾客不能重名）
                 if manager: #管理员的匹配上了
-                    success = {'info': "login success"}
+                    success = {'info': "success"}
                     response = HttpResponse(json.dumps(success), content_type="application/json")
                     response.set_cookie('name', name, 3600)
                     return response
                 else:
-                    fail= {'info': "login fail"}
+                    fail= {'info': "fail"}
                     response=HttpResponse(json.dumps(fail), content_type="application/json")
                     response.delete_cookie('name')
                     return response #顾客和管理员都登录不成功就返回登录失败页面

@@ -2,44 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="57a12b0a-1751-4b79-bf21-ea3198d7c922" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/media/filer/filer_public/4a/76/4a76ceea-d578-4b53-8df6-f1c52aa15629/1-14042z01t4159.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/media/filer/filer_public/59/d5/59d5ef74-d57e-4f03-bc21-246f2a01e507/584_20131026154332143.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/media/filer/filer_public/63/1f/631f492d-75db-458b-8ba1-cd4666db22ee/20140323212619_nykptthumb600_0.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/media/filer/filer_public/76/c7/76c77925-8d89-4f24-8acb-65d8a9e5a529/20131018180243_xhkjfthumb600_0.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/media/filer/filer_public/d1/4d/d14d6b89-cc36-4d61-ba21-e57c5dbc045d/902397dda144ad34dda15a1fd1a20cf431ad8508.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/media/filer_thumbnails/filer_public_thumbnails/filer_public/4a/76/4a76ceea-d578-4b53-8df6-f1c52aa15629/1-14042z01t4159.jpg__16x16_q85_crop_subsampling-2_upscale.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/media/filer_thumbnails/filer_public_thumbnails/filer_public/4a/76/4a76ceea-d578-4b53-8df6-f1c52aa15629/1-14042z01t4159.jpg__180x180_q85_crop_subsampling-2_upscale.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/media/filer_thumbnails/filer_public_thumbnails/filer_public/4a/76/4a76ceea-d578-4b53-8df6-f1c52aa15629/1-14042z01t4159.jpg__210x10000_q85_subsampling-2_upscale.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/media/filer_thumbnails/filer_public_thumbnails/filer_public/4a/76/4a76ceea-d578-4b53-8df6-f1c52aa15629/1-14042z01t4159.jpg__32x32_q85_crop_subsampling-2_upscale.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/media/filer_thumbnails/filer_public_thumbnails/filer_public/4a/76/4a76ceea-d578-4b53-8df6-f1c52aa15629/1-14042z01t4159.jpg__48x48_q85_crop_subsampling-2_upscale.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/media/filer_thumbnails/filer_public_thumbnails/filer_public/4a/76/4a76ceea-d578-4b53-8df6-f1c52aa15629/1-14042z01t4159.jpg__64x64_q85_crop_subsampling-2_upscale.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/media/filer_thumbnails/filer_public_thumbnails/filer_public/59/d5/59d5ef74-d57e-4f03-bc21-246f2a01e507/584_20131026154332143.jpg__16x16_q85_crop_subsampling-2_upscale.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/media/filer_thumbnails/filer_public_thumbnails/filer_public/59/d5/59d5ef74-d57e-4f03-bc21-246f2a01e507/584_20131026154332143.jpg__180x180_q85_crop_subsampling-2_upscale.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/media/filer_thumbnails/filer_public_thumbnails/filer_public/59/d5/59d5ef74-d57e-4f03-bc21-246f2a01e507/584_20131026154332143.jpg__32x32_q85_crop_subsampling-2_upscale.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/media/filer_thumbnails/filer_public_thumbnails/filer_public/59/d5/59d5ef74-d57e-4f03-bc21-246f2a01e507/584_20131026154332143.jpg__48x48_q85_crop_subsampling-2_upscale.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/media/filer_thumbnails/filer_public_thumbnails/filer_public/59/d5/59d5ef74-d57e-4f03-bc21-246f2a01e507/584_20131026154332143.jpg__64x64_q85_crop_subsampling-2_upscale.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/media/filer_thumbnails/filer_public_thumbnails/filer_public/63/1f/631f492d-75db-458b-8ba1-cd4666db22ee/20140323212619_nykptthumb600_0.jpeg__16x16_q85_crop_subsampling-2_upscale.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/media/filer_thumbnails/filer_public_thumbnails/filer_public/63/1f/631f492d-75db-458b-8ba1-cd4666db22ee/20140323212619_nykptthumb600_0.jpeg__180x180_q85_crop_subsampling-2_upscale.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/media/filer_thumbnails/filer_public_thumbnails/filer_public/63/1f/631f492d-75db-458b-8ba1-cd4666db22ee/20140323212619_nykptthumb600_0.jpeg__210x10000_q85_subsampling-2_upscale.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/media/filer_thumbnails/filer_public_thumbnails/filer_public/63/1f/631f492d-75db-458b-8ba1-cd4666db22ee/20140323212619_nykptthumb600_0.jpeg__32x32_q85_crop_subsampling-2_upscale.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/media/filer_thumbnails/filer_public_thumbnails/filer_public/63/1f/631f492d-75db-458b-8ba1-cd4666db22ee/20140323212619_nykptthumb600_0.jpeg__48x48_q85_crop_subsampling-2_upscale.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/media/filer_thumbnails/filer_public_thumbnails/filer_public/63/1f/631f492d-75db-458b-8ba1-cd4666db22ee/20140323212619_nykptthumb600_0.jpeg__64x64_q85_crop_subsampling-2_upscale.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/media/filer_thumbnails/filer_public_thumbnails/filer_public/76/c7/76c77925-8d89-4f24-8acb-65d8a9e5a529/20131018180243_xhkjfthumb600_0.jpeg__16x16_q85_crop_subsampling-2_upscale.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/media/filer_thumbnails/filer_public_thumbnails/filer_public/76/c7/76c77925-8d89-4f24-8acb-65d8a9e5a529/20131018180243_xhkjfthumb600_0.jpeg__180x180_q85_crop_subsampling-2_upscale.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/media/filer_thumbnails/filer_public_thumbnails/filer_public/76/c7/76c77925-8d89-4f24-8acb-65d8a9e5a529/20131018180243_xhkjfthumb600_0.jpeg__32x32_q85_crop_subsampling-2_upscale.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/media/filer_thumbnails/filer_public_thumbnails/filer_public/76/c7/76c77925-8d89-4f24-8acb-65d8a9e5a529/20131018180243_xhkjfthumb600_0.jpeg__48x48_q85_crop_subsampling-2_upscale.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/media/filer_thumbnails/filer_public_thumbnails/filer_public/76/c7/76c77925-8d89-4f24-8acb-65d8a9e5a529/20131018180243_xhkjfthumb600_0.jpeg__64x64_q85_crop_subsampling-2_upscale.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/media/filer_thumbnails/filer_public_thumbnails/filer_public/d1/4d/d14d6b89-cc36-4d61-ba21-e57c5dbc045d/902397dda144ad34dda15a1fd1a20cf431ad8508.jpg__16x16_q85_crop_subsampling-2_upscale.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/media/filer_thumbnails/filer_public_thumbnails/filer_public/d1/4d/d14d6b89-cc36-4d61-ba21-e57c5dbc045d/902397dda144ad34dda15a1fd1a20cf431ad8508.jpg__180x180_q85_crop_subsampling-2_upscale.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/media/filer_thumbnails/filer_public_thumbnails/filer_public/d1/4d/d14d6b89-cc36-4d61-ba21-e57c5dbc045d/902397dda144ad34dda15a1fd1a20cf431ad8508.jpg__32x32_q85_crop_subsampling-2_upscale.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/media/filer_thumbnails/filer_public_thumbnails/filer_public/d1/4d/d14d6b89-cc36-4d61-ba21-e57c5dbc045d/902397dda144ad34dda15a1fd1a20cf431ad8508.jpg__48x48_q85_crop_subsampling-2_upscale.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/media/filer_thumbnails/filer_public_thumbnails/filer_public/d1/4d/d14d6b89-cc36-4d61-ba21-e57c5dbc045d/902397dda144ad34dda15a1fd1a20cf431ad8508.jpg__64x64_q85_crop_subsampling-2_upscale.jpg" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/my_project.iml" afterPath="$PROJECT_DIR$/.idea/my_project.iml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/common_static/js/login.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/common_static/js/register.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/common_static/js/utils.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pic/static/register.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app1/views.py" afterPath="$PROJECT_DIR$/app1/views.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/my_project/settings.py" afterPath="$PROJECT_DIR$/my_project/settings.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/my_project/urls.py" afterPath="$PROJECT_DIR$/my_project/urls.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/common_static/css/index.css" afterPath="$PROJECT_DIR$/common_static/css/index.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/common_static/js/homeCustom.js" afterPath="$PROJECT_DIR$/common_static/js/homeCustom.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/common_static/js/jquery.js" afterPath="$PROJECT_DIR$/common_static/js/jquery.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/common_static/js/script.js" afterPath="$PROJECT_DIR$/common_static/js/script.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pic/static/home.html" afterPath="$PROJECT_DIR$/pic/static/home.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pic/views.py" afterPath="$PROJECT_DIR$/pic/views.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -49,106 +23,193 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/OnlineMarketDatabase$manage.coverage" NAME="manage Coverage Results" MODIFIED="1513828557777" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/OnlineMarketDatabase$manage.coverage" NAME="manage Coverage Results" MODIFIED="1513848380359" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="tests.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pic/tests.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pic/models.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="apps.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pic/apps.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="admin.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pic/admin.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="settings.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/my_project/settings.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="33" column="27" lean-forward="false" selection-start-line="33" selection-start-column="27" selection-end-line="33" selection-end-column="27" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="home.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pic/static/home.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="11" column="42" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="12" selection-end-column="41" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app1/views.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="31">
-              <caret line="108" column="90" lean-forward="false" selection-start-line="108" selection-start-column="90" selection-end-line="108" selection-end-column="90" />
-              <folding>
-                <element signature="e#15#50#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/my_project/urls.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="442">
-              <caret line="26" column="37" lean-forward="false" selection-start-line="26" selection-start-column="37" selection-end-line="26" selection-end-column="37" />
-              <folding>
-                <element signature="e#645#677#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <splitter split-orientation="horizontal" split-proportion="0.5071685">
+      <split-first>
+        <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
+          <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/pic/models.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="0">
+                  <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="admin.py" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/pic/admin.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="51">
+                  <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="settings.py" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/my_project/settings.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="0">
+                  <caret line="33" column="27" lean-forward="false" selection-start-line="33" selection-start-column="27" selection-end-line="33" selection-end-column="27" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="index.css" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/common_static/css/index.css">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="242">
+                  <caret line="180" column="20" lean-forward="true" selection-start-line="180" selection-start-column="20" selection-end-line="180" selection-end-column="20" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/app1/models.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="0">
+                  <caret line="0" column="22" lean-forward="true" selection-start-line="0" selection-start-column="22" selection-end-line="0" selection-end-column="22" />
+                  <folding>
+                    <element signature="e#23#51#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="login.html" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/pic/static/login.html">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="408">
+                  <caret line="30" column="55" lean-forward="true" selection-start-line="30" selection-start-column="55" selection-end-line="30" selection-end-column="55" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="register.html" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/pic/static/register.html">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="438">
+                  <caret line="34" column="44" lean-forward="true" selection-start-line="34" selection-start-column="44" selection-end-line="34" selection-end-column="44" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/app1/views.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="357">
+                  <caret line="22" column="20" lean-forward="false" selection-start-line="22" selection-start-column="20" selection-end-line="22" selection-end-column="49" />
+                  <folding>
+                    <element signature="e#15#50#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="login.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/common_static/js/login.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="425">
+                  <caret line="25" column="10" lean-forward="true" selection-start-line="25" selection-start-column="10" selection-end-line="25" selection-end-column="10" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-first>
+      <split-second>
+        <leaf>
+          <file leaf-file-name="script.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/common_static/js/script.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="-3162">
+                  <caret line="13" column="0" lean-forward="true" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="homeCustom.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/common_static/js/homeCustom.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="595">
+                  <caret line="35" column="53" lean-forward="true" selection-start-line="35" selection-start-column="53" selection-end-line="35" selection-end-column="53" />
+                  <folding>
+                    <marker date="1513843878704" expanded="true" signature="123:133" ph="..." />
+                    <marker date="1513843878704" expanded="true" signature="180:189" ph="..." />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="register.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/common_static/js/register.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="1088">
+                  <caret line="64" column="0" lean-forward="true" selection-start-line="64" selection-start-column="0" selection-end-line="64" selection-end-column="0" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="jquery.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/common_static/js/jquery.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="192">
+                  <caret line="377" column="4" lean-forward="false" selection-start-line="377" selection-start-column="4" selection-end-line="377" selection-end-column="4" />
+                  <folding>
+                    <element signature="n#!!doc" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="utils.js" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/common_static/js/utils.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="391">
+                  <caret line="23" column="0" lean-forward="true" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="homeGoods.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/common_static/js/homeGoods.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="-1658">
+                  <caret line="17" column="38" lean-forward="true" selection-start-line="17" selection-start-column="38" selection-end-line="17" selection-end-column="38" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-second>
+    </splitter>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Python Script" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
       <find>filer</find>
+      <find>main</find>
+      <find>input</find>
+      <find>dreamer</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -166,9 +227,20 @@
         <option value="$PROJECT_DIR$/app1/admin.py" />
         <option value="$PROJECT_DIR$/app1/models.py" />
         <option value="$PROJECT_DIR$/my_project/settings.py" />
-        <option value="$PROJECT_DIR$/pic/static/home.html" />
         <option value="$PROJECT_DIR$/my_project/urls.py" />
+        <option value="$PROJECT_DIR$/common_static/js/jquery.js" />
+        <option value="$PROJECT_DIR$/common_static/js/utils.py" />
+        <option value="$PROJECT_DIR$/common_static/js/homeCustom.js" />
+        <option value="$PROJECT_DIR$/common_static/js/script.js" />
+        <option value="$PROJECT_DIR$/common_static/css/index.css" />
+        <option value="$PROJECT_DIR$/pic/static/home.html" />
+        <option value="$PROJECT_DIR$/pic/static/login.html" />
+        <option value="$PROJECT_DIR$/common_static/js/login.js" />
+        <option value="$PROJECT_DIR$/pic/static/register.js" />
+        <option value="$PROJECT_DIR$/pic/static/register.html" />
         <option value="$PROJECT_DIR$/app1/views.py" />
+        <option value="$PROJECT_DIR$/common_static/js/register.js" />
+        <option value="$PROJECT_DIR$/common_static/js/utils.js" />
       </list>
     </option>
   </component>
@@ -178,11 +250,11 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
-    <option name="x" value="667" />
-    <option name="y" value="8" />
-    <option name="width" value="1184" />
-    <option name="height" value="984" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="365" />
+    <option name="y" value="32" />
+    <option name="width" value="1400" />
+    <option name="height" value="991" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -207,6 +279,28 @@
             <path>
               <item name="OnlineMarketDatabase" type="b2602c69:ProjectViewProjectNode" />
               <item name="OnlineMarketDatabase" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="OnlineMarketDatabase" type="b2602c69:ProjectViewProjectNode" />
+              <item name="OnlineMarketDatabase" type="462c0819:PsiDirectoryNode" />
+              <item name="app1" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="OnlineMarketDatabase" type="b2602c69:ProjectViewProjectNode" />
+              <item name="OnlineMarketDatabase" type="462c0819:PsiDirectoryNode" />
+              <item name="common_static" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="OnlineMarketDatabase" type="b2602c69:ProjectViewProjectNode" />
+              <item name="OnlineMarketDatabase" type="462c0819:PsiDirectoryNode" />
+              <item name="common_static" type="462c0819:PsiDirectoryNode" />
+              <item name="css" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="OnlineMarketDatabase" type="b2602c69:ProjectViewProjectNode" />
+              <item name="OnlineMarketDatabase" type="462c0819:PsiDirectoryNode" />
+              <item name="common_static" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="OnlineMarketDatabase" type="b2602c69:ProjectViewProjectNode" />
@@ -243,6 +337,9 @@
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\OnlineMarketDatabase\common_static\js" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\OnlineMarketDatabase\common_static" />
     </key>
@@ -296,9 +393,10 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.128125" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.128125" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -318,6 +416,27 @@
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
+    <layout-to-restore>
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3046709" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.128125" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="combo" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -332,75 +451,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app1/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="23">
-          <caret line="1" column="28" lean-forward="false" selection-start-line="1" selection-start-column="28" selection-end-line="1" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app1/admin.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="253">
-          <caret line="11" column="45" lean-forward="false" selection-start-line="11" selection-start-column="45" selection-end-line="11" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/my_project/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="851">
-          <caret line="37" column="30" lean-forward="true" selection-start-line="37" selection-start-column="30" selection-end-line="37" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/my_project/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="575">
-          <caret line="30" column="0" lean-forward="true" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
-          <folding>
-            <element signature="e#645#677#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/common_static/js/script.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="253">
-          <caret line="11" column="46" lean-forward="true" selection-start-line="11" selection-start-column="46" selection-end-line="11" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://D:/../OnlineMarketDatabase/front-end/jq_django_test/urls.py" />
-    <entry file="file://$PROJECT_DIR$/manage.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="414">
-          <caret line="19" column="13" lean-forward="false" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app1/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1219">
-          <caret line="55" column="57" lean-forward="false" selection-start-line="55" selection-start-column="57" selection-end-line="55" selection-end-column="57" />
-          <folding>
-            <element signature="e#23#51#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app1/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="207">
-          <caret line="14" column="25" lean-forward="false" selection-start-line="14" selection-start-column="25" selection-end-line="14" selection-end-column="25" />
-          <folding>
-            <element signature="e#15#50#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/front_end/views.py" />
     <entry file="file://$PROJECT_DIR$/app1/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="23">
@@ -524,13 +574,6 @@
     <entry file="file://D:/../OnlineMarketDatabase/front-end/pic/views.py" />
     <entry file="file://$PROJECT_DIR$/front_end/views.py" />
     <entry file="file://D:/../OnlineMarketDatabase/front-end/jq_django_test/urls.py" />
-    <entry file="file://$PROJECT_DIR$/common_static/js/script.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1748">
-          <caret line="11" column="46" lean-forward="false" selection-start-line="11" selection-start-column="46" selection-end-line="11" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://G:/Django范例/fhx/blog/views.py" />
     <entry file="file://D:/Python/Lib/site-packages/matplotlib/axis.py" />
     <entry file="file://$PROJECT_DIR$/app1/form.py" />
@@ -591,6 +634,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="437">
           <caret line="100" column="24" lean-forward="true" selection-start-line="100" selection-start-column="24" selection-end-line="100" selection-end-column="24" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -598,6 +644,44 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="374">
           <caret line="22" column="0" lean-forward="true" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+          <folding>
+            <element signature="e#22#31#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pic/apps.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common_static/home.html" />
+    <entry file="file://$PROJECT_DIR$/pic/tests.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/my_project/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="23" column="74" lean-forward="false" selection-start-line="23" selection-start-column="74" selection-end-line="23" selection-end-column="74" />
+          <folding>
+            <element signature="e#645#677#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app1/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -611,10 +695,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pic/tests.py">
+    <entry file="file://$PROJECT_DIR$/my_project/settings.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <caret line="33" column="27" lean-forward="false" selection-start-line="33" selection-start-column="27" selection-end-line="33" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common_static/css/index.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="242">
+          <caret line="180" column="20" lean-forward="true" selection-start-line="180" selection-start-column="20" selection-end-line="180" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pic/static/home.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="38" column="13" lean-forward="true" selection-start-line="38" selection-start-column="13" selection-end-line="38" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/lib/JavaScriptLanguage.jar!/com/intellij/lang/javascript/index/predefined/DHTML.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="305">
+          <caret line="174" column="0" lean-forward="false" selection-start-line="174" selection-start-column="0" selection-end-line="174" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -627,64 +735,98 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pic/apps.py">
+    <entry file="file://$PROJECT_DIR$/pic/static/register.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="438">
+          <caret line="34" column="44" lean-forward="true" selection-start-line="34" selection-start-column="44" selection-end-line="34" selection-end-column="44" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pic/admin.py">
+    <entry file="file://$PROJECT_DIR$/common_static/js/homeGoods.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="-1658">
+          <caret line="17" column="38" lean-forward="true" selection-start-line="17" selection-start-column="38" selection-end-line="17" selection-end-column="38" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/common_static/home.html" />
-    <entry file="file://$PROJECT_DIR$/pic/static/home.html">
+    <entry file="file://$PROJECT_DIR$/common_static/js/jquery.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="42" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="12" selection-end-column="41" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/my_project/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="33" column="27" lean-forward="false" selection-start-line="33" selection-start-column="27" selection-end-line="33" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app1/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/my_project/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="26" column="37" lean-forward="false" selection-start-line="26" selection-start-column="37" selection-end-line="26" selection-end-column="37" />
+        <state relative-caret-position="192">
+          <caret line="377" column="4" lean-forward="false" selection-start-line="377" selection-start-column="4" selection-end-line="377" selection-end-column="4" />
           <folding>
-            <element signature="e#645#677#0" expanded="true" />
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common_static/js/script.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-3162">
+          <caret line="13" column="0" lean-forward="true" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common_static/js/homeCustom.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="595">
+          <caret line="35" column="53" lean-forward="true" selection-start-line="35" selection-start-column="53" selection-end-line="35" selection-end-column="53" />
+          <folding>
+            <marker date="1513843878704" expanded="true" signature="123:133" ph="..." />
+            <marker date="1513843878704" expanded="true" signature="180:189" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app1/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="31">
-          <caret line="108" column="90" lean-forward="false" selection-start-line="108" selection-start-column="90" selection-end-line="108" selection-end-column="90" />
+        <state relative-caret-position="357">
+          <caret line="22" column="20" lean-forward="false" selection-start-line="22" selection-start-column="20" selection-end-line="22" selection-end-column="49" />
           <folding>
             <element signature="e#15#50#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pic/admin.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common_static/js/register.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1088">
+          <caret line="64" column="0" lean-forward="true" selection-start-line="64" selection-start-column="0" selection-end-line="64" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common_static/js/login.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="25" column="10" lean-forward="true" selection-start-line="25" selection-start-column="10" selection-end-line="25" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pic/static/login.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="30" column="55" lean-forward="true" selection-start-line="30" selection-start-column="55" selection-end-line="30" selection-end-column="55" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common_static/js/utils.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="23" column="0" lean-forward="true" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
