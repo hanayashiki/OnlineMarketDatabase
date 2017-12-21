@@ -114,7 +114,7 @@ def goodDisplay(request):
 
         goodReturn = json.dumps(list(somegoods))  # 未选择类别时自动显示所有商品信息
 
-    return HttpResponse(json.dumps(goodReturn), content_type="application/json")
+    return HttpResponse(goodReturn, content_type="application/json")
 
 
 #顾客的，点击投诉信息，查看这一条的信息（以及源头投诉的）

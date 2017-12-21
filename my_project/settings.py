@@ -38,9 +38,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'app1',
-    'easy_thumbnails',
-    'filer',
-    'mptt',
 
     'pic',
 ]
@@ -84,7 +81,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'app1_base1',
         'USER':'root',
-        'PASSWORD':'19681217Li',
+        'PASSWORD':'root',
         'HOST':'127.0.0.1',
         'PORT':'3306',
     }
@@ -109,58 +106,10 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-THUMBNAIL_PROCESSORS = (
-    'easy_thumbnails.processors.colorspace',
-    'easy_thumbnails.processors.autocrop',
-    'filer.thumbnail_processors.scale_and_crop_with_subject_location',
-    'easy_thumbnails.processors.filters',
-)
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
 
-
-MEDIA_URL='/media/'
-MEDIA_ROOT='/wangshuai/database/test/my_project/media' #上传的图片在这个文件夹里
-
-FILER_STORAGES = {
-    'public':{
-        'main':{
-            'ENGINE':'filer.storage.PublicFileSystemStorage',
-            'OPTIONS':{
-                'location':'/wangshuai/database/test/my_project/media/filer',
-                'base_url':'/media/filer/',  #显示时要指定的静态网址（目前没有）
-            },
-            'UPLOAD_TO':'filer.utils.generate_filename.randomized',
-            'UPLOAD_TO_PREFIX':'filer_public',
-        },
-        'thumbnails':{
-            'ENGINE':'filer.storage.PublicFileSystemStorage',
-            'OPTIONS':{
-                'location':'/wangshuai/database/test/my_project/media/filer_thumbnails',
-                'base_url':'/media/filer_thumbnails/',
-            },
-        },
-    },
-    'private':{
-        'main':{
-            'ENGINE':'filer.storage.PrivateFileSystemStorage',
-            'OPTIONS':{
-                'location':'/wangshuai/database/test/my_project/smedia/filer',
-                'base_url':'/smedia/filer/',
-            },
-            'UPLOAD_TO':'filer.utils.generate_filename.randomized',
-            'UPLOAD_TO_PREFIX':'filer_public',
-        },
-        'thumbnails':{
-            'ENGINE':'filer.storage.PrivateFileSystemStorage',
-            'OPTIONS':{
-                'location':'/wangshuai/database/test/my_project/smedia/filer_thumbnails',
-                'base_url':'/smedia/filer_thumbnails/',
-            },
-        },
-    },
-}
 
 LANGUAGE_CODE = 'en-us'
 
