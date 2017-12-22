@@ -10,7 +10,7 @@
   <script src="js/jquery.js"></script>
   <script src="js/utils.js"></script>
 
-  <script src="js/register.js"></script>
+  <script src="js/shoppingList.js"></script>
 </head>
 
 <body>
@@ -39,30 +39,27 @@
     <div class="header-shadow"></div>
   </header>
 
-  <div class="login_main">
-    <div class="login_inner">
-      <div class="login">
-        <p>
-          <input type="text" id="username" placeholder="设置用户名" autocomplete="user-name">
-        </p>
-        <p>
-          <input type="password" id="password" placeholder="设置密码" autocomplete="current-password">
-        </p>
-        <p>
-          <input type="password" id="repeat_password" placeholder="确定密码" autocomplete="current-password">
-        </p>
-        <p>
-          <input type="text" id="address" placeholder="您的地址" autocomplete="address">
-        </p>
-        <p>
-          <input type="text" id="telephone" placeholder="您的电话" autocomplete="telephone">
-        </p>
-        <p>
-          <input type="text" id="email" placeholder="您的邮箱" autocomplete="email">
-        </p>
-        <button class="info_btn" id="user_register_btn">注册</button>
-      </div>
-    </div>
+  <div class="complaint_entry_main">
+    <p class="greeting">我的购物车</p>
+    <ul class="complaint_entry_inner">
+      <li class="complaint order_entry shopping_list">
+        <table border="0">
+        <tr class="good_entry">
+          <td class="good_id">编号：1245</td>
+          <td class="good_name">商品名：水手服</td>
+          <td class="good_price">价格：50￥</td>
+        </tr>
+        <tr class="good_entry">
+          <td class="good_id">编号：4215</td>
+          <td class="good_name">商品名：Lenovo</td>
+          <td class="good_price">价格：7999￥</td>
+        </tr>
+        <tr class="total_entry">
+          <td class="total">合计：12345￥</td>
+        </tr>
+        </table>
+      </li>
+    </ul>
   </div>
 
 </body>

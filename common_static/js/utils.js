@@ -19,7 +19,7 @@ utils = {
 
 $(document).ready(function() {
     $(".dreamer, .logo").click(function() {
-        $(location).attr('href', 'home.html');
+        $(location).attr('href', 'shoppingList.html');
     });
     $(".register").click(function() {
         $(location).attr('href', 'register.html');
