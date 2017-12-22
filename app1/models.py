@@ -43,7 +43,6 @@ class Managers(models.Model):
 
 @python_2_unicode_compatible
 class Customers(models.Model):
-#    customer_id=models.AutoField(primary_key=True)
     name=models.CharField(max_length=20)
     address=models.CharField(max_length=50)
     telephone=models.CharField(max_length=15)
@@ -64,13 +63,13 @@ class Customers(models.Model):
 class Orders(models.Model):
     order_id=models.IntegerField(primary_key=True)
     is_temp=models.IntegerField()
-    good_str=models.CharField(max_length=50)
-    good_num=models.CharField(max_length=50)
+    good_str=models.CharField(max_length=100,blank=True,null=True)   #商品名字符串，以，相隔
+    good_num=models.CharField(max_length=50,blank=True,null=True)    #商品数量字符串，以，相隔
     customer_id=models.IntegerField()
     manager_id=models.IntegerField()
-    status=models.CharField(max_length=50) #paid/sent/got
-    submit_date=models.DateField()
-    finish_date=models.DateField()
+    status=models.CharField(max_length=50) #unpaid/paid/sent/got
+    submit_date=models.DateField(blank=True,null=True)
+    finish_date=models.DateField(blank=True,null=True)
 
     class Meta:
         db_table="Orders"
@@ -130,12 +129,12 @@ class Complaints(models.Model):
     customer_id=models.IntegerField()
     text=models.TextField()
     submit_date=models.DateField()
-    proceed_date=models.DateField()
+    proceed_date=models.DateField(blank=True,null=True)
     status=models.CharField(max_length=4) #wait/done
     manager_id=models.IntegerField()
-    reply=models.TextField()
+    reply=models.TextField(blank=True,null=True)
    # score=models.IntegerField()
-    follow_cmplt_id=models.IntegerField()
+    follow_cmplt_id=models.IntegerField(blank=True,null=True)
     source_cmplt_id=models.IntegerField()
 
     class Meta:
