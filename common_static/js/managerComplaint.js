@@ -9,6 +9,7 @@ $(document).ready(function () {
                 'id': 'handle_btn'
             });
             button_node.text("处理");
+            utils.jump(button_node, "managerComplaintEntry.html?" + "complaintId=" + complaint_id);
             complaint_node.append(button_node);
         }
         {
@@ -65,6 +66,8 @@ $(document).ready(function () {
             }
         });
     }
+
+    utils.seeOnPrivilege($("body"), "manager");
 
     getComplaintNodes();
 });

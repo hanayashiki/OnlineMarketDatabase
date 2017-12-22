@@ -122,5 +122,7 @@ $(document).ready(function () {
         }
     });
 
+    utils.seeOnPrivilege($("body"), "manager");
+
     getComplaintNodes();
 });

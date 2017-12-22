@@ -27,6 +27,17 @@ utils = {
     },
     space: function (len) {
         return new Array(len + 1).join("&nbsp;");
+    },
+    seeOnPrivilege: function(node, user_type) {
+
+        node.hide();
+
+        $.getJSON("/getPrivilege/", {}, function(data, status) {
+            console.log("I am " + data['user_type']);
+            if (status === "success" && data['user_type'] === user_type) {
+                node.show();
+            }
+        });
     }
 };
 
@@ -39,13 +50,13 @@ $(document).ready(function() {
 
           '<nav class=\"header-nav\">',
             '<ul>',
-              '<li>',
+              '<li id="backend_order">',
                 '<span class=\"line\"></span>',
-                '<a href=\"javascript:;\" class=\"dreamer\" id=\"backend_order\">处理订单</a>',
+                '<a href=\"javascript:;\" class=\"dreamer\">处理订单</a>',
               '</li>',
-              '<li>',
+              '<li id="backend_cmplt">',
                 '<span class=\"line\"></span>',
-                '<a href=\"javascript:;\" class=\"dreamer\" id=\"backend_cmplt\">处理投诉</a>',
+                '<a href=\"javascript:;\" class=\"dreamer\">处理投诉</a>',
               '</li>',
               '<li>',
                 '<span class=\"line\"></span>',
@@ -67,21 +78,29 @@ $(document).ready(function() {
 
     $("body").prepend(navigator);
 
+    var complaint_node = $("#backend_cmplt");
+    var order_node = $("#backend_order");
+
     $(".logo").click(function() {
         $(location).attr('href', 'home.html');
     });
     $("#shopping_list").click(function() {
         $(location).attr('href', 'shoppingList.html');
     });
-    $("#backend_cmplt").click(function() {
+    complaint_node.click(function() {
         $(location).attr('href', 'managerComplaint.html');
     });
-    $("#backend_order").click(function() {
+    order_node.click(function() {
         $(location).attr('href', 'managerOrder.html');
     });
     $(".register").click(function() {
         $(location).attr('href', 'register.html');
     });
     utils.jumpAndLink($("#login_btn"), "login.html");
+
+    utils.seeOnPrivilege(complaint_node, "manager");
+    utils.seeOnPrivilege(order_node, "manager");
+
+
 
 });
