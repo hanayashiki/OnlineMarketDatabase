@@ -13,7 +13,7 @@ from django.db import connection
 def home(request):
     return HttpResponseRedirect('/static/home.html')
 
-#注册
+#注册(只有顾客可以注册，管理员不注册)
 def register(request):
     if request.method =='POST':   #POST!!
         cf=CustomersregistForm(request.POST)
@@ -23,9 +23,25 @@ def register(request):
             address = cf.cleaned_data['address']
             telephone = cf.cleaned_data['telephone']
             password = cf.cleaned_data['password']
-            Customers.objects.create(name=name, email=email, telephone=telephone, address=address, password=password)
-            success={'info': "success"}
-            return HttpResponse(json.dumps(success), content_type="application/json") #注册成功就跳到登录页面
+            #检查是不是有重名现象
+            nameerror = Customers.objects.raw('select customer_id from Customers where name=%s',[name])
+            nameerror = nameerror.customer_id
+            emailerror= Customers.objects.raw('select customer_id from Customers where email=%s',[email])
+            emailerror = emailerror.customer_id
+            telephoneerror=Customers.objects.raw('select customer_id from Customers where telephone=%s',[telephone])
+            telephoneerror = telephoneerror.customer_id
+            if(nameerror or emailerror or telephoneerror):
+                fail = {'info': "failure"}
+                return HttpResponse(json.dumps(fail), content_type="application/json")
+            # 不重复就填到表里
+            else:
+                insert_sql = 'insert into Customers ' \
+                             '(name,email,telephone,address,password) ' \
+                             'values(%s,%s,%s,%s,%s)'
+                cursor = connection.cursor()
+                cursor.execute(insert_sql, [name, email, telephone, address, password])
+                success={'info': "success"}
+                return HttpResponse(json.dumps(success), content_type="application/json")
     else:
         cf=CustomersForm()
         return HttpResponseRedirect('/static/register.html')
@@ -40,16 +56,22 @@ def login(request):
         if cf.is_valid() :
             name=cf.cleaned_data['name']
             password = cf.cleaned_data['password']
-            customer = Customers.objects.filter(name=name, password=password)  # 返回符合姓名和密码的顾客
-            manager = Managers.objects.filter(name=name, password=password)  # 返回符合姓名和密码的管理员
+            customer_id = Customers.objects.raw('select customer_id'
+                                                'from Customers'
+                                                'where name=%s and password=%s',[name, password])
+            customer_id = customer_id .customer_id    # 返回符合姓名和密码的顾客id
+            manager_id = Customers.objects.raw('select manager_id '
+                                               'from Customers '
+                                               'where name=%s and password=%s', [name,password])
+            manager_id = manager_id.manager_id  # 返回符合姓名和密码的管理员id
 
-            if customer:  # 顾客的匹配上了
+            if customer_id:  # 顾客的匹配上了
                 success = {'info': "success"}
                 response = HttpResponse(json.dumps(success), content_type="application/json")
                 response.set_cookie('name', name, 3600)  # cookies操作
                 return response
             else:  # 顾客的没匹配上（要求manager和顾客不能重名）
-                if manager:  # 管理员的匹配上了
+                if manager_id:  # 管理员的匹配上了
                     success = {'info': "success"}
                     response = HttpResponse(json.dumps(success), content_type="application/json")
                     response.set_cookie('name', name, 3600)
@@ -64,41 +86,58 @@ def login(request):
         mf=cf
         return HttpResponseRedirect('/static/login.html')
 
-
+#主页右上角个人信息展示
 def customerInfoDisplay(request):
     name = request.COOKIES.get('name', '')
-    customer = Customers.objects.filter(name=name)  # 返回符合姓名的顾客
-    manager = Managers.objects.filter(name=name)  # 返回符合姓名和密码的管理员
-    customerInfoReturn = { }
-    if customer:
+    customer_id = Customers.objects.raw('select customer_id'
+                                        'from Customers'
+                                        'where name=%s', [name])
+    customer_id = customer_id.customer_id  # 返回符合姓名和密码的顾客id
+    manager_id = Customers.objects.raw('select manager_id '
+                                       'from Customers '
+                                       'where name=%s ', [name])
+    manager_id = manager_id.manager_id  # 返回符合姓名和密码的管理员id
+    customerInfoReturn = {}
+    if customer_id:
         customerInfoReturn = {
-            "customer_id": customer.customer_id,
+            "customer_id": customer_id,
             "name": name
         }
-    if manager:
+    if manager_id:
         customerInfoReturn = {
-            "manager_id": manager.manager_id,
+            "manager_id": manager_id,
             "name": name
         }
     return HttpResponse(json.dumps(list(customerInfoReturn)), content_type="application/json")
 
-
+#主页右上角个人最近投诉信息展示
 def complaintDisplay(request):
     complaintReturn=[]
     name = request.COOKIES.get('name','') #可能是顾客，可能是管理员
-    customer_id=Customers.objects.raw('select customer_id from Customers where name like %s',name)
-    manager_id=Customers.objects.raw('select manager_id from Managers where name like %s',name)
-    if customer_id or manager_id:
+    customer_id=Customers.objects.raw('select customer_id'
+                                      'from Customers '
+                                      'where name like %s',[name])
+    manager_id=Customers.objects.raw('select manager_id '
+                                     'from Managers '
+                                     'where name like %s',[name])
+    if customer_id:
         sql='select text,submit_date,status,complaint_id' \
             'from Complaints' \
-            'where customer_id=%d'
-        complaints=Complaints.objects.raw(sql,[customer_id])
-        for complaint in complaints:
-            complaintReturn.append({ 'text': complaint.text,
-                                    'submit_date': complaint.submit_date,
-                                    'status': complaint.status,
-                                    'complaint_id': complaint.complaint_id})
-    complaint_list = json.dumps(complaintReturn)
+            'where customer_id=%s' \
+            'order by submit_date desc'
+        complaints=Complaints.objects.raw(sql, [customer_id])
+    if manager_id:
+        sql = 'select text,submit_date,status,complaint_id' \
+              'from Complaints' \
+              'where manager_id=%s' \
+              'order by submit_date desc'
+        complaints = Complaints.objects.raw(sql, [manager_id])
+    for complaint in complaints:
+        complaintReturn.append({'text': complaint.text,
+                                'submit_date': complaint.submit_date,
+                                'status': complaint.status,
+                                'complaint_id': complaint.complaint_id})
+    complaintReturn = json.dumps(complaintReturn)
     return HttpResponse(complaintReturn, content_type="application/json")
 
 
@@ -143,7 +182,8 @@ def goodDisplay(request):
                      'image_path': somegood.image_path,
                      'remain': somegood.remain})
     goodReturn = json.dumps(list)  # 未选择类别时自动显示所有商品信息
-    if(request.method == 'GET'):  #按类别搜索后的结果
+
+    if(request.method == 'GET'):    #按类别搜索后的结果
         category = request.GET.get('category', "所有类别") #未选择时记为All
         if(category == "所有类别" ):
             somegoods = Goods.objects.raw('select good_id,name,price,image_path,remain from Goods')
@@ -164,16 +204,18 @@ def goodDisplay(request):
 
     return HttpResponse(goodReturn, content_type="application/json")
 
+#按照类别和关键词共同搜索后的结果（关键词是针对商品名字的）
 def search(request):
     searchgoods = Goods.objects.raw('select good_id,name,price,image_path,remain from Goods')
     list=[]
     for searchgood in searchgoods:
-        list.append({'good_id':searchgood.good_id,
-                     'name':searchgood.name,
-                     'price':searchgood.price,
-                     'image_path':searchgood.image_path,
-                     'remain':searchgood.remain})
+        list.append({'good_id': searchgood.good_id,
+                     'name': searchgood.name,
+                     'price': searchgood.price,
+                     'image_path': searchgood.image_path,
+                     'remain': searchgood.remain})
     searchReturn = json.dumps(list)  # 未选择类别时自动显示所有商品信息
+
     if(request.method == 'GET'):  #按类别搜索后的结果
         category = request.GET.get('category', "所有类别") #未选择时记为All
         keyword = request.GET.get('keyword', "")
@@ -213,17 +255,27 @@ def getComplaintEntry(request):
     if(request.method == 'GET'):
         complaint_list=[]
         complaint_id = request.GET.get('complain_id')
-        complaint = Complaints.objects.filter(complaint_id=complaint_id)   #这一条投诉信息
+        complaint = Complaints.objects.raw('select * '
+                                           'from Complaints '
+                                           'where complaint_id=%s', [complaint_id])   #这一条投诉信息
+
         source_cmplt_id=complaint.source_cmplt_id
         if source_cmplt_id:  #是系列投诉
-            complaint = Complaints.objects.filter(complaint_id=source_cmplt_id)
+            complaint = Complaints.objects.raw('select * '
+                                               'from Complaints '
+                                               'where complaint_id=%s', [source_cmplt_id])
+
             complaint_list.append({'text': complaint.text,
                                    'submit_date': complaint.submit_date,
                                    'status': complaint.status,
                                    'proceed_date': complaint.proceed_date,
                                    'reply': complaint.reply})
+
             while complaint.follow_cmplt_id: #系列还没断
-                complaint = Complaints.objects.filter(complaint_id=complaint.follow_cmplt_id)
+                complaint = Complaints.objects.raw('select * '
+                                                   'from Complaints '
+                                                   'where complaint_id=%s', [complaint.follow_cmplt_id])
+
                 complaint_list.append({'text': complaint.text,
                                        'submit_date': complaint.submit_date,
                                        'status': complaint.status,
@@ -235,6 +287,7 @@ def getComplaintEntry(request):
                                    'status': complaint.status,
                                    'proceed_date': complaint.proceed_date,
                                    'reply': complaint.reply})          #把相关投诉的信息存到了complaint_list里
+
         complaint_list = json.dumps(complaint_list)
         return HttpResponse(complaint_list, content_type="application/json")
 #    else:
@@ -242,44 +295,49 @@ def getComplaintEntry(request):
 
 #查看一系列投诉后追加投诉
 def addComplaint(request):
-    complaint_id=request.POST.get('complaint_id', '')
+    complaint_id = request.POST.get('complaint_id', '')
     text=request.POST.get('text', '')
-    if (complaint_id and text !=""):
-        complaint=Complaints.objects.raw('select * from Complaints where complaint_id=%s', [complaint_id]) #当前投诉
-        customer_id=complaint.customer_id
-        manager_id=complaint.manager_id
-        source_cmplt_id=complaint.source_cmplt_id
-        submit_date=timezone.localtime(timezone.now())  #获取当前投诉信息
-        next_id=max(Complaints.objects.values('complaint_id'))+1
-        update_sql='update Complaints ' \
-               'set follow_cmplt_id=%s' \
-               'where complaint_id=%s'
+    if (complaint_id and text !=''):
+        complaint = Complaints.objects.raw('select * '
+                                         'from Complaints '
+                                         'where complaint_id=%s', [complaint_id]) #当前投诉
+
+        customer_id = complaint.customer_id
+        manager_id = complaint.manager_id
+        source_cmplt_id = complaint.source_cmplt_id
+        submit_date = timezone.localtime(timezone.now())  #获取当前投诉信息
+        next_id = max(Complaints.objects.values('complaint_id'))+1
+        update_sql = 'update Complaints ' \
+                    'set follow_cmplt_id=%s' \
+                    'where complaint_id=%s'
         cursor=connection.cursor()
-        cursor.execute(update_sql,[next_id,complaint_id])  #当前投诉信息的follow_cmplt给加上
+        cursor.execute(update_sql, [next_id, complaint_id])  #当前投诉信息的follow_cmplt给加上
         insert_sql='insert into Complaints ' \
                    '(complaint_id,customer_id,manager_id,source_cmplt_id,submit_date,text,status) ' \
                    'values(%s,%s,%s,%s,%s,%s,"wait")'
         cursor = connection.cursor()
-        cursor.execute(insert_sql, [next_id,customer_id,manager_id,source_cmplt_id,submit_date,text])  #给数据库添加新的信息
-        success={'info':'success'}
+        cursor.execute(insert_sql, [next_id, customer_id, manager_id, source_cmplt_id, submit_date,text])  #给数据库添加新的信息
+        success={'info': 'success'}
         return HttpResponse(json.dumps(success), content_type="application/json")
     else:
         fail = {'info': 'failure'}
         return HttpResponse(json.dumps(fail), content_type="application/json")
 
 def allComplaintEntry(request):
-    customer_name=request.COOKIES.get('name','')
+    customer_name = request.COOKIES.get('name','')
     if customer_name:
-        customer_id = Customers.objects.raw('select customer_id from Customers where name like %s',[customer_name])  # customer是{'customer_id':..}
+        customer_id = Customers.objects.raw('select customer_id '
+                                            'from Customers '
+                                            'where name like %s', [customer_name])  # customer是{'customer_id':..}
         customer_id = customer_id.customer_id
         if customer_id:
-            sql='select text,submit_date,status,proceed_date,reply' \
-                'from Complaints' \
-                'where customer_id=%s' \
-                'order by submit_date desc'
+            sql = 'select text,submit_date,status,proceed_date,reply' \
+                 'from Complaints' \
+                 'where customer_id=%s' \
+                 'order by submit_date desc'
             cursor = connection.cursor()
-            cursor.execute(sql,[customer_id])
-            complaint_list=cursor.fetchone()
+            cursor.execute(sql, [customer_id])
+            complaint_list = cursor.fetchone()
             return HttpResponse(json.dumps(complaint_list), content_type="application/json")
  #   return HttpResponseRedirect('/static/complaint.html')
 
@@ -287,11 +345,13 @@ def allComplaintEntry(request):
 #提交投诉
 def submitComplaint(request):
     if (request.method == 'POST'):
-        text=request.POST.get('text','')
-        customer_name=request.COOKIES.get('name','')
+        text = request.POST.get('text', '')
+        customer_name = request.COOKIES.get('name', '')
         if customer_name:
-            customer_id=Customers.objects.raw('select customer_id from Customers where name like %s',[customer_name])#customer是{'customer_id':..}
-            customer_id=customer_id.customer_id
+            customer_id = Customers.objects.raw('select customer_id '
+                                                'from Customers '
+                                                'where name like %s', [customer_name])#customer是{'customer_id':..}
+            customer_id = customer_id.customer_id
             next_id = max(Complaints.objects.values('complaint_id')) + 1
             manager_id = max(Managers.objects.values('manager_id'))
             manager_id = random.randint(1, manager_id) #随机找一个管理员负责
@@ -318,16 +378,29 @@ def submitComplaint(request):
 def getComplaintWork(request):
     manager_name = request.COOKIES.get('name', '')
     if manager_name:
-        manager_id = Managers.objects.raw('select manager_id from Customers where name like %s',[manager_name])
+        manager_id = Managers.objects.raw('select manager_id '
+                                          'from Customers '
+                                          'where name like %s', [manager_name])
         manager_id = manager_id.manager_id
         if manager_id:
-            sql = 'select text,submit_date,status,complaint_id' \
+            complaint_list=[]
+            sql = 'select customer_id,text,submit_date,status,complaint_id' \
                   'from Complaints' \
                   'where manager_id=%s' \
                   'order by submit_date desc'
             cursor = connection.cursor()
             cursor.execute(sql, [manager_id])
-            complaint_list = cursor.fetchone()
+            temp_list = cursor.fetchone()
+            for complaint in temp_list:
+                customer_id=complaint.customer_id
+                customer_name = Customers.objects.raw('select name from Customers where customer_id=%s', [customer_id])
+                customer_name = customer_name.customer_name
+                complaint_list.append({'customer_id':customer_id,
+                                      'customer_name':customer_name,
+                                      'text':complaint.text,
+                                      'submit_date':complaint.submit_date,
+                                      'status':complaint.status,
+                                      'complaint_id':complaint.complaint_id})
             return HttpResponse(json.dumps(complaint_list), content_type="application/json")
 #    return HttpResponseRedirect('/static/managerComplain.html')
 
@@ -343,17 +416,23 @@ def replyToComplaint(request):
     complaint_id=request.POST.get('complaint_id', '') #接收到有效id后才跳转来的，所以不用判断
     text=request.POST.get('text','')
     complaint_list = []
-    complaint = Complaints.objects.raw('select * from Complaints where complaint_id=%s',[complaint_id])  # 这一条投诉信息
+    complaint = Complaints.objects.raw('select * '
+                                       'from Complaints '
+                                       'where complaint_id=%s', [complaint_id])  # 这一条投诉信息
     source_cmplt_id = complaint.source_cmplt_id
     if source_cmplt_id:  # 是系列投诉
-        complaint = Complaints.objects.raw('select * from Complaints where complaint_id=%s', [source_cmplt_id])
+        complaint = Complaints.objects.raw('select * '
+                                           'from Complaints '
+                                           'where complaint_id=%s', [source_cmplt_id])
         complaint_list.append({'text': complaint.text,
                                'submit_date': complaint.submit_date,
                                'status': complaint.status,
                                'proceed_date': complaint.proceed_date,
                                'reply': complaint.reply})
         while complaint.follow_cmplt_id:  # 系列还没断
-            complaint = Complaints.objects.raw('select * from Complaints where complaint_id=%s', [complaint.follow_cmplt_id])
+            complaint = Complaints.objects.raw('select * '
+                                               'from Complaints '
+                                               'where complaint_id=%s', [complaint.follow_cmplt_id])
             complaint_list.append({'text': complaint.text,
                                    'submit_date': complaint.submit_date,
                                    'status': complaint.status,
@@ -377,15 +456,22 @@ def replyToComplaint(request):
 
     return HttpResponse(json.dumps(complaint_list), content_type="application/json")
 
+#顾客点击添加购物车，把商品填到Customers.temp_order对应的订单中去，且此订单的is_temp值是1
 def addGood(request):
-    customer_name=request.COOKIES.get('name','')
-    good_id=request.GET.get('good_id','')
-    good_name=Customers.objects.raw('select name from Goods where good_id like %s',[good_id])
-    good_name=good_name.good_name
+    customer_name = request.COOKIES.get('name', '')
+    good_id = request.GET.get('good_id', '')
+    good_name = Customers.objects.raw('select name '
+                                      'from Goods '
+                                      'where good_id like %s', [good_id])
+    good_name = good_name.good_name
     if customer_name:
-        customer_id = Customers.objects.raw('select customer_id from Customers where name like %s',[customer_name])
+        customer_id = Customers.objects.raw('select customer_id '
+                                            'from Customers '
+                                            'where name like %s', [customer_name])
         customer_id = customer_id.customer_id
-        temp_order = Customers.objects.raw('select temp_order from Customers where name like %s',[customer_name])
+        temp_order = Customers.objects.raw('select temp_order '
+                                           'from Customers '
+                                           'where name like %s', [customer_name])
         if temp_order :
             order_id = temp_order
         else:
@@ -457,7 +543,7 @@ def orderEntry(request):
 
                 order_list.append({'order_id':order_id,
                                    'good_names':good_names,
-                                   'price':sum,
+                                   'total':sum,
                                    'status':status,
                                    'submit_date':submit_date})
             return HttpResponse(json.dumps(order_list), content_type="application/json")
@@ -520,6 +606,9 @@ def getOrderWork(request):
             cursor.execute(sql, [manager_id])
             temp_list = cursor.fetchone()#此时是数组
             for i in range(len(temp_list)):
+                customer_id=temp_list[i].customer_id  #待返回
+                customer_name = Customers.objects.raw('select name from Customers where customer_id=%s', [customer_id])
+                customer_name = customer_name.customer_name #待返回
                 order_id=temp_list[i].order_id    #待返回
                 good_names=temp_list[i].good_str  #待返回
                 status=temp_list[i].status #待返回
@@ -533,9 +622,11 @@ def getOrderWork(request):
                     price=price.price
                     sum = sum + price*int(num_list[j])  #总金额是sum
 
-                order_list.append({'order_id':order_id,
+                order_list.append({'customer_id':customer_id,
+                                   'customer_name':customer_name,
+                                   'order_id':order_id,
                                    'good_names':good_names,
-                                   'price':sum,
+                                   'total':sum,
                                    'status':status,
                                    'submit_date':submit_date})
             return HttpResponse(json.dumps(order_list), content_type="application/json")
