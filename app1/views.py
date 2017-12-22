@@ -14,6 +14,7 @@ def home(request):
     return HttpResponseRedirect('/static/home.html')
 
 #注册(只有顾客可以注册，管理员不注册)
+@csrf_exempt
 def register(request):
     if request.method =='POST':   #POST!!
         cf=CustomersregistForm(request.POST)
