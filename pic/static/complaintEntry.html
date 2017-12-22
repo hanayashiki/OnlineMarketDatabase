@@ -15,30 +15,6 @@
 
 <body>
 
-  <header class="header">
-    <div class="header-inner body-width">
-      <a href="javascript:;" class="logo"></a>
-
-      <nav class="header-nav">
-        <ul>
-          <li>
-            <span class="line"></span>
-            <a href="javascript:;" class="dreamer">查看购物车</a>
-          </li>
-          <li>
-            <span class="line"></span>
-            <a href="#" class="icon-text__pink register">注册</a>
-          </li>
-          <li>
-            <span class="line"></span>
-            <a href="javascript:;" id="login_btn">登录</a>
-          </li>
-        </ul>
-      </nav>
-    </div>
-    <div class="header-shadow"></div>
-  </header>
-
   <div class="complaint_entry_main">
     <ul class="complaint_entry_inner">
       <li class="complaint">
@@ -59,6 +35,18 @@
       </li>
     </ul>
 
+  </div>
+
+  <div class="login_main complaint_main append_complaint_main">
+    <div class="login_inner">
+      <div class="login">
+        <p class="greeting">追加投诉</p>
+        <textarea rows="10" cols="60" placeholder="请在此处填写投诉详情。" id="content"></textarea>
+        <p>
+          <button class="info_btn" id="complaint_btn">提交投诉</button>
+        </p>
+      </div>
+    </div>
   </div>
 
 </body>

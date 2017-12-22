@@ -1031,3 +1031,21 @@ button.info_btn{
 .complaint_entry_inner .shopping_list .good_name {
   width: 400px;
 }
+
+.append_complaint_main {
+  padding-top: 0;
+}
+
+.complaint_entry_main .complaint_entry_inner .complaint #handle_btn
+{
+  float:right;
+  background: #5fffdd;
+  margin-top: 0px;
+  color: #ff5476;
+}
+
+.complaint_entry_main .complaint_entry_inner .complaint .status .select{
+  height: 35px;
+  width: 100px;
+  font-size: 16px;
+}
