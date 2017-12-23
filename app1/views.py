@@ -668,3 +668,7 @@ def changeOrderStatus(request):
     else:
         fail = {'info': 'fail'}
         return HttpResponse(json.dumps(fail), content_type="application/json")
+
+@csrf_exempt
+def getPrivilege(request):
+    return HttpResponse(json.dumps({'user_type': "manager"}), content_type="application/json")

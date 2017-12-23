@@ -1,17 +1,16 @@
 $(document).ready(function () {
     var complaint_seq_node = $(".complaint_entry_inner");
-    var status_dict =
-        {
-            "wait": "未处理",
-            "done": "已处理"
-        };
+    var complaint_id = $.getUrlParam("complaintId");
+    var last_complaint_id = complaint_id;
+
+
     function addComplaintNode(status, date, content, response) {
         var new_complaint_node = $("<li></li>");
         new_complaint_node.attr('class', 'complaint');
 
         var new_status_node = $("<p></p>");
         new_status_node.attr('class', 'status');
-        new_status_node.text(status_dict[status]+" "+date);
+        new_status_node.text(utils.status_dict[status]+" "+date);
         new_complaint_node.append(new_status_node);
 
         var new_content_node = $("<p></p>");
@@ -48,7 +47,6 @@ $(document).ready(function () {
     */
 
     function getComplaintNodes() {
-        var complaint_id = $.getUrlParam("complaintId");
         $.getJSON("/getComplaintEntry/", {"complaint_id": complaint_id},
             function (data, status) {
                 if (status === "success") {
@@ -61,11 +59,37 @@ $(document).ready(function () {
                         var text = data['text'];
                         var reply = data['reply'];
 
+                        last_complaint_id = complaint_id;
+
                         addComplaintNode(entry_status, date, text, reply);
                     })
                 }
             })
     }
+
+    var text_area = $("#content");
+
+    var min_len = 15;
+    var max_len = 1000;
+    $("#complaint_btn").click(function () {
+        var complaint_str = text_area.val();
+        var len = complaint_str.length;
+        if (len < min_len) {
+            alert("请更加详细地描述一下您的状况。");
+        } else if (len > max_len) {
+            alert("您的投诉过长，请分段提交。");
+        } else {
+            $.post("/submitComplaint/", {"text": complaint_str, "complaint_id": last_complaint_id},
+                function (data, status) {
+                    if (status === "success") {
+                        if (data['info'] === "success") {
+                            alert("提交成功！您的投诉我们将尽快处理！");
+                            window.location.reload();
+                        }
+                    }
+                })
+        }
+    });
 
     getComplaintNodes();
 });

@@ -9,23 +9,31 @@
 
   <script src="js/jquery.js"></script>
   <script src="js/utils.js"></script>
-  <script src="js/orders.js"></script>
+  <script src="js/managerOrder.js"></script>
 
 </head>
 
 <body>
 
-
   <div class="complaint_entry_main">
     <ul class="complaint_entry_inner">
       <li class="complaint order_entry">
-        <button class="info_btn" id="user_complain_btn">我要投诉</button>
         <p class="status">订单号：114514</p>
+        <p class="status">下单客户：凡样&nbsp;&nbsp;&nbsp;&nbsp;客户编号：15231115</p>
+        <button class="info_btn" id="user_complain_btn">修改订单状态</button>
         <p class="status">商品：假发、长筒袜、水手服</p>
         <p class="status">状态：已下单</p>
         <p class="status">下单日期：2011/4/15</p>
         <p class="status">总金额：250￥</p>
-
+        <p class="status">
+            设置状态：
+            <select title="设置状态" class="select">
+              <option value="wait">未处理</option>
+              <option value="paid">已付款</option>
+              <option value="sent">已发货</option>
+              <option value="received">已接收</option>
+            </select>
+        </p>
       </li>
     </ul>
   </div>
