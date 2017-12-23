@@ -14,9 +14,11 @@ def home(request):
     return HttpResponseRedirect('/static/home.html')
 
 #注册(只有顾客可以注册，管理员不注册)
+@csrf_exempt
 def register(request):
     if request.method =='POST':   #POST!!
         cf=CustomersregistForm(request.POST)
+        print(cf)
         if cf.is_valid():
             name = cf.cleaned_data['name']
             email = cf.cleaned_data['email']
@@ -24,12 +26,10 @@ def register(request):
             telephone = cf.cleaned_data['telephone']
             password = cf.cleaned_data['password']
             #检查是不是有重名现象
-            nameerror = Customers.objects.raw('select customer_id from Customers where name=%s',[name])
-            nameerror = nameerror.customer_id
-            emailerror= Customers.objects.raw('select customer_id from Customers where email=%s',[email])
-            emailerror = emailerror.customer_id
-            telephoneerror=Customers.objects.raw('select customer_id from Customers where telephone=%s',[telephone])
-            telephoneerror = telephoneerror.customer_id
+            nameerror = Customers.objects.filter(name=name)
+            emailerror = Customers.objects.filter(email=email)
+            telephoneerror = Customers.objects.filter(telephone=telephone)
+
             if(nameerror or emailerror or telephoneerror):
                 fail = {'info': "failure"}
                 return HttpResponse(json.dumps(fail), content_type="application/json")
@@ -53,9 +53,15 @@ def login(request):
     if request.method=='POST':     #POST！！
         cf=CustomersForm(request.POST)
         mf=cf
+        print(cf)
         if cf.is_valid() :
             name=cf.cleaned_data['name']
             password = cf.cleaned_data['password']
+            customer = Customers.objects.filter(name=name,paaword=password)
+            customer_id=customer.customer_id
+            manager = Managers.objects.filter(name=name,paaword=password)
+            manager_id=manager.manager_id
+            '''
             customer_id = Customers.objects.raw('select customer_id'
                                                 'from Customers'
                                                 'where name=%s and password=%s',[name, password])
@@ -63,8 +69,8 @@ def login(request):
             manager_id = Customers.objects.raw('select manager_id '
                                                'from Customers '
                                                'where name=%s and password=%s', [name,password])
-            manager_id = manager_id.manager_id  # 返回符合姓名和密码的管理员id
-
+            manager_id = manager_id.manager_id  # 返回符合姓名和密码的管理员id'''
+            print(customer_id)
             if customer_id:  # 顾客的匹配上了
                 success = {'info': "success"}
                 response = HttpResponse(json.dumps(success), content_type="application/json")
@@ -85,6 +91,23 @@ def login(request):
         cf=CustomersForm()
         mf=cf
         return HttpResponseRedirect('/static/login.html')
+
+def getPrivilege(request):
+    name = request.COOKIES.get('name', '')
+    customer_id = Customers.objects.raw('select customer_id'
+                                        'from Customers'
+                                        'where name=%s', [name])
+    if customer_id:
+        customer_id = customer_id.customer_id  # 返回符合姓名和密码的顾客id
+        InfoReturn={'user_type':"customer",'user_id':customer_id }
+    manager_id = Customers.objects.raw('select manager_id '
+                                       'from Customers '
+                                       'where name=%s ', [name])
+    if manager_id:
+        manager_id = manager_id.manager_id  # 返回符合姓名和密码的管理员id
+        InfoReturn = {'user_type': "manager", 'user_id': manager_id}
+
+    return HttpResponse(json.dumps(InfoReturn), content_type="application/json")
 
 #主页右上角个人信息展示
 def customerInfoDisplay(request):

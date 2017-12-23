@@ -42,4 +42,5 @@ urlpatterns =[
     url(r'^submitShoppingList/$', views.submitShoppingList, name='submitShoppingList'),
     url(r'^getOrderWork/$', views.addGood, name='getOrderWork'),
     url(r'^changeOrderStatus/$', views.addGood, name='changeOrderStatus'),
+    url(r'^getPrivilege/$',views.getPrivilege, name='getPrivilege'),
 ]
