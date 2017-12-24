@@ -31,19 +31,13 @@ def register(request):
             telephone = cf.cleaned_data['telephone']
             password = cf.cleaned_data['password']
             #检查是不是有重名现象
-<<<<<<< HEAD
             nameerror = Customers.objects.raw('select id from Customers where name=%s',[name])
             nameerror = [nameId.id for nameId in nameerror]
             emailerror= Customers.objects.raw('select id from Customers where email=%s',[email])
             emailerror = [emailId.id for emailId in nameerror]
             telephoneerror = Customers.objects.raw('select id from Customers where telephone=%s',[telephone])
             telephoneerror = [telephoneerrorId.id for telephoneerrorId in telephoneerror]
-=======
-            nameerror = Customers.objects.filter(name=name)
-            emailerror = Customers.objects.filter(email=email)
-            telephoneerror = Customers.objects.filter(telephone=telephone)
 
->>>>>>> f04aa03a6b4fc519f3e21f150350062b4cc2a829
             if(nameerror or emailerror or telephoneerror):
                 fail = {'info': "failure"}
                 return HttpResponse(json.dumps(fail), content_type="application/json")
@@ -74,7 +68,6 @@ def login(request):
         if cf.is_valid() :
             name=cf.cleaned_data['name']
             password = cf.cleaned_data['password']
-<<<<<<< HEAD
             id = Customers.objects.raw('select id '
                                         'from Customers '
                                         'where name=%s and password=%s',[name, password])
@@ -89,23 +82,6 @@ def login(request):
 
             if id:  # 顾客的匹配上了
                 LOG_DEBUG("顾客登录")
-=======
-            customer = Customers.objects.filter(name=name,password=password)
-            customer_id=customer.customer_id
-            manager = Managers.objects.filter(name=name,password=password)
-            manager_id=manager.manager_id
-            '''
-            customer_id = Customers.objects.raw('select customer_id'
-                                                'from Customers'
-                                                'where name=%s and password=%s',[name, password])
-            customer_id = customer_id .customer_id    # 返回符合姓名和密码的顾客id
-            manager_id = Customers.objects.raw('select manager_id '
-                                               'from Customers '
-                                               'where name=%s and password=%s', [name,password])
-            manager_id = manager_id.manager_id  # 返回符合姓名和密码的管理员id'''
-            print(customer_id)
-            if customer_id:  # 顾客的匹配上了
->>>>>>> f04aa03a6b4fc519f3e21f150350062b4cc2a829
                 success = {'info': "success"}
                 response = HttpResponse(json.dumps(success), content_type="application/json")
                 response.set_cookie('name', name, 3600)  # cookies操作
@@ -128,7 +104,6 @@ def login(request):
         return HttpResponseRedirect('/static/login.html')
 
 def getPrivilege(request):
-<<<<<<< HEAD
     LOG_DEBUG("返回权限信息")
     PrivilegeReturn = {}
     name = request.COOKIES.get('name', '')  # 可能是顾客，可能是管理员
@@ -155,23 +130,7 @@ def getPrivilege(request):
         }
     LOG_DEBUG(PrivilegeReturn)
     return HttpResponse(json.dumps(PrivilegeReturn), content_type="application/json")
-=======
-    name = request.COOKIES.get('name', '')
-    customer_id = Customers.objects.raw('select customer_id'
-                                        'from Customers'
-                                        'where name=%s', [name])
-    if customer_id:
-        customer_id = customer_id.customer_id  # 返回符合姓名和密码的顾客id
-        InfoReturn={'user_type':"customer",'user_id':customer_id }
-    manager_id = Customers.objects.raw('select manager_id '
-                                       'from Customers '
-                                       'where name=%s ', [name])
-    if manager_id:
-        manager_id = manager_id.manager_id  # 返回符合姓名和密码的管理员id
-        InfoReturn = {'user_type': "manager", 'user_id': manager_id}
 
-    return HttpResponse(json.dumps(InfoReturn), content_type="application/json")
->>>>>>> f04aa03a6b4fc519f3e21f150350062b4cc2a829
 
 #主页右上角个人信息展示
 def customerInfoDisplay(request):
