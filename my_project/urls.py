@@ -42,5 +42,10 @@ urlpatterns =[
     url(r'^submitShoppingList/$', views.submitShoppingList, name='submitShoppingList'),
     url(r'^getOrderWork/$', views.addGood, name='getOrderWork'),
     url(r'^changeOrderStatus/$', views.addGood, name='changeOrderStatus'),
+<<<<<<< HEAD
     url(r'^getPrivilege/$', views.getPrivilege),
+=======
+    url(r'^getPrivilege/$',views.getPrivilege),
+
+>>>>>>> f04aa03a6b4fc519f3e21f150350062b4cc2a829
 ]

@@ -10,17 +10,26 @@
   <script src="js/jquery.js"></script>
   <script src="js/utils.js"></script>
 
-  <script src="js/complaint.js"></script>
+  <script src="js/managerComplaintEntry.js"></script>
 </head>
 
 <body>
 
 
-  <div class="login_main complaint_main">
+  <div class="complaint_entry_main">
+    <ul class="complaint_entry_inner">
+
+    </ul>
+
+  </div>
+
+  <div class="login_main complaint_main append_complaint_main">
     <div class="login_inner">
       <div class="login">
-        <p class="greeting">我们将会尽所能给您满意的答复。</p>
-        <textarea rows="10" cols="60" placeholder="请在此处填写投诉详情。" id="content"></textarea>
+        <p class="greeting">回复投诉</p>
+        <input class="appending" id="complaint_id" placeholder="处理投诉编号"><br>
+        <textarea rows="10" cols="60" placeholder="请在此处填写回复。" id="content"></textarea>
+
         <p>
           <button class="info_btn" id="complaint_btn">提交投诉</button>
         </p>
