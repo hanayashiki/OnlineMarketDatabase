@@ -6,7 +6,6 @@ from django.utils.encoding import python_2_unicode_compatible
 # Create your models here.
 @python_2_unicode_compatible
 class Goods(models.Model):
-    good_id = models.IntegerField(primary_key=True)
     name = models.CharField(max_length=30)
     comment = models.TextField()
     place = models.CharField(max_length=20)
@@ -18,6 +17,9 @@ class Goods(models.Model):
     type = models.CharField(max_length=10)
     image_path = models.CharField(blank=True, max_length=100) #/static/images/goods/***.jpg
     website = models.CharField(blank=True, max_length=100)
+    @property
+    def good_id(self):
+        return self.id
 
     class Meta:
         db_table = "Goods"
@@ -25,15 +27,18 @@ class Goods(models.Model):
     def _str_(self):
         return self.name
 
+        
 @python_2_unicode_compatible
 class Managers(models.Model):
-    manager_id = models.IntegerField(primary_key=True)
     name = models.CharField(max_length=10)
     address = models.CharField(max_length=50)
     telephone = models.CharField(max_length=15)
     email = models.EmailField()
     reg_time = models.DateField()
     password = models.CharField(max_length=20)
+    @property
+    def manager_id(self):
+        return self.id
 
     class Meta:
         db_table="Managers"
