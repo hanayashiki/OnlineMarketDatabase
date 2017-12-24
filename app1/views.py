@@ -57,9 +57,9 @@ def login(request):
         if cf.is_valid() :
             name=cf.cleaned_data['name']
             password = cf.cleaned_data['password']
-            customer = Customers.objects.filter(name=name,paaword=password)
+            customer = Customers.objects.filter(name=name,password=password)
             customer_id=customer.customer_id
-            manager = Managers.objects.filter(name=name,paaword=password)
+            manager = Managers.objects.filter(name=name,password=password)
             manager_id=manager.manager_id
             '''
             customer_id = Customers.objects.raw('select customer_id'
