@@ -1,6 +1,6 @@
 $(document).ready(function() {
     function addOrderEntry(order_id, customer_name, customer_id,
-        good_list, status, submit_date, total) {
+        good_list, good_nums, status, submit_date, total) {
         var order_entry_node = $("<li></li>");
         order_entry_node.attr('class', 'complaint order_entry');
         {
@@ -30,7 +30,7 @@ $(document).ready(function() {
             var good_list_node = $("<p></p>");
             good_list_node.attr('class', 'status');
             var list_str = "商品：";
-            list_str += good_list.join("、");
+            list_str += utils.strVecAdd(good_list, " * ", good_nums).join("、");
             good_list_node.text(list_str);
             order_entry_node.append(good_list_node);
         }
@@ -90,7 +90,7 @@ $(document).ready(function() {
         $(".complaint_entry_main .complaint_entry_inner").append(order_entry_node);
     }
 
-    addOrderEntry(123, "蔡壮忠", 193121, ["冲锋艇", "短校服"], "wait", "1931/1/1", 100);
+    addOrderEntry(123, "蔡壮忠", 193121, ["冲锋艇", "短校服"], [1, 2], "wait", "1931/1/1", 100);
 
     $.getJSON("/getOrderWork", {}, function(data, status) {
         if (status === "success") {

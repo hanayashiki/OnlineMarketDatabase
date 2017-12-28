@@ -11,6 +11,9 @@ utils = {
             $(location).attr('href', dst);
         });
     },
+    navigateLink: function(dst) {
+        $(location).attr('href', dst + "?" + "from=" + window.location.href);
+    },
     checkEmail: function(str){
         var regExp = /\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/;
         return regExp.test(str);
@@ -26,29 +29,40 @@ utils = {
         "received": "已接收"
     },
     home_page: "home.html",
+    user_type: "tourist",
+    privilege_action_list: {"manager":[], "tourist": [], "customer": []},
     space: function (len) {
         return new Array(len + 1).join("&nbsp;");
     },
-    seeOnPrivilege: function(node, user_type) {
-        node.hide();
+    getUserType: function() {
+        var that = this;
         $.getJSON("/getPrivilege/", {}, function(data, status) {
             console.log("I am " + data['user_type']);
             console.log("manager_id: " + data['manager_id']);
             console.log("user_id: " + data['user_id']);
-            if (status === "success" && data['user_type'] === user_type) {
-                node.show();
+            that.user_type = data['user_type'];
+            console.log(that.user_type);
+            var action_list = that.privilege_action_list[that.user_type];
+            for (var idx = 0; idx < action_list.length; idx++) {
+                action_list[idx]();
             }
         });
     },
+    seeOnPrivilege: function(node, user_type) {
+        node.hide();
+        this.privilege_action_list[user_type].push(function() {node.show()});
+    },
     hideOnPrivilege: function(node, user_type) {
-         $.getJSON("/getPrivilege/", {}, function(data, status) {
-            console.log("I am " + data['user_type']);
-            console.log("manager_id: " + data['manager_id']);
-            console.log("user_id: " + data['user_id']);
-            if (status === "success" && data['user_type'] === user_type) {
-                node.hide();
-            }
-        });
+        node.hide();
+        this.privilege_action_list[user_type].push(function() {node.hide()});
+    },
+    strVecAdd: function(str_vec1, mid, str_vec2) {
+        var str_vec = [];
+        for (var i = 0; i < str_vec1.length; i++) {
+            str_vec.push(str_vec1[i] + mid + str_vec2[i]);
+        }
+        console.log(str_vec);
+        return str_vec;
     }
 };
 
@@ -127,9 +141,10 @@ $(document).ready(function() {
     utils.seeOnPrivilege(order_node, "manager");
     utils.seeOnPrivilege($("#logout"), "manager");
     utils.seeOnPrivilege($("#logout"), "customer");
-    utils.seeOnPrivilege($("#shopping_list"), "manager");
     utils.seeOnPrivilege($("#shopping_list"), "customer");
     utils.seeOnPrivilege($("#register"), "tourist");
     utils.seeOnPrivilege($("#login"), "tourist");
+
+    utils.getUserType();
 
 });
