@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*
+#coding=utf-8
 from django.shortcuts import render
 from django.utils import timezone
 import json,random,time
@@ -551,7 +551,7 @@ def addGood(request):
     good_id = request.GET.get('good_id', '')
     good_name = Customers.objects.raw('select name,id '
                                       'from Goods '
-                                      'where id like %s', [good_id])
+                                      'where id=%s ', [good_id])
     good_name = good_name[0].name
     LOG_DEBUG(good_name)
     if customer_name:
@@ -582,30 +582,36 @@ def addGood(request):
                 manager_id = random.randint(1, manager_id)  # 随机找一个管理员负责
             except Exception as e:
                 manager_id = 1
-                
-            insert_sql = 'insert into Orders(' \
-                         'order_id,is_temp,customer_id,manager_id,status) ' \
-                         'values(%s,1,%s,%s,"unpaid")'
+            update_sql = 'update Customers set temp_order=%s ' \
+                         'where name like %s '
             cursor = connection.cursor()
-            cursor.execute(insert_sql, [order_id, customer_id, manager_id]) #新建了一个临时订单，即购物车
-#        order=Customers.objects.raw('select * from Orders where order_id like %s',[order_id])
+            cursor.execute(update_sql, [order_id, customer_name])  # 商品填进去
+
+            insert_sql = 'insert into Orders(' \
+                         'order_id,is_temp,good_str, good_num, customer_id,manager_id,status) ' \
+                         'values(%s, 1, %s, %s, %s, %s, "unpaid")'
+            cursor = connection.cursor()
+            cursor.execute(insert_sql, [order_id, good_name, "1", customer_id, manager_id])  # 新建了一个临时订单，即购物%车
+            #        order=Customers.objects.raw('select * from Orders where order_id like %s',[order_id])
         
         good_str = ""
         good_num = ""
-        
+
         try:
-            order = Customers.objects.get(temp_order = order_id)[0]
-            good_str=order.good_str
-            good_num=order.good_num
+            order = Orders.objects.get(order_id=order_id)
+            good_str = order.good_str
+            good_num = order.good_num
         except Exception as e:
-            pass  
-            
+            print("exception!!" + str(e))
+            pass
+
+        print(good_str)
         good_list=good_str.split(',')   #转化为列表了
         num_list=good_num.split(',')
         isin=0
         for i in range(len(good_list)):  #查看订单中有没有同样商品，有的话加进去
             if good_list[i]==good_name:
-                is_in=1
+                isin=1
                 break
         if isin==0:
             good_list.append(good_name)
@@ -664,6 +670,7 @@ def orderEntry(request):
 
 #顾客查看自己的购物车（Customers.temp_order指引的临时订单）
 def getShoppingList(request):
+    LOG_DEBUG("查看购物车")
     customer_name = request.COOKIES.get('name', '')
     if customer_name:
         temp_order = Customers.objects.raw('select temp_order from Customers where name like %s',[customer_name])
@@ -671,7 +678,7 @@ def getShoppingList(request):
         if(temp_order):
             order=Customers.objects.raw('select * from Orders where order_id=%s', [temp_order])
             good_str=order[0].good_str
-            good_list=good_str.split(",")
+            good_list=good_str .split(",")
             shop_list=[]
             for i in range(len(good_list)):
                 good = Goods.objects.raw('select * from Customers where name like %s', [good_list[i]])
