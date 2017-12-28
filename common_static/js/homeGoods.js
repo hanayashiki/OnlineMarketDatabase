@@ -159,10 +159,20 @@ $(document).ready(function() {
        var category = selected_opt.attr("value");
        console.log(keyword);
        console.log(category);
-       /*$.getJSON("/search", {"category": category, "keyword": keyword}, function(data, status) {
+       $.getJSON("/search", {"category": category, "keyword": keyword}, function(data, status) {
            "use strict";
-
-       })*/
+           if (status === "success") {
+               clearGoods();
+               $.each(data, function (infoIndex, info) {
+                   var good_id = info["good_id"];
+                   var name = info["name"];
+                   var price = price_tag + info["price"];
+                   var image_path = info["image_path"];
+                   var remain = remain_tag + info["remain"];
+                   addGoodEntry(image_path, name, good_id, price, remain);
+               });
+           }
+       })
    })
 
    // addGoodEntry("/static/images/cont/main_img6.jpg", "野兽先辈", 123, "价格：￥114", "库存：514件");

@@ -85,7 +85,7 @@ $(document).ready(function() {
         });
         new_link.click(function() {
             var id = $(this).attr("cmplt_id");
-            window.location.href = link + "?" + "complaint_id=" + id;
+            window.location.href = link + "?" + "complaintId=" + id;
         });
         new_link.append(text);
         text_col.append(new_link);

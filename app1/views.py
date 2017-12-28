@@ -8,6 +8,8 @@ from misc.log import LOG_DEBUG,LOG_ERROR,LOG_INFO
 from django.http import HttpResponse, HttpResponseRedirect
 from django.views.decorators.csrf import csrf_exempt
 from django.db import connection
+from django.utils.encoding import smart_str
+
 
 # Create your views here.
 #主页面（也可以上来就是登录页面，有个按钮跳到注册页面）
@@ -74,26 +76,32 @@ def login(request):
                                         'from Customers '
                                         'where name=%s and password=%s',[name, password])
                                         
-            id = [nameId.id for nameId in id]  # 返回符合姓名和密码的顾客id
+            id = [nameId.id for nameId in id] # 返回符合姓名和密码的顾客id
+            if id:
+                id=id[0]
             LOG_DEBUG(id)
             manager_id = Customers.objects.raw('select id '
                                                'from Managers '
                                                'where name=%s and password=%s', [name, password])
             LOG_DEBUG(manager_id)
-            manager_id = [nameId.id for nameId in manager_id]    # 返回符合姓名和密码的管理员id
+            manager_id = [nameId.id for nameId in manager_id]   # 返回符合姓名和密码的管理员id
+            if manager_id:
+                manager_id=manager_id[0]
 
             if id:  # 顾客的匹配上了
                 LOG_DEBUG("顾客登录")
                 success = {'info': "success"}
                 response = HttpResponse(json.dumps(success), content_type="application/json")
-                response.set_cookie('name', name, 3600)  # cookies操作
+                response.set_cookie('id', id , 3600)  # cookies操作
+                response.set_cookie('identity', "customer", 3600)  # cookies操作
                 return response
             else:  # 顾客的没匹配上（要求manager和顾客不能重名）
                 if manager_id:  # 管理员的匹配上了
                     LOG_DEBUG("管理员登录")
                     success = {'info': "success"}
                     response = HttpResponse(json.dumps(success), content_type="application/json")
-                    response.set_cookie('name', name, 3600)
+                    response.set_cookie('id', manager_id, 3600)
+                    response.set_cookie('identity', "manager", 3600)  # cookies操作
                     return response
                 else:
                     fail = {'info': "failure"}
@@ -118,6 +126,7 @@ def logout(request):
 def getPrivilege(request):
     LOG_DEBUG("返回权限信息")
     PrivilegeReturn = {}
+    '''
     name = request.COOKIES.get('name', '')  # 可能是顾客，可能是管理员
     if not name:
         PrivilegeReturn = {
@@ -133,17 +142,23 @@ def getPrivilege(request):
     manager_id = Managers.objects.raw('select id '
                                       'from Managers '
                                       'where name like %s', [name])
-    manager_id = [nameId.id for nameId in manager_id]
-    if customer_id:
-        PrivilegeReturn = {
-            "user_type":"customer",
-            "id": customer_id[0]
-        }
-    if manager_id:
-        PrivilegeReturn = {
-            "user_type": "manager",
-            "id": manager_id[0]
-        }
+    manager_id = [nameId.id for nameId in manager_id]'''
+    identity = request.COOKIES.get('identity', '')
+    if identity:
+        if identity == "customer":
+            customer_id=request.COOKIES.get('id', '')
+            if customer_id:
+                PrivilegeReturn = {
+                    "user_type": "customer",
+                    "id": customer_id
+                }
+        else:
+            manager_id = request.COOKIES.get('id', '')
+            if manager_id:
+                PrivilegeReturn = {
+                    "user_type": "manager",
+                    "id": manager_id
+                }
     LOG_DEBUG(PrivilegeReturn)
     return HttpResponse(json.dumps(PrivilegeReturn), content_type="application/json")
 
@@ -151,6 +166,7 @@ def getPrivilege(request):
 #主页右上角个人信息展示
 def customerInfoDisplay(request):
     LOG_DEBUG("展示个人信息")
+    '''
     name = request.COOKIES.get('name', '')
     if not name:
         return HttpResponse(json.dumps({'name': ''}), content_type="application/json")
@@ -163,18 +179,39 @@ def customerInfoDisplay(request):
     manager_id = Customers.objects.raw('select id '
                                        'from Managers '
                                        'where name=%s ', [name])
-    manager_id = [nameId.id for nameId in manager_id]    # 返回符合姓名和密码的管理员id
+    manager_id = [nameId.id for nameId in manager_id]    # 返回符合姓名和密码的管理员id'''
     customerInfoReturn = {}
-    if id:
-        customerInfoReturn = {
-            "customer_id": id[0],
-            "name": name
-        }
-    if manager_id:
-        customerInfoReturn = {
-            "manager_id": manager_id[0],
-            "name": name
-        }
+    identity = request.COOKIES.get('identity', '')
+    if identity:
+        if identity == "customer":
+            customer_id=request.COOKIES.get('id', '')
+            if customer_id:
+                name = Customers.objects.raw(
+                    """
+                    select *
+                    from Customers
+                    where id=%s;
+                    """
+                    , [customer_id])
+
+                name = [nameId.name for nameId in name]  # 返回符合姓名和密码的顾客id
+                print(name)
+                customerInfoReturn = {
+                    "id": customer_id,
+                    "name": name
+                }
+        else:
+            manager_id = request.COOKIES.get('id', '')
+            if manager_id:
+                name = Managers.objects.raw('select name,id '
+                                             'from Managers '
+                                             'where id=%s ', [manager_id])
+                name = [nameId.name for nameId in name]
+                customerInfoReturn = {
+                    "id": manager_id,
+                    "name": name
+                }
+
     LOG_DEBUG(customerInfoReturn)
     return HttpResponse(json.dumps(customerInfoReturn), content_type="application/json")
 
@@ -183,6 +220,7 @@ def complaintDisplay(request):
     LOG_DEBUG("展示最新个人投诉信息")
     complaintReturn=[]
     complaints = ""
+    '''
     name = request.COOKIES.get('name','') #可能是顾客，可能是管理员
     if not name:
         return HttpResponse(json.dumps(complaintReturn), content_type="application/json")
@@ -194,8 +232,15 @@ def complaintDisplay(request):
     manager_id=Managers.objects.raw('select id '
                                      'from Managers '
                                      'where name like %s',[name])
-    manager_id = [nameId.id for nameId in manager_id]
-                                   
+    manager_id = [nameId.id for nameId in manager_id]'''
+    id=''
+    manager_id=''
+    identity = request.COOKIES.get('identity', '')
+    if identity:
+        if identity == "customer":
+            id = request.COOKIES.get('id', '')
+        else:
+            manager_id = request.COOKIES.get('id', '')
     if id:
         LOG_DEBUG("投诉展示顾客信息")
         sql='select text,submit_date,status,complaint_id ' \
@@ -295,19 +340,26 @@ def search(request):
             if(keyword==""):
                 searchgoods = Goods.objects.raw('select id,name,price,image_path,remain from Goods')
             else:
+                """
                 sql='select id,name,price,image_path,remain ' \
                     'from Goods ' \
-                    'where name like %%s%'
-                searchgoods=Goods.objects.raw(sql, [keyword])
+                    "where name REGEXP .%s.;" % keyword
+                print(sql)
+                searchgoods = Goods.objects.raw(sql)
+                """
+                searchgoods=Goods.objects.filter(name__iregex='.'+keyword+'.')
+                print(searchgoods.query)
         else:
             if(keyword==""):
                 searchgoods = Goods.objects.raw('select id,name,price,image_path,remain from Goods where type like %s',[category])
             else:
+                '''
                 sql = 'select id,name,price,image_path,remain ' \
                       'from Goods ' \
-                      'where name like %%s% and type like %s'
-                searchgoods = Goods.objects.raw(sql, [keyword, category])
-        print(searchgoods)
+                      'where name like %%s% and type like %s' '''
+                searchgoods = Goods.objects.filter(type=category,name__iregex='.' + keyword + '.')
+
+        print(searchgoods[0])
         for searchgood in searchgoods:
             list.append({'good_id': searchgood.good_id,
                          'name': searchgood.name,
@@ -331,14 +383,15 @@ def getComplaintEntry(request):
     LOG_DEBUG("获取投诉信息")
     if(request.method == 'GET'):
         complaint_list=[]
-        complaint_id = request.GET.get('complain_id')
+        complaint_id = request.GET.get('complaint_id')
         complaint = Complaints.objects.raw('select * '
                                            'from Complaints '
                                            'where complaint_id=%s', [complaint_id])   #这一条投诉信息
 
-        
+        print(complaint_id)
         
         source_cmplt_id = [source_id.source_cmplt_id for source_id in complaint]
+        print(source_cmplt_id)
         LOG_DEBUG(source_cmplt_id)
         if source_cmplt_id:
             source_cmplt_id = source_cmplt_id[0]
@@ -352,28 +405,30 @@ def getComplaintEntry(request):
 
             for cpt in complaint:
                 complaint_list.append({'text': cpt.text,
-                                       'submit_date': cpt.submit_date,
+                                       'submit_date': str(cpt.submit_date.strftime('%Y-%m-%d')),
                                        'status': cpt.status,
-                                       'proceed_date': cpt.proceed_date,
+                                       'proceed_date': cpt.proceed_date.strftime('%Y-%m-%d'),
                                        'reply': cpt.reply})
 
-            while complaint.follow_cmplt_id: #系列还没断
+            while complaint[0].follow_cmplt_id: #系列还没断
                 complaint = Complaints.objects.raw('select * '
                                                    'from Complaints '
-                                                   'where complaint_id=%s', [complaint.follow_cmplt_id])
+                                                   'where complaint_id=%s', [complaint[0].follow_cmplt_id])
 
                 for cpt in complaint:
+                    print("date" + str(cpt.submit_date.strftime('%Y-%m-%d')))
                     complaint_list.append({'text': cpt.text,
-                                           'submit_date': cpt.submit_date,
+                                           'submit_date': cpt.submit_date.strftime('%Y-%m-%d'),
                                            'status': cpt.status,
-                                           'proceed_date': cpt.proceed_date,
+                                           'proceed_date': cpt.proceed_date.strftime('%Y-%m-%d'),
                                            'reply': cpt.reply})
         else:
             for cpt in  complaint:
+                print("date"+ str(cpt.submit_date.strftime('%Y-%m-%d')))
                 complaint_list.append({'text': cpt.text,
-                                       'submit_date': cpt.submit_date,
+                                       'submit_date': str(cpt.submit_date.strftime('%Y-%m-%d')),
                                        'status': cpt.status,
-                                       'proceed_date': cpt.proceed_date,
+                                       'proceed_date': cpt.proceed_date.strftime('%Y-%m-%d'),
                                        'reply': cpt.reply})          #把相关投诉的信息存到了complaint_list里
 
         complaint_list = json.dumps(complaint_list)
@@ -414,21 +469,40 @@ def addComplaint(request):
         return HttpResponse(json.dumps(fail), content_type="application/json")
 
 def allComplaintEntry(request):
+    '''
     customer_name = request.COOKIES.get('name','')
     if customer_name:
         id = Customers.objects.raw('select id '
                                             'from Customers '
                                             'where name like %s', [customer_name])  # customer是{'id':..}
-        id = [nameId.id for nameId in id]
-        if id[0]:
-            sql = 'select text,submit_date,status,proceed_date,reply' \
-                 'from Complaints' \
-                 'where id=%s' \
-                 'order by submit_date desc'
-            cursor = connection.cursor()
-            cursor.execute(sql, [id[0]])
-            complaint_list = cursor.fetchone()
-            return HttpResponse(json.dumps(complaint_list), content_type="application/json")
+        id = [nameId.id for nameId in id]'''
+    id = ''
+    identity = request.COOKIES.get('identity', '')
+    if identity:
+        if identity == "customer":
+            id = request.COOKIES.get('id', '')
+        else:
+            manager_id = request.COOKIES.get('id', '')
+        if id:
+            sql =\
+                """
+                select complaint_id, text,submit_date,status,proceed_date, reply
+                from Complaints
+                where customer_id=%s
+                order by submit_date desc
+                """
+           # cursor = connection.cursor()
+           # cursor.execute(sql, [id])
+           #complaint_list = cursor.fetchone()
+            complaint_list=Complaints.objects.raw(sql,[id])
+            list=[]
+            for cpt in complaint_list:
+                list.append({'text': cpt.text,
+                             'submit_date': str(cpt.submit_date.strftime('%Y-%m-%d')),
+                             'status': cpt.status,
+                             'proceed_date': cpt.proceed_date.strftime('%Y-%m-%d'),
+                             'reply': cpt.reply})
+            return HttpResponse(json.dumps(list), content_type="application/json")
  #   return HttpResponseRedirect('/static/complaint.html')
 
 
@@ -436,26 +510,35 @@ def allComplaintEntry(request):
 def submitComplaint(request):
     if (request.method == 'POST'):
         text = request.POST.get('text', '')
+        '''
         customer_name = request.COOKIES.get('name', '')
         if customer_name:
             id = Customers.objects.raw('select id '
                                                 'from Customers '
                                                 'where name like %s', [customer_name])#customer是{'id':..}
-            id = [nameId.id for nameId in id]
-            next_id = max(Complaints.objects.values('complaint_id')) + 1
-            manager_id = max(Managers.objects.values('manager_id'))
-            manager_id = random.randint(1, manager_id) #随机找一个管理员负责
-            submit_date = timezone.localtime(timezone.now())
-            insert_sql = 'insert into Complaints ' \
-                         '(complaint_id,id,manager_id,source_cmplt_id,submit_date,text,status) ' \
-                         'values(%s,%s,%s,%s,%s,%s,"wait")'
-            cursor = connection.cursor()
-            cursor.execute(insert_sql, [next_id, id[0], manager_id, next_id, submit_date, text])  # 给数据库添加新的信息
-            success = {'info': 'success'}
-            return HttpResponse(json.dumps(success), content_type="application/json")
-        else:
-            fail = {'info': 'failure'}
-            return HttpResponse(json.dumps(fail), content_type="application/json")
+            id = [nameId.id for nameId in id]'''
+        id=''
+        identity = request.COOKIES.get('identity', '')
+        if identity:
+            if identity == "customer":
+                id = request.COOKIES.get('id', '')
+            else:
+                manager_id = request.COOKIES.get('id', '')
+            if id:
+                next_id = max(Complaints.objects.values('complaint_id')) + 1
+                manager_id = max(Managers.objects.values('manager_id'))
+                manager_id = random.randint(1, manager_id)  # 随机找一个管理员负责
+                submit_date = timezone.localtime(timezone.now())
+                insert_sql = 'insert into Complaints ' \
+                             '(complaint_id,id,manager_id,source_cmplt_id,submit_date,text,status) ' \
+                             'values(%s,%s,%s,%s,%s,%s,"wait")'
+                cursor = connection.cursor()
+                cursor.execute(insert_sql, [next_id, id, manager_id, next_id, submit_date, text])  # 给数据库添加新的信息
+                success = {'info': 'success'}
+                return HttpResponse(json.dumps(success), content_type="application/json")
+            else:
+                fail = {'info': 'failure'}
+                return HttpResponse(json.dumps(fail), content_type="application/json")
 
 #管理员对投诉信息的处理：
 '''
@@ -466,12 +549,21 @@ def submitComplaint(request):
 (在managerComplaintEntry.html页面完成)
 '''
 def getComplaintWork(request):
+    '''
     manager_name = request.COOKIES.get('name', '')
     if manager_name:
         manager_id = Managers.objects.raw('select manager_id '
                                           'from Customers '
                                           'where name like %s', [manager_name])
-        manager_id = [nameId.id for nameId in manager_id]
+        manager_id = [nameId.id for nameId in manager_id]'''
+    id = ''
+    manager_id=''
+    identity = request.COOKIES.get('identity', '')
+    if identity:
+        if identity == "customer":
+            id = request.COOKIES.get('id', '')
+        else:
+            manager_id = request.COOKIES.get('id', '')
         if manager_id:
             complaint_list=[]
             sql = 'select id,text,submit_date,status,complaint_id' \
@@ -550,25 +642,34 @@ def replyToComplaint(request):
 #顾客点击添加购物车，把商品填到Customers.temp_order对应的订单中去，且此订单的is_temp值是1
 def addGood(request):
     LOG_DEBUG("加入购物车")
-    customer_name = request.COOKIES.get('name', '')
+#    customer_name = request.COOKIES.get('name', '')
     good_id = request.GET.get('good_id', '')
     good_name = Customers.objects.raw('select name,id '
                                       'from Goods '
                                       'where id=%s ', [good_id])
     good_name = good_name[0].name
     LOG_DEBUG(good_name)
+    '''
     if customer_name:
         id = Customers.objects.raw('select id '
                                             'from Customers '
                                             'where name like %s', [customer_name])
-        customer_id = id[0].id
-        LOG_DEBUG(customer_id)
+        customer_id = id[0].id'''
+    id = ''
+    manager_id = ''
+    identity = request.COOKIES.get('identity', '')
+    if identity:
+        if identity == "customer":
+            id = request.COOKIES.get('id', '')
+        else:
+            manager_id = request.COOKIES.get('id', '')
+        LOG_DEBUG(id)
 #        temp_order = Customers.objects.raw('select temp_order '
 #                                           'from Customers '
 #                                           'where name like %s', [customer_name])
 
 
-        temp_order = Customers.objects.get(id=customer_id).temp_order
+        temp_order = Customers.objects.get(id=id).temp_order
         order_id = ""
         
         if temp_order :
@@ -587,16 +688,16 @@ def addGood(request):
                 manager_id = 1
 
             update_sql = 'update Customers set temp_order=%s ' \
-                         'where name like %s;'
+                         'where id = %s;'
 
             cursor = connection.cursor()
-            cursor.execute(update_sql, [order_id, customer_name])  # 商品填进去
+            cursor.execute(update_sql, [order_id, id])  # 商品填进去
 
             insert_sql = 'insert into Orders(' \
                          'order_id, is_temp, good_str, good_num, customer_id,manager_id,status) ' \
                          'values(%s, 1, %s, %s, %s, %s, "unpaid")'
             cursor = connection.cursor()
-            cursor.execute(insert_sql, [order_id, good_name, "0", customer_id, manager_id]) #新建了一个临时订单，即购物%车
+            cursor.execute(insert_sql, [order_id, good_name, "0", id, manager_id]) #新建了一个临时订单，即购物%车
 #        order=Customers.objects.raw('select * from Orders where order_id like %s',[order_id])
         
         good_str = ""
@@ -639,12 +740,21 @@ def addGood(request):
 
 #顾客查看自己的所有订单
 def orderEntry(request):
+    '''
     customer_name = request.COOKIES.get('name', '')
     if customer_name:
         id = Customers.objects.raw('select id ' 
                                    'from Customers ' 
                                    'where name like %s ', [customer_name])
-        id = [nameId.id for nameId in id]
+        id = [nameId.id for nameId in id]'''
+    id = ''
+    manager_id = ''
+    identity = request.COOKIES.get('identity', '')
+    if identity:
+        if identity == "customer":
+            id = request.COOKIES.get('id', '')
+        else:
+            manager_id = request.COOKIES.get('id', '')
         if id:
             order_list=[]
             sql = 'select order_id, good_str, good_num, status, submit_date ' \
@@ -686,9 +796,17 @@ def orderEntry(request):
 #顾客查看自己的购物车（Customers.temp_order指引的临时订单）
 def getShoppingList(request):
     LOG_DEBUG("查看购物车")
-    customer_name = request.COOKIES.get('name', '')
-    if customer_name:
-        temp_order = Customers.objects.raw('select id, temp_order from Customers where name like %s',[customer_name])
+#    customer_name = request.COOKIES.get('name', '')
+    id = ''
+    manager_id = ''
+    identity = request.COOKIES.get('identity', '')
+    if identity:
+        if identity == "customer":
+            id = request.COOKIES.get('id', '')
+        else:
+            manager_id = request.COOKIES.get('id', '')
+    if id:
+        temp_order = Customers.objects.raw('select id, temp_order from Customers where id = %s', [id])
         temp_order = temp_order[0].temp_order
         if (temp_order):
             order=Orders.objects.raw('select * from Orders where order_id=%s', [temp_order])
@@ -711,18 +829,25 @@ def getShoppingList(request):
 
 #顾客提交订单（Customers.temp_order指引的临时订单变成正式订单，临时标志消失）
 def submitShoppingList(request):
-    customer_name = request.COOKIES.get('name', '')
-    if customer_name:
-        temp_order = Customers.objects.raw('select temp_order from Customers where name like %s',[customer_name])
-        temp_order=temp_order[0].temp_order
+    id = ''
+    manager_id = ''
+    identity = request.COOKIES.get('identity', '')
+    if identity:
+        if identity == "customer":
+            id = request.COOKIES.get('id', '')
+        else:
+            manager_id = request.COOKIES.get('id', '')
+    if id:
+        temp_order = Customers.objects.raw('select id, temp_order from Customers where id = %s', [id])
+        temp_order = temp_order[0].temp_order
         if(temp_order):
             update_sql='update Orders set is_temp=0,status="paid"' \
                        'where order_id=%s'
             cursor = connection.cursor()
             cursor.execute(update_sql, [temp_order])
-            update_sql = 'update Customers set temp_order=0 where name=%s'
+            update_sql = 'update Customers set temp_order=0 where id=%s'
             cursor = connection.cursor()
-            cursor.execute(update_sql, [customer_name])
+            cursor.execute(update_sql, [id])
             success = {'info': 'success'}
             return HttpResponse(json.dumps(success), content_type="application/json")
         else:
@@ -731,10 +856,19 @@ def submitShoppingList(request):
 
 #员工查看自己被分到的订单
 def getOrderWork(request):
+    '''
     manager_name = request.COOKIES.get('name', '')
     if manager_name:
         manager_id = Managers.objects.raw('select manager_id from Customers where name like %s',[manager_name])
-        manager_id = manager_id[0].manager_id
+        manager_id = manager_id[0].manager_id'''
+    id = ''
+    manager_id = ''
+    identity = request.COOKIES.get('identity', '')
+    if identity:
+        if identity == "customer":
+            id = request.COOKIES.get('id', '')
+        else:
+            manager_id = request.COOKIES.get('id', '')
         if manager_id:
             order_list=[]
             sql = 'select order_id,good_str,good_num,status,submit_date' \
