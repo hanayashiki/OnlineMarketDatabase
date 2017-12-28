@@ -1,7 +1,7 @@
 #coding=utf-8
 from django.shortcuts import render
 from django.utils import timezone
-import json,random,time
+import json, random
 from app1.forms import CustomersregistForm, CustomersForm
 from app1.models import Customers,Managers,Complaints, Goods, Orders
 from misc.log import LOG_DEBUG,LOG_ERROR,LOG_INFO
@@ -153,7 +153,7 @@ def customerInfoDisplay(request):
     LOG_DEBUG("展示个人信息")
     name = request.COOKIES.get('name', '')
     if not name:
-        return HttpResponse(json.dumps({}), content_type="application/json")
+        return HttpResponse(json.dumps({'name': ''}), content_type="application/json")
     LOG_DEBUG(name)
     id = Customers.objects.raw('select id '
                                 'from Customers '
@@ -214,7 +214,7 @@ def complaintDisplay(request):
     for complaint in complaints:
         LOG_DEBUG(complaint)
         complaintReturn.append({'text': complaint.text,
-                                'submit_date': strftime('%Y-%m-%d %H:%M:%S', complaint.submit_date),
+                                'submit_date': complaint.submit_date.strftime('%Y-%m-%d'),
                                 'status': complaint.status,
                                 'complaint_id': complaint.complaint_id})
     LOG_DEBUG(complaintReturn)
@@ -636,44 +636,50 @@ def addGood(request):
         fail = {'info': 'fail'}
         return HttpResponse(json.dumps(fail), content_type="application/json")
 
+
 #顾客查看自己的所有订单
 def orderEntry(request):
     customer_name = request.COOKIES.get('name', '')
     if customer_name:
-        id = Customers.objects.raw('select id from Customers where name like %s',[customer_name])
-        id = id[0].id
+        id = Customers.objects.raw('select id ' 
+                                   'from Customers ' 
+                                   'where name like %s ', [customer_name])
+        id = [nameId.id for nameId in id]
         if id:
             order_list=[]
-            sql = 'select order_id,good_str,good_num,status,submit_date' \
-                  'from Orders' \
-                  'where id=%s and is_temp!=1' \
-                  'order by submit_date desc'
+            sql = 'select order_id, good_str, good_num, status, submit_date ' \
+                  'from Orders ' \
+                  'where order_id=%s and is_temp!=1 ' \
+                  'order by submit_date desc '
             cursor = connection.cursor()
             cursor.execute(sql, [id])
             temp_list = cursor.fetchone()#此时是数组
-            for i in range(len(temp_list)):
-                order_id=temp_list[i].order_id    #待返回
-                good_names=temp_list[i].good_str  #待返回
-                status=temp_list[i].status #待返回
-                submit_date = temp_list[i].submit_date #待返回
+            if temp_list:
+                for i in range(len(temp_list)):
+                    order_id = temp_list[i].order_id  # 待返回
+                    good_names = temp_list[i].good_str  # 待返回
+                    status = temp_list[i].status  # 待返回
+                    submit_date = temp_list[i].submit_date  # 待返回
 
-                good_list=temp_list[i].good_str.split(',')   #从这里开始算总金额
-                num_list=temp_list[i].good_num.split(',')
-                sum=0
-                num_list = temp_list[i].good_num.split(',')
-                for j in range(len(num_list)):
-                    num_list[j] = int(num_list[j])
-                for j in range(len(good_list)):
-                    price = Customers.objects.raw('select price from Goods where name like %s',[good_list[j]])
-                    price=price[0].price
-                    sum = sum + price * num_list[j]  #总金额是sum
+                    good_list = temp_list[i].good_str.split(',')  # 从这里开始算总金额
+                    num_list = temp_list[i].good_num.split(',')
+                    sum = 0
+                    num_list = temp_list[i].good_num.split(',')
+                    for j in range(len(num_list)):
+                        num_list[j] = int(num_list[j])
+                    for j in range(len(good_list)):
+                        price = Customers.objects.raw('select price from Goods where name like %s', [good_list[j]])
+                        price = price[0].price
+                        sum = sum + price * num_list[j]  # 总金额是sum
 
-                order_list.append({'order_id': order_id,
-                                   'good_names': good_list,
-                                   'good_nums': num_list,
-                                   'total': sum,
-                                   'status': status,
-                                   'submit_date': submit_date})
+                    order_list.append({'order_id': order_id,
+                                       'good_names': good_list,
+                                       'good_nums': num_list,
+                                       'total': sum,
+                                       'status': status,
+                                       'submit_date': submit_date})
+            else:
+                order_list = []
             return HttpResponse(json.dumps(order_list), content_type="application/json")
 #    return HttpResponseRedirect('/static/orders.html')
 
