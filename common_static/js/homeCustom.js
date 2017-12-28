@@ -8,9 +8,14 @@ $(document).ready(function() {
     $.getJSON("/customerInfoDisplay", function(data, status) {
         if (status === "success") {
             var name = data["name"];
-            var customer_id = data["customer_id"];
-            $("#greetings").text("欢迎您！尊敬的顾客" + name + "。");
-            $("#customer_id").text("您的购物 id 是：" + customer_id + "。");
+            if (name.length > 0) {
+                var customer_id = data["customer_id"];
+                $("#greetings").text("欢迎您！尊敬的" + name + "。");
+                $("#customer_id").text("您的购物 id 是：" + customer_id + "。");
+            } else {
+                $("#greetings").text("欢迎您！您还没有登录。");
+                $("#customer_id").append("请<a href='login.html'>登录</a>以获得更好的购物体验。");
+            }
         }
     });
 
@@ -27,14 +32,33 @@ $(document).ready(function() {
                     text =　text.substring(0, complaint_length_limit - 3) + "..."
                 }
                 status = status_dict[status];
+                console.log(status)
 
                 addComplaintEntry(complaint_id, text, "/static/complaintEntry.html", submit_date, status);
             })
         }
     });
 
-    utils.jump($("#orders_btn"), "orders.html");
-    utils.jump($("#check_complaint_btn"), "allComplaintEntries.html");
+    $('#orders_btn').click(function (){
+        if (utils.user_type === "customer") {
+            utils.navigate("orders.html");
+        } else if (utils.user_type === "manager") {
+            alert("只有顾客才能查看订单。");
+        } else {
+            utils.navigateNext("login.html", "orders.html");
+        }
+    });
+
+    $('#check_complaint_btn').click(function () {
+        if (utils.user_type === "customer") {
+            utils.navigate("allComplaintEntries.html");
+        } else if (utils.user_type === "manager") {
+            alert("只有顾客才能查看投诉信息。");
+        } else {
+            utils.navigateNext("login.html", "allComplaintEntries.html");
+        }
+    });
+
 
     function addComplaintEntry(cmplt_id, text, link, date, status) {
         var new_node = $("<li></li>");
@@ -89,7 +113,7 @@ $(document).ready(function() {
     }
 
     addComplaintEntry(123, "是的，遍历处理data，可以是数组、DOM、...",
-        "/static/complaintEntry.html", "2017/12/2", "done");
+        "/static/complaintEntry.html", "2017/12/2", status_dict["done"]);
 
     //$.getJSON("")
 });

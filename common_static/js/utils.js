@@ -14,7 +14,13 @@ utils = {
     navigateLink: function(dst) {
         $(location).attr('href', dst + "?" + "from=" + window.location.href);
     },
-    checkEmail: function(str){
+    navigate: function(dst) {
+        $(location).attr('href', dst);
+    },
+    navigateNext: function(dst, next) {
+        $(location).attr('href', dst + "?" + "from=" + next);
+    },
+    checkEmail: function(str) {
         var regExp = /\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/;
         return regExp.test(str);
     },

@@ -27,19 +27,29 @@ $(document).ready(function () {
     }
 
     //addShoppingListEntry(114514, "昏睡红茶", 24)
-    $('.shopping_list .total_entry .total').text("合计：" + 15 + "￥");
     function getShoppingListEntries() {
         $.getJSON('/getShoppingList', {}, function(data, status) {
             if (status === 'success') {
                 var total = 0;
                 $.each(data, function(idx, info) {
                     addShoppingListEntry(info['good_id'], info['name'], info['price'], info['good_num']);
-                    total += info['price'];
+                    total += info['price'] * info['good_num'];
                 });
                 $('.shopping_list .total_entry .total').text("合计：" + total + "￥");
             }
         });
     }
+
+    $('#submit').click(function () {
+        $.getJSON('submitShoppingList', {}, function(data, status) {
+            if (status === "success") {
+                if (data['info'] === "success") {
+                    alert("订单提交成功！我们会尽快处理您的订单！");
+                    utils.navigate("home.html");
+                }
+            }
+        });
+    });
 
     getShoppingListEntries();
 });
