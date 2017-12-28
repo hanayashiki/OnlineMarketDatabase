@@ -8,10 +8,12 @@ $(document).ready(function() {
    };
    var category_list = [
        "所有类别",
-       "女装",
-       "男装",
+       "键盘",
+       "鼠标",
        "电脑",
-       "手机"
+       "手机",
+       "耳机",
+       "音箱"
    ];
 
    function addGoodEntry(pic_src, good_name, good_id, price, remain) {

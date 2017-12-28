@@ -34,6 +34,7 @@ $(document).ready(function() {
     });
 
     utils.jump($("#orders_btn"), "orders.html");
+    utils.jump($("#check_complaint_btn"), "allComplaintEntries.html");
 
     function addComplaintEntry(cmplt_id, text, link, date, status) {
         var new_node = $("<li></li>");
