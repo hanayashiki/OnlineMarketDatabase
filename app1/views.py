@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*
+#coding=utf-8
 from django.shortcuts import render
 from django.utils import timezone
 import json,random,time
@@ -554,7 +554,7 @@ def addGood(request):
     good_id = request.GET.get('good_id', '')
     good_name = Customers.objects.raw('select name,id '
                                       'from Goods '
-                                      'where id like %s', [good_id])
+                                      'where id=%s ', [good_id])
     good_name = good_name[0].name
     LOG_DEBUG(good_name)
     if customer_name:
@@ -588,6 +588,7 @@ def addGood(request):
 
             update_sql = 'update Customers set temp_order=%s ' \
                          'where name like %s;'
+
             cursor = connection.cursor()
             cursor.execute(update_sql, [order_id, customer_name])  # 商品填进去
 
@@ -595,7 +596,7 @@ def addGood(request):
                          'order_id, is_temp, good_str, good_num, customer_id,manager_id,status) ' \
                          'values(%s, 1, %s, %s, %s, %s, "unpaid")'
             cursor = connection.cursor()
-            cursor.execute(insert_sql, [order_id, good_name, "1", customer_id, manager_id]) #新建了一个临时订单，即购物%车
+            cursor.execute(insert_sql, [order_id, good_name, "0", customer_id, manager_id]) #新建了一个临时订单，即购物%车
 #        order=Customers.objects.raw('select * from Orders where order_id like %s',[order_id])
         
         good_str = ""
@@ -614,10 +615,10 @@ def addGood(request):
         num_list=good_num.split(',')
         isin=0
         for i in range(len(good_list)):  #查看订单中有没有同样商品，有的话加进去
-            if good_list[i]==good_name:
+            if good_list[i] == good_name:
                 isin=1
                 break
-        if isin==0:
+        if isin == 0:
             good_list.append(good_name)
             num_list.append(str(1))  #新增商品
         else:
@@ -659,35 +660,43 @@ def orderEntry(request):
                 good_list=temp_list[i].good_str.split(',')   #从这里开始算总金额
                 num_list=temp_list[i].good_num.split(',')
                 sum=0
+                num_list = temp_list[i].good_num.split(',')
+                for j in range(len(num_list)):
+                    num_list[j] = int(num_list[j])
                 for j in range(len(good_list)):
                     price = Customers.objects.raw('select price from Goods where name like %s',[good_list[j]])
                     price=price[0].price
-                    sum = sum + price*int(num_list[j])  #总金额是sum
+                    sum = sum + price * num_list[j]  #总金额是sum
 
-                order_list.append({'order_id':order_id,
-                                   'good_names':good_names,
-                                   'total':sum,
-                                   'status':status,
-                                   'submit_date':submit_date})
+                order_list.append({'order_id': order_id,
+                                   'good_names': good_list,
+                                   'good_nums': num_list,
+                                   'total': sum,
+                                   'status': status,
+                                   'submit_date': submit_date})
             return HttpResponse(json.dumps(order_list), content_type="application/json")
 #    return HttpResponseRedirect('/static/orders.html')
 
 #顾客查看自己的购物车（Customers.temp_order指引的临时订单）
 def getShoppingList(request):
+    LOG_DEBUG("查看购物车")
     customer_name = request.COOKIES.get('name', '')
     if customer_name:
         temp_order = Customers.objects.raw('select id, temp_order from Customers where name like %s',[customer_name])
         temp_order = temp_order[0].temp_order
         if (temp_order):
             order=Orders.objects.raw('select * from Orders where order_id=%s', [temp_order])
+            good_num=order[0].good_num
             good_str=order[0].good_str
             good_list=good_str.split(",")
+            num_list=good_num.split(",")
             print(good_list)
             shop_list=[]
             for i in range(len(good_list)):
                 good = Goods.objects.raw('select * from Goods where name like %s', [good_list[i]])
                 shop_list.append({'good_id': good[0].good_id,
                                   'name': good[0].name,
+                                  'good_num': int(num_list[i]),
                                   'price': good[0].price,
                                   'image_path': good[0].image_path,
                                   'remain': good[0].remain})
@@ -735,21 +744,25 @@ def getOrderWork(request):
                 customer_name = customer_name[0].customer_name #待返回
                 order_id=temp_list[i].order_id    #待返回
                 good_names=temp_list[i].good_str  #待返回
+                good_nums=temp_list[i].good_num
                 status=temp_list[i].status #待返回
                 submit_date = temp_list[i].submit_date #待返回
 
                 good_list=temp_list[i].good_str.split(',')   #从这里开始算总金额
                 num_list=temp_list[i].good_num.split(',')
+                for j in range(len(num_list)):
+                    num_list[j]=int(num_list[j])
                 sum=0
                 for j in range(len(good_list)):
                     price = Customers.objects.raw('select price from Goods where name like %s',[good_list[j]])
                     price=price[0].price
-                    sum = sum + price*int(num_list[j])  #总金额是sum
+                    sum = sum + price * num_list[j]  #总金额是sum
 
                 order_list.append({'id':id,
                                    'customer_name':customer_name,
                                    'order_id':order_id,
-                                   'good_names':good_names,
+                                   'good_names':good_list,
+                                   'good_nums':num_list,
                                    'total':sum,
                                    'status':status,
                                    'submit_date':submit_date})
