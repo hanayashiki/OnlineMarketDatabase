@@ -9,9 +9,9 @@ $(document).ready(function() {
         if (status === "success") {
             var name = data["name"];
             if (name.length > 0) {
-                var customer_id = data["customer_id"];
+                var customer_id = data["id"];
                 $("#greetings").text("欢迎您！尊敬的" + name + "。");
-                $("#customer_id").text("您的购物 id 是：" + customer_id + "。");
+                $("#customer_id").text("您的 id 是：" + customer_id + "。");
             } else {
                 $("#greetings").text("欢迎您！您还没有登录。");
                 $("#customer_id").append("请<a href='login.html'>登录</a>以获得更好的购物体验。");
@@ -59,6 +59,15 @@ $(document).ready(function() {
         }
     });
 
+    $('#edit_info_btn').click(function () {
+        if (utils.user_type === "customer") {
+            utils.navigate("customerEditInfo.html");
+        } else if (utils.user_type === "manager") {
+            alert("只有顾客才能修改个人信息");
+        } else {
+            utils.navigateNext("login.html", "customerEditInfo.html");
+        }
+    });
 
     function addComplaintEntry(cmplt_id, text, link, date, status) {
         var new_node = $("<li></li>");

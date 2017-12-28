@@ -50,7 +50,18 @@ $(document).ready(function () {
         return true;
     }
 
-    $("#user_register_btn").click(function() {
+    function getCustomerInfo() {
+        $.getJSON("/getCustomerInfo", {}, function(data, status) {
+            if (status === 'success') {
+                $("#username").val(data["username"]);
+                $("#address").val(data["address"]);
+                $("#telephone").val(data["telephone"]);
+                $("#email").val(data["email"]);
+            }
+        });
+    }
+
+    $("#user_edit_btn").click(function() {
         if (check_validity()) {
             $.post("/register/",
                 {
@@ -58,14 +69,12 @@ $(document).ready(function () {
                     "email": email,
                     "address": address,
                     "telephone": telephone,
-                    "password": password,
-                    "confirm_password": password
                 },
                 function (data, status) {
                     if (status === "success") {
                         var info = data['info'];
                         if (info === "success") {
-                            alert("注册成功！");
+                            alert("修改成功！");
                             utils.navigateSafe(back_addr);
                         } else {
                             alert("您的用户名、邮箱或电话已经被注册了。");
@@ -75,4 +84,6 @@ $(document).ready(function () {
                 });
         }
     });
+
+    getCustomerInfo();
 });

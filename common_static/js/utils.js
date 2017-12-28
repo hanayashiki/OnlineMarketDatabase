@@ -17,6 +17,13 @@ utils = {
     navigate: function(dst) {
         $(location).attr('href', dst);
     },
+    navigateSafe: function(dst) {
+        if (dst === null) {
+            navigate("home.html");
+        } else {
+            navigate(dst);
+        }
+    },
     navigateNext: function(dst, next) {
         $(location).attr('href', dst + "?" + "from=" + next);
     },

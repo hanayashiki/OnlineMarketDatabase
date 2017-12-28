@@ -16,7 +16,7 @@ $(document).ready(function () {
                     if (status === "success") {
                         if (data['info'] === "success") {
                             alert("提交成功！您的投诉我们将尽快处理！");
-                            $(location).attr('href', back_addr);
+                            utils.navigateSafe(back_addr);
                         }
                     }
                 })
