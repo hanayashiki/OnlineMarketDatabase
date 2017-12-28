@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*
 from django.shortcuts import render
 from django.utils import timezone
-import json,random
+import json,random,time
 from app1.forms import CustomersregistForm, CustomersForm
 from app1.models import Customers,Managers,Complaints, Goods, Orders
 from misc.log import LOG_DEBUG,LOG_ERROR,LOG_INFO
@@ -11,6 +11,7 @@ from django.db import connection
 
 # Create your views here.
 #主页面（也可以上来就是登录页面，有个按钮跳到注册页面）
+
 def home(request):
     return HttpResponseRedirect('/static/home.html')
 
@@ -34,7 +35,7 @@ def register(request):
             nameerror = Customers.objects.raw('select id from Customers where name=%s',[name])
             nameerror = [nameId.id for nameId in nameerror]
             emailerror= Customers.objects.raw('select id from Customers where email=%s',[email])
-            emailerror = [emailId.id for emailId in nameerror]
+            emailerror = [emailId.id for emailId in emailerror]
             telephoneerror = Customers.objects.raw('select id from Customers where telephone=%s',[telephone])
             telephoneerror = [telephoneerrorId.id for telephoneerrorId in telephoneerror]
 
@@ -103,11 +104,25 @@ def login(request):
         mf=cf
         return HttpResponseRedirect('/static/login.html')
 
+@csrf_exempt
+def logout(request):
+    LOG_DEBUG("注销")
+    if request.method=='GET':
+        logout = {'info': "logout"}
+        response = HttpResponse(json.dumps(logout), content_type="application/json")
+        response.delete_cookie('name')
+        return response
+
+
 def getPrivilege(request):
     LOG_DEBUG("返回权限信息")
     PrivilegeReturn = {}
     name = request.COOKIES.get('name', '')  # 可能是顾客，可能是管理员
     if not name:
+        PrivilegeReturn = {
+            "user_type": "tourist",
+            "id": 0
+        }
         return HttpResponse(json.dumps(PrivilegeReturn), content_type="application/json")
     LOG_DEBUG(name)
     customer_id = Customers.objects.raw('select id '
@@ -121,12 +136,12 @@ def getPrivilege(request):
     if customer_id:
         PrivilegeReturn = {
             "user_type":"customer",
-            "user_id": customer_id[0]
+            "id": customer_id[0]
         }
     if manager_id:
         PrivilegeReturn = {
             "user_type": "manager",
-            "manager_id": manager_id[0]
+            "id": manager_id[0]
         }
     LOG_DEBUG(PrivilegeReturn)
     return HttpResponse(json.dumps(PrivilegeReturn), content_type="application/json")
@@ -198,7 +213,7 @@ def complaintDisplay(request):
     for complaint in complaints:
         LOG_DEBUG(complaint)
         complaintReturn.append({'text': complaint.text,
-                                'submit_date': complaint.submit_date,
+                                'submit_date': time.asctime(complaint.submit_date),
                                 'status': complaint.status,
                                 'complaint_id': complaint.complaint_id})
     LOG_DEBUG(complaintReturn)
@@ -268,10 +283,11 @@ def search(request):
     LOG_DEBUG("搜索商品")
     searchgoods = ""
     list = []
-
+    print("222222222222",request.method)
     if request.method == 'GET':  #按类别搜索后的结果
         category = request.GET.get('category', "所有类别") #未选择时记为All
         keyword = request.GET.get('keyword', "")
+        print("11111111111111111",keyword)
         if category == "所有类别" or not category:
             if(keyword==""):
                 searchgoods = Goods.objects.raw('select id,name,price,image_path,remain from Goods')
@@ -288,7 +304,7 @@ def search(request):
                       'from Goods ' \
                       'where name like %%s% and type like %s'
                 searchgoods = Goods.objects.raw(sql, [keyword, category])
-            
+        print(searchgoods)
         for searchgood in searchgoods:
             list.append({'good_id': searchgood.good_id,
                          'name': searchgood.name,

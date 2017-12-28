@@ -43,5 +43,5 @@ urlpatterns =[
     url(r'^getOrderWork/$', views.addGood, name='getOrderWork'),
     url(r'^changeOrderStatus/$', views.addGood, name='changeOrderStatus'),
     url(r'^getPrivilege/$', views.getPrivilege),
-
+    url(r'^logout/$', views.logout, name='logout'),
 ]
