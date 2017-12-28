@@ -18,7 +18,7 @@ $(document).ready(function () {
                 var info = data["info"];
                 if (info === "success") {
                     alert("登录成功！");
-                    $(location).attr('href', back_addr);
+                    utils.navigateSafe(back_addr);
                 } else {
                     alert("用户名或密码错误。");
                 }
