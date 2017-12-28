@@ -33,8 +33,8 @@ def register(request):
             #检查是不是有重名现象
             nameerror = Customers.objects.raw('select id from Customers where name=%s',[name])
             nameerror = [nameId.id for nameId in nameerror]
-            emailerror= Customers.objects.raw('select id from Customers where email=%s',[email])
-            emailerror = [emailId.id for emailId in nameerror]
+            emailerror = Customers.objects.raw('select id from Customers where email=%s',[email])
+            emailerror = [emailId.id for emailId in emailerror]
             telephoneerror = Customers.objects.raw('select id from Customers where telephone=%s',[telephone])
             telephoneerror = [telephoneerrorId.id for telephoneerrorId in telephoneerror]
 
@@ -272,6 +272,7 @@ def search(request):
     if request.method == 'GET':  #按类别搜索后的结果
         category = request.GET.get('category', "所有类别") #未选择时记为All
         keyword = request.GET.get('keyword', "")
+        LOG_DEBUG("kw:" + keyword);
         if category == "所有类别" or not category:
             if(keyword==""):
                 searchgoods = Goods.objects.raw('select id,name,price,image_path,remain from Goods')
@@ -739,6 +740,6 @@ def changeOrderStatus(request):
         fail = {'info': 'fail'}
         return HttpResponse(json.dumps(fail), content_type="application/json")
 
-@csrf_exempt
-def getPrivilege(request):
-    return HttpResponse(json.dumps({'user_type': "manager"}), content_type="application/json")
+#@csrf_exempt
+#def getPrivilege(request):
+#    return HttpResponse(json.dumps({'user_type': "manager"}), content_type="application/json")

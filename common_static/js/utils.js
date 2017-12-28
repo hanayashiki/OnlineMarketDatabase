@@ -25,17 +25,28 @@ utils = {
         "sent": "已发货",
         "received": "已接收"
     },
+    home_page: "home.html",
     space: function (len) {
         return new Array(len + 1).join("&nbsp;");
     },
     seeOnPrivilege: function(node, user_type) {
-
         node.hide();
-
         $.getJSON("/getPrivilege/", {}, function(data, status) {
             console.log("I am " + data['user_type']);
+            console.log("manager_id: " + data['manager_id']);
+            console.log("user_id: " + data['user_id']);
             if (status === "success" && data['user_type'] === user_type) {
                 node.show();
+            }
+        });
+    },
+    hideOnPrivilege: function(node, user_type) {
+         $.getJSON("/getPrivilege/", {}, function(data, status) {
+            console.log("I am " + data['user_type']);
+            console.log("manager_id: " + data['manager_id']);
+            console.log("user_id: " + data['user_id']);
+            if (status === "success" && data['user_type'] === user_type) {
+                node.hide();
             }
         });
     }
@@ -62,13 +73,17 @@ $(document).ready(function() {
                 '<span class=\"line\"></span>',
                 '<a href=\"javascript:;\" class=\"dreamer\" id=\"shopping_list\">查看购物车</a>',
               '</li>',
-              '<li>',
+              '<li id=\"register\">',
                 '<span class=\"line\"></span>',
                 '<a href=\"#\" class=\"icon-text__pink register\">注册</a>',
               '</li>',
-              '<li>',
+              '<li id=\"login\">',
                 '<span class=\"line\"></span>',
                 '<a href=\"javascript:;\" id=\"login_btn\">登录</a>',
+              '</li>',
+              '<li id=\"logout\">',
+                '<span class=\"line\"></span>',
+                '<a href=\"javascript:;\" id=\"logout_btn\">注销</a>',
               '</li>',
             '</ul>',
           '</nav>',
@@ -96,11 +111,24 @@ $(document).ready(function() {
     $(".register").click(function() {
         $(location).attr('href', 'register.html');
     });
+    $(".logout_btn").click(function() {
+        $.getJSON("/logout/", {}, function(data, status) {
+            if (status === "success") {
+                if (data['info'] === 'logout') {
+                    alert("注销成功！");
+                    $(location).attr('href', 'home.html');
+                }
+            }
+        });
+    });
     utils.jumpAndLink($("#login_btn"), "login.html");
 
     utils.seeOnPrivilege(complaint_node, "manager");
     utils.seeOnPrivilege(order_node, "manager");
-
+    utils.hideOnPrivilege($("#register"), "manager");
+    utils.hideOnPrivilege($("#register"), "customer");
+    utils.hideOnPrivilege($("#login"), "manager");
+    utils.hideOnPrivilege($("#login"), "customer");
 
 
 });
