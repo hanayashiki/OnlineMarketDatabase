@@ -59,6 +59,7 @@ $(document).ready(function () {
                         info['status'], info['submit_date'],
                         info['total']);
                     console.log(info['good_names']);
+                    console.log(info['total']);
                 })
             }
         });

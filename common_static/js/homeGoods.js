@@ -81,11 +81,17 @@ $(document).ready(function() {
        btn_node.click(function () {
            var good_id = $(this).attr("good_id");
            var good_name = $(this).attr("good_name");
-           $.getJSON("/addGood", {"good_id": good_id}, function(data, status) {
-              if (status === "success") {
-                  alert("购买商品" + good_name + ": " + info_dict[data["info"]]);
-              }
-           });
+           if (utils.user_type === "tourist") {
+               utils.navigateLink("login.html");
+           } else if (utils.user_type === "manager") {
+               alert("管理员账户不能购买商品。");
+           } else {
+               $.getJSON("/addGood", {"good_id": good_id}, function (data, status) {
+                   if (status === "success") {
+                       alert("购买商品" + good_name + ": " + info_dict[data["info"]]);
+                   }
+               });
+           }
        });
        div_node.append(btn_node);
 
