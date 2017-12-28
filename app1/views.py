@@ -288,11 +288,9 @@ def search(request):
     if request.method == 'GET':  #按类别搜索后的结果
         category = request.GET.get('category', "所有类别") #未选择时记为All
         keyword = request.GET.get('keyword', "")
-<<<<<<< HEAD
-        LOG_DEBUG("kw:" + keyword);
-=======
-        print("11111111111111111",keyword)
->>>>>>> de15826e024ab3e7eb9f76bada44d8a5bc57ea59
+
+        LOG_DEBUG("kw:" + keyword)
+
         if category == "所有类别" or not category:
             if(keyword==""):
                 searchgoods = Goods.objects.raw('select id,name,price,image_path,remain from Goods')
@@ -587,30 +585,37 @@ def addGood(request):
                 manager_id = random.randint(1, manager_id)  # 随机找一个管理员负责
             except Exception as e:
                 manager_id = 1
-                
-            insert_sql = 'insert into Orders(' \
-                         'order_id,is_temp,customer_id,manager_id,status) ' \
-                         'values(%s,1,%s,%s,"unpaid")'
+
+            update_sql = 'update Customers set temp_order=%s ' \
+                         'where name like %s;'
             cursor = connection.cursor()
-            cursor.execute(insert_sql, [order_id, customer_id, manager_id]) #新建了一个临时订单，即购物车
+            cursor.execute(update_sql, [order_id, customer_name])  # 商品填进去
+
+            insert_sql = 'insert into Orders(' \
+                         'order_id, is_temp, good_str, good_num, customer_id,manager_id,status) ' \
+                         'values(%s, 1, %s, %s, %s, %s, "unpaid")'
+            cursor = connection.cursor()
+            cursor.execute(insert_sql, [order_id, good_name, "1", customer_id, manager_id]) #新建了一个临时订单，即购物%车
 #        order=Customers.objects.raw('select * from Orders where order_id like %s',[order_id])
         
         good_str = ""
         good_num = ""
-        
+        print("search order id:" + str(order_id))
         try:
-            order = Customers.objects.get(temp_order = order_id)[0]
+            order = Orders.objects.get(order_id = order_id)
             good_str=order.good_str
             good_num=order.good_num
         except Exception as e:
-            pass  
-            
+            print("exception!!" + str(e))
+            pass
+
+        print(good_str)
         good_list=good_str.split(',')   #转化为列表了
         num_list=good_num.split(',')
         isin=0
         for i in range(len(good_list)):  #查看订单中有没有同样商品，有的话加进去
             if good_list[i]==good_name:
-                is_in=1
+                isin=1
                 break
         if isin==0:
             good_list.append(good_name)
@@ -671,15 +676,16 @@ def orderEntry(request):
 def getShoppingList(request):
     customer_name = request.COOKIES.get('name', '')
     if customer_name:
-        temp_order = Customers.objects.raw('select temp_order from Customers where name like %s',[customer_name])
-        temp_order=temp_order[0].temp_order
-        if(temp_order):
-            order=Customers.objects.raw('select * from Orders where order_id=%s', [temp_order])
+        temp_order = Customers.objects.raw('select id, temp_order from Customers where name like %s',[customer_name])
+        temp_order = temp_order[0].temp_order
+        if (temp_order):
+            order=Orders.objects.raw('select * from Orders where order_id=%s', [temp_order])
             good_str=order[0].good_str
             good_list=good_str.split(",")
+            print(good_list)
             shop_list=[]
             for i in range(len(good_list)):
-                good = Goods.objects.raw('select * from Customers where name like %s', [good_list[i]])
+                good = Goods.objects.raw('select * from Goods where name like %s', [good_list[i]])
                 shop_list.append({'good_id': good[0].good_id,
                                   'name': good[0].name,
                                   'price': good[0].price,
@@ -764,13 +770,8 @@ def changeOrderStatus(request):
         fail = {'info': 'fail'}
         return HttpResponse(json.dumps(fail), content_type="application/json")
 
-<<<<<<< HEAD
-#@csrf_exempt
-#def getPrivilege(request):
-#    return HttpResponse(json.dumps({'user_type': "manager"}), content_type="application/json")
-=======
 '''
 @csrf_exempt
 def getPrivilege(request):
     return HttpResponse(json.dumps({'user_type': "manager"}), content_type="application/json")'''
->>>>>>> de15826e024ab3e7eb9f76bada44d8a5bc57ea59
+

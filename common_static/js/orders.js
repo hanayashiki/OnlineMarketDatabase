@@ -50,12 +50,15 @@ $(document).ready(function () {
     }
 
     function getOrderEntryNodes() {
+        console.log("get entries");
         $.getJSON("/orderEntry", {}, function(data, status) {
             if (status === "success") {
+                console.log("list len:" + data.length);
                 $.each(data, function(idx, info) {
                     addOrderEntryNode(info['order_id'], info['good_names'],
                         info['status'], info['submit_date'],
                         info['total']);
+                    console.log(info['good_names']);
                 })
             }
         });

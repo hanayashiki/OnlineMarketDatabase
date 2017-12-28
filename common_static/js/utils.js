@@ -69,7 +69,7 @@ $(document).ready(function() {
                 '<span class=\"line\"></span>',
                 '<a href=\"javascript:;\" class=\"dreamer\">处理投诉</a>',
               '</li>',
-              '<li>',
+              '<li id=\"shopping_list\">',
                 '<span class=\"line\"></span>',
                 '<a href=\"javascript:;\" class=\"dreamer\" id=\"shopping_list\">查看购物车</a>',
               '</li>',
@@ -111,7 +111,7 @@ $(document).ready(function() {
     $(".register").click(function() {
         $(location).attr('href', 'register.html');
     });
-    $(".logout_btn").click(function() {
+    $("#logout_btn").click(function() {
         $.getJSON("/logout/", {}, function(data, status) {
             if (status === "success") {
                 if (data['info'] === 'logout') {
@@ -125,10 +125,11 @@ $(document).ready(function() {
 
     utils.seeOnPrivilege(complaint_node, "manager");
     utils.seeOnPrivilege(order_node, "manager");
-    utils.hideOnPrivilege($("#register"), "manager");
-    utils.hideOnPrivilege($("#register"), "customer");
-    utils.hideOnPrivilege($("#login"), "manager");
-    utils.hideOnPrivilege($("#login"), "customer");
-
+    utils.seeOnPrivilege($("#logout"), "manager");
+    utils.seeOnPrivilege($("#logout"), "customer");
+    utils.seeOnPrivilege($("#shopping_list"), "manager");
+    utils.seeOnPrivilege($("#shopping_list"), "customer");
+    utils.seeOnPrivilege($("#register"), "tourist");
+    utils.seeOnPrivilege($("#login"), "tourist");
 
 });
