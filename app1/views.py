@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*
 from django.shortcuts import render
 from django.utils import timezone
-import json,random
+import json,random,time
 from app1.forms import CustomersregistForm, CustomersForm
 from app1.models import Customers,Managers,Complaints, Goods, Orders
 from misc.log import LOG_DEBUG,LOG_ERROR,LOG_INFO
@@ -11,6 +11,7 @@ from django.db import connection
 
 # Create your views here.
 #主页面（也可以上来就是登录页面，有个按钮跳到注册页面）
+
 def home(request):
     return HttpResponseRedirect('/static/home.html')
 
@@ -34,6 +35,7 @@ def register(request):
             nameerror = Customers.objects.raw('select id from Customers where name=%s',[name])
             nameerror = [nameId.id for nameId in nameerror]
             emailerror = Customers.objects.raw('select id from Customers where email=%s',[email])
+
             emailerror = [emailId.id for emailId in emailerror]
             telephoneerror = Customers.objects.raw('select id from Customers where telephone=%s',[telephone])
             telephoneerror = [telephoneerrorId.id for telephoneerrorId in telephoneerror]
@@ -103,11 +105,25 @@ def login(request):
         mf=cf
         return HttpResponseRedirect('/static/login.html')
 
+@csrf_exempt
+def logout(request):
+    LOG_DEBUG("注销")
+    if request.method=='GET':
+        logout = {'info': "logout"}
+        response = HttpResponse(json.dumps(logout), content_type="application/json")
+        response.delete_cookie('name')
+        return response
+
+
 def getPrivilege(request):
     LOG_DEBUG("返回权限信息")
     PrivilegeReturn = {}
     name = request.COOKIES.get('name', '')  # 可能是顾客，可能是管理员
     if not name:
+        PrivilegeReturn = {
+            "user_type": "tourist",
+            "id": 0
+        }
         return HttpResponse(json.dumps(PrivilegeReturn), content_type="application/json")
     LOG_DEBUG(name)
     customer_id = Customers.objects.raw('select id '
@@ -121,12 +137,12 @@ def getPrivilege(request):
     if customer_id:
         PrivilegeReturn = {
             "user_type":"customer",
-            "user_id": customer_id[0]
+            "id": customer_id[0]
         }
     if manager_id:
         PrivilegeReturn = {
             "user_type": "manager",
-            "manager_id": manager_id[0]
+            "id": manager_id[0]
         }
     LOG_DEBUG(PrivilegeReturn)
     return HttpResponse(json.dumps(PrivilegeReturn), content_type="application/json")
@@ -198,7 +214,7 @@ def complaintDisplay(request):
     for complaint in complaints:
         LOG_DEBUG(complaint)
         complaintReturn.append({'text': complaint.text,
-                                'submit_date': complaint.submit_date,
+                                'submit_date': time.asctime(complaint.submit_date),
                                 'status': complaint.status,
                                 'complaint_id': complaint.complaint_id})
     LOG_DEBUG(complaintReturn)
@@ -268,11 +284,15 @@ def search(request):
     LOG_DEBUG("搜索商品")
     searchgoods = ""
     list = []
-
+    print("222222222222",request.method)
     if request.method == 'GET':  #按类别搜索后的结果
         category = request.GET.get('category', "所有类别") #未选择时记为All
         keyword = request.GET.get('keyword', "")
+<<<<<<< HEAD
         LOG_DEBUG("kw:" + keyword);
+=======
+        print("11111111111111111",keyword)
+>>>>>>> de15826e024ab3e7eb9f76bada44d8a5bc57ea59
         if category == "所有类别" or not category:
             if(keyword==""):
                 searchgoods = Goods.objects.raw('select id,name,price,image_path,remain from Goods')
@@ -289,7 +309,7 @@ def search(request):
                       'from Goods ' \
                       'where name like %%s% and type like %s'
                 searchgoods = Goods.objects.raw(sql, [keyword, category])
-            
+        print(searchgoods)
         for searchgood in searchgoods:
             list.append({'good_id': searchgood.good_id,
                          'name': searchgood.name,
@@ -332,22 +352,24 @@ def getComplaintEntry(request):
                                                'from Complaints '
                                                'where complaint_id=%s', [source_cmplt_id])
 
-            complaint_list.append({'text': complaint.text,
-                                   'submit_date': complaint.submit_date,
-                                   'status': complaint.status,
-                                   'proceed_date': complaint.proceed_date,
-                                   'reply': complaint.reply})
+            for cpt in complaint:
+                complaint_list.append({'text': cpt.text,
+                                       'submit_date': cpt.submit_date,
+                                       'status': cpt.status,
+                                       'proceed_date': cpt.proceed_date,
+                                       'reply': cpt.reply})
 
             while complaint.follow_cmplt_id: #系列还没断
                 complaint = Complaints.objects.raw('select * '
                                                    'from Complaints '
                                                    'where complaint_id=%s', [complaint.follow_cmplt_id])
 
-                complaint_list.append({'text': complaint.text,
-                                       'submit_date': complaint.submit_date,
-                                       'status': complaint.status,
-                                       'proceed_date': complaint.proceed_date,
-                                       'reply': complaint.reply})
+                for cpt in complaint:
+                    complaint_list.append({'text': cpt.text,
+                                           'submit_date': cpt.submit_date,
+                                           'status': cpt.status,
+                                           'proceed_date': cpt.proceed_date,
+                                           'reply': cpt.reply})
         else:
             for cpt in  complaint:
                 complaint_list.append({'text': cpt.text,
@@ -370,9 +392,10 @@ def addComplaint(request):
                                          'from Complaints '
                                          'where complaint_id=%s', [complaint_id]) #当前投诉
 
-        id = complaint.id
-        manager_id = complaint.manager_id
-        source_cmplt_id = complaint.source_cmplt_id
+        for cpt in complaint:
+            id = cpt.id
+            manager_id = cpt.manager_id
+            source_cmplt_id = cpt.source_cmplt_id
         submit_date = timezone.localtime(timezone.now())  #获取当前投诉信息
         next_id = max(Complaints.objects.values('complaint_id'))+1
         update_sql = 'update Complaints ' \
@@ -380,6 +403,7 @@ def addComplaint(request):
                     'where complaint_id=%s'
         cursor=connection.cursor()
         cursor.execute(update_sql, [next_id, complaint_id])  #当前投诉信息的follow_cmplt给加上
+
         insert_sql='insert into Complaints ' \
                    '(complaint_id,id,manager_id,source_cmplt_id,submit_date,text,status) ' \
                    'values(%s,%s,%s,%s,%s,%s,"wait")'
@@ -397,14 +421,14 @@ def allComplaintEntry(request):
         id = Customers.objects.raw('select id '
                                             'from Customers '
                                             'where name like %s', [customer_name])  # customer是{'id':..}
-        id = id.id
-        if id:
+        id = [nameId.id for nameId in id]
+        if id[0]:
             sql = 'select text,submit_date,status,proceed_date,reply' \
                  'from Complaints' \
                  'where id=%s' \
                  'order by submit_date desc'
             cursor = connection.cursor()
-            cursor.execute(sql, [id])
+            cursor.execute(sql, [id[0]])
             complaint_list = cursor.fetchone()
             return HttpResponse(json.dumps(complaint_list), content_type="application/json")
  #   return HttpResponseRedirect('/static/complaint.html')
@@ -419,7 +443,7 @@ def submitComplaint(request):
             id = Customers.objects.raw('select id '
                                                 'from Customers '
                                                 'where name like %s', [customer_name])#customer是{'id':..}
-            id = id.id
+            id = [nameId.id for nameId in id]
             next_id = max(Complaints.objects.values('complaint_id')) + 1
             manager_id = max(Managers.objects.values('manager_id'))
             manager_id = random.randint(1, manager_id) #随机找一个管理员负责
@@ -428,7 +452,7 @@ def submitComplaint(request):
                          '(complaint_id,id,manager_id,source_cmplt_id,submit_date,text,status) ' \
                          'values(%s,%s,%s,%s,%s,%s,"wait")'
             cursor = connection.cursor()
-            cursor.execute(insert_sql, [next_id, id, manager_id, next_id, submit_date, text])  # 给数据库添加新的信息
+            cursor.execute(insert_sql, [next_id, id[0], manager_id, next_id, submit_date, text])  # 给数据库添加新的信息
             success = {'info': 'success'}
             return HttpResponse(json.dumps(success), content_type="application/json")
         else:
@@ -449,7 +473,7 @@ def getComplaintWork(request):
         manager_id = Managers.objects.raw('select manager_id '
                                           'from Customers '
                                           'where name like %s', [manager_name])
-        manager_id = manager_id.manager_id
+        manager_id = [nameId.id for nameId in manager_id]
         if manager_id:
             complaint_list=[]
             sql = 'select id,text,submit_date,status,complaint_id' \
@@ -457,7 +481,7 @@ def getComplaintWork(request):
                   'where manager_id=%s' \
                   'order by submit_date desc'
             cursor = connection.cursor()
-            cursor.execute(sql, [manager_id])
+            cursor.execute(sql, [manager_id[0]])
             temp_list = cursor.fetchone()
             for complaint in temp_list:
                 id=complaint.id
@@ -487,31 +511,31 @@ def replyToComplaint(request):
     complaint = Complaints.objects.raw('select * '
                                        'from Complaints '
                                        'where complaint_id=%s', [complaint_id])  # 这一条投诉信息
-    source_cmplt_id = complaint.source_cmplt_id
+    source_cmplt_id = [cpt.source_cmplt_id for cpt in complaint]
     if source_cmplt_id:  # 是系列投诉
         complaint = Complaints.objects.raw('select * '
                                            'from Complaints '
-                                           'where complaint_id=%s', [source_cmplt_id])
-        complaint_list.append({'text': complaint.text,
-                               'submit_date': complaint.submit_date,
-                               'status': complaint.status,
-                               'proceed_date': complaint.proceed_date,
-                               'reply': complaint.reply})
+                                           'where complaint_id=%s', [source_cmplt_id[0]])
+        for cpt in complaint:
+            complaint_list.append({'text': cpt.text,
+                                   'submit_date': cpt.submit_date,
+                                   'status': cpt.status,
+                                   'proceed_date': cpt.proceed_date,
+                                   'reply': cpt.reply})
         while complaint.follow_cmplt_id:  # 系列还没断
-            complaint = Complaints.objects.raw('select * '
-                                               'from Complaints '
-                                               'where complaint_id=%s', [complaint.follow_cmplt_id])
-            complaint_list.append({'text': complaint.text,
-                                   'submit_date': complaint.submit_date,
-                                   'status': complaint.status,
-                                   'proceed_date': complaint.proceed_date,
-                                   'reply': complaint.reply})
+            for cpt in complaint:
+                complaint_list.append({'text': cpt.text,
+                                       'submit_date': cpt.submit_date,
+                                       'status': cpt.status,
+                                       'proceed_date': cpt.proceed_date,
+                                       'reply': cpt.reply})
     else:
-        complaint_list.append({'text': complaint.text,
-                               'submit_date': complaint.submit_date,
-                               'status': complaint.status,
-                               'proceed_date': complaint.proceed_date,
-                               'reply': complaint.reply})  # 把相关投诉的信息存到了complaint_list里
+        for cpt in complaint:
+            complaint_list.append({'text': cpt.text,
+                                   'submit_date': cpt.submit_date,
+                                   'status': cpt.status,
+                                   'proceed_date': cpt.proceed_date,
+                                   'reply': cpt.reply}) # 把相关投诉的信息存到了complaint_list里
     if text:
         update_sql = 'update Complaints ' \
                      'set reply=%s' \
@@ -611,7 +635,7 @@ def orderEntry(request):
     customer_name = request.COOKIES.get('name', '')
     if customer_name:
         id = Customers.objects.raw('select id from Customers where name like %s',[customer_name])
-        id = id.id
+        id = id[0].id
         if id:
             order_list=[]
             sql = 'select order_id,good_str,good_num,status,submit_date' \
@@ -632,7 +656,7 @@ def orderEntry(request):
                 sum=0
                 for j in range(len(good_list)):
                     price = Customers.objects.raw('select price from Goods where name like %s',[good_list[j]])
-                    price=price.price
+                    price=price[0].price
                     sum = sum + price*int(num_list[j])  #总金额是sum
 
                 order_list.append({'order_id':order_id,
@@ -648,19 +672,19 @@ def getShoppingList(request):
     customer_name = request.COOKIES.get('name', '')
     if customer_name:
         temp_order = Customers.objects.raw('select temp_order from Customers where name like %s',[customer_name])
-        temp_order=temp_order.temp_order
+        temp_order=temp_order[0].temp_order
         if(temp_order):
             order=Customers.objects.raw('select * from Orders where order_id=%s', [temp_order])
-            good_str=order.good_str
+            good_str=order[0].good_str
             good_list=good_str.split(",")
             shop_list=[]
             for i in range(len(good_list)):
                 good = Goods.objects.raw('select * from Customers where name like %s', [good_list[i]])
-                shop_list.append({'good_id': good.good_id,
-                                  'name': good.name,
-                                  'price': good.price,
-                                  'image_path': good.image_path,
-                                  'remain': good.remain})
+                shop_list.append({'good_id': good[0].good_id,
+                                  'name': good[0].name,
+                                  'price': good[0].price,
+                                  'image_path': good[0].image_path,
+                                  'remain': good[0].remain})
             return HttpResponse(json.dumps(shop_list), content_type="application/json")
  #   return HttpResponseRedirect('/static/shoppingList.html')
 
@@ -669,7 +693,7 @@ def submitShoppingList(request):
     customer_name = request.COOKIES.get('name', '')
     if customer_name:
         temp_order = Customers.objects.raw('select temp_order from Customers where name like %s',[customer_name])
-        temp_order=temp_order.temp_order
+        temp_order=temp_order[0].temp_order
         if(temp_order):
             update_sql='update Orders set is_temp=0,status="paid"' \
                        'where order_id=%s'
@@ -689,7 +713,7 @@ def getOrderWork(request):
     manager_name = request.COOKIES.get('name', '')
     if manager_name:
         manager_id = Managers.objects.raw('select manager_id from Customers where name like %s',[manager_name])
-        manager_id = manager_id.manager_id
+        manager_id = manager_id[0].manager_id
         if manager_id:
             order_list=[]
             sql = 'select order_id,good_str,good_num,status,submit_date' \
@@ -702,7 +726,7 @@ def getOrderWork(request):
             for i in range(len(temp_list)):
                 id=temp_list[i].id  #待返回
                 customer_name = Customers.objects.raw('select name from Customers where id=%s', [id])
-                customer_name = customer_name.customer_name #待返回
+                customer_name = customer_name[0].customer_name #待返回
                 order_id=temp_list[i].order_id    #待返回
                 good_names=temp_list[i].good_str  #待返回
                 status=temp_list[i].status #待返回
@@ -713,7 +737,7 @@ def getOrderWork(request):
                 sum=0
                 for j in range(len(good_list)):
                     price = Customers.objects.raw('select price from Goods where name like %s',[good_list[j]])
-                    price=price.price
+                    price=price[0].price
                     sum = sum + price*int(num_list[j])  #总金额是sum
 
                 order_list.append({'id':id,
@@ -740,6 +764,13 @@ def changeOrderStatus(request):
         fail = {'info': 'fail'}
         return HttpResponse(json.dumps(fail), content_type="application/json")
 
+<<<<<<< HEAD
 #@csrf_exempt
 #def getPrivilege(request):
 #    return HttpResponse(json.dumps({'user_type': "manager"}), content_type="application/json")
+=======
+'''
+@csrf_exempt
+def getPrivilege(request):
+    return HttpResponse(json.dumps({'user_type': "manager"}), content_type="application/json")'''
+>>>>>>> de15826e024ab3e7eb9f76bada44d8a5bc57ea59
