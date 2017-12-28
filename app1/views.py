@@ -214,7 +214,7 @@ def complaintDisplay(request):
     for complaint in complaints:
         LOG_DEBUG(complaint)
         complaintReturn.append({'text': complaint.text,
-                                'submit_date': time.asctime(complaint.submit_date),
+                                'submit_date': strftime('%Y-%m-%d %H:%M:%S', complaint.submit_date),
                                 'status': complaint.status,
                                 'complaint_id': complaint.complaint_id})
     LOG_DEBUG(complaintReturn)
