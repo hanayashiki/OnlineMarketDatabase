@@ -40,8 +40,10 @@ urlpatterns =[
     url(r'^orderEntry/$', views.orderEntry, name='orderEntry'),
     url(r'^getShoppingList/$', views.getShoppingList, name='getShoppingList'),
     url(r'^submitShoppingList/$', views.submitShoppingList, name='submitShoppingList'),
-    url(r'^getOrderWork/$', views.addGood, name='getOrderWork'),
-    url(r'^changeOrderStatus/$', views.addGood, name='changeOrderStatus'),
+    url(r'^getOrderWork/$', views.getOrderWork, name='getOrderWork'),
+    url(r'^changeOrderStatus/$', views.changeOrderStatus, name='changeOrderStatus'),
     url(r'^getPrivilege/$', views.getPrivilege),
     url(r'^logout/$', views.logout, name='logout'),
+    url(r'^editCustomerInfo/$', views.editCustomerInfo, name='editCustomerInfo'),
+    url(r'^getCustomerInfo/$', views.getCustomerInfo, name='getCustomerInfo'),
 ]
