@@ -14,23 +14,11 @@ $(document).ready(function () {
 
     function check_validity() {
         username = $("#username").val();
-        password = $("#password").val();
-        repeat_password = $("#repeat_password").val();
         address = $("#address").val();
         telephone = $("#telephone").val();
         email = $("#email").val();
         // check pw
-        if (password.length < pw_len) {
-            alert("密码不应短于 " + pw_len + " 位");
-            return false;
-        }
-        else if (password !== repeat_password) {
-            alert("请确保两次输入的密码一致。");
-            $("#repeat_password").val("");
-            $("#repeat_password").focus();
-            return false;
-        }
-        else if (username.trim().length === 0) {
+        if (username.trim().length === 0) {
             alert("用户名不能为空。");
             return false;
         }
@@ -68,7 +56,7 @@ $(document).ready(function () {
                     "username": username,
                     "email": email,
                     "address": address,
-                    "telephone": telephone,
+                    "telephone": telephone
                 },
                 function (data, status) {
                     if (status === "success") {

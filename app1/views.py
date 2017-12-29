@@ -474,14 +474,13 @@ def addComplaint(request):
         source=complaint[0].source_cmplt_id
         print("source",source)
         for cpt in complaint:
-            id = cpt.id
-            customer_id=cpt.customer_id
+            customer_id = cpt.customer_id
             manager_id = cpt.manager_id
             source_cmplt_id = cpt.source_cmplt_id
         submit_date = timezone.localtime(timezone.now())  #获取当前投诉信息
         next_id = max([oid['complaint_id'] for oid in Complaints.objects.values('complaint_id')] )+1
         update_sql = 'update Complaints ' \
-                    'set follow_cmplt_id=%s' \
+                    'set follow_cmplt_id=%s ' \
                     'where complaint_id=%s'
         cursor=connection.cursor()
         cursor.execute(update_sql, [next_id, complaint_id])  #当前投诉信息的follow_cmplt给加上
@@ -561,8 +560,12 @@ def submitComplaint(request):
             else:
                 manager_id = request.COOKIES.get('id', '')
             if id:
-                complaint_id = Complaints.objects.raw('select complaint_id from Complaints order by complaint_id desc')[0]
-                next_id = complaint_id.complaint_id +1
+                try:
+                    complaint_id = Complaints.objects.raw('select complaint_id from Complaints order by complaint_id desc')[0]
+                    next_id = complaint_id.complaint_id + 1
+                except:
+                    next_id = 1
+
                 manager_id = Managers.objects.raw('select id from Managers order by id desc')[0]
                 manager_id = manager_id.manager_id   # 随机找一个管理员负责
                 submit_date = timezone.now()

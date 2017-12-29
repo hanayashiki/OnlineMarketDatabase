@@ -61,5 +61,5 @@ $(document).ready(function () {
 
     getOrderEntryNodes();
 
-    addOrderEntryNode(123456, ["手机", "电视", "大哥大"], "sent", "2016/1/1", 1000);
+    //addOrderEntryNode(123456, ["手机", "电视", "大哥大"], "sent", "2016/1/1", 1000);
 });

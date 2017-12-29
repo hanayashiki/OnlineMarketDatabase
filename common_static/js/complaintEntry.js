@@ -79,7 +79,7 @@ $(document).ready(function () {
         } else if (len > max_len) {
             alert("您的投诉过长，请分段提交。");
         } else {
-            $.post("/submitComplaint/", {"text": complaint_str, "complaint_id": last_complaint_id},
+            $.post("/addComplaint/", {"text": complaint_str, "complaint_id": last_complaint_id},
                 function (data, status) {
                     if (status === "success") {
                         if (data['info'] === "success") {
