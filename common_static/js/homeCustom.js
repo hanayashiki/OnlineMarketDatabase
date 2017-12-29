@@ -33,8 +33,11 @@ $(document).ready(function() {
                 }
                 status = status_dict[status];
                 console.log(status)
-
-                addComplaintEntry(complaint_id, text, "/static/complaintEntry.html", submit_date, status);
+                if (utils.user_type === "customer") {
+                    addComplaintEntry(complaint_id, text, "complaintEntry.html", submit_date, status);
+                } else {
+                    addComplaintEntry(complaint_id, text, "managerComplaintEntry.html", submit_date, status);
+                }
             })
         }
     });
@@ -53,7 +56,7 @@ $(document).ready(function() {
         if (utils.user_type === "customer") {
             utils.navigate("allComplaintEntries.html");
         } else if (utils.user_type === "manager") {
-            alert("只有顾客才能查看投诉信息。");
+            utils.navigateNext("login.html", "managerComplaint.html");
         } else {
             utils.navigateNext("login.html", "allComplaintEntries.html");
         }

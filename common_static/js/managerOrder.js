@@ -63,6 +63,8 @@ $(document).ready(function() {
                     "title": "设置状态",
                     "class": "select"
                 });
+                var option_node = $("<option>请选择</option>");
+                select_node.append(option_node);
                 for (var key in utils.order_status_dict) {
                     if (utils.order_status_dict.hasOwnProperty(key)) {
                         var option_node = $("<option></option>");
@@ -80,19 +82,21 @@ $(document).ready(function() {
             var val = selected_opt.attr("value");
             var id = $(this).attr('order_id');
             console.log(val);
-            $.getJSON("/changeOrderStatus",
-                {'order_id': id, 'target_status': val},
-                function(data, status) {
-                    if (status === "success" && data['info'] === "success") {
-                        alert("处理成功！");
-                        utils.navigate(window.location.href);
-                    }
-                });
+            if (val) {
+                $.getJSON("/changeOrderStatus",
+                    {'order_id': id, 'target_status': val},
+                    function (data, status) {
+                        if (status === "success" && data['info'] === "success") {
+                            alert("处理成功！");
+                            utils.navigate(window.location.href);
+                        }
+                    });
+            }
         });
         $(".complaint_entry_main .complaint_entry_inner").append(order_entry_node);
     }
 
-    addOrderEntry(123, "蔡壮忠", 193121, ["冲锋艇", "短校服"], [1, 2], "wait", "1931/1/1", 100);
+    //addOrderEntry(123, "蔡壮忠", 193121, ["冲锋艇", "短校服"], [1, 2], "wait", "1931/1/1", 100);
 
     $.getJSON("/getOrderWork", {}, function(data, status) {
         if (status === "success") {

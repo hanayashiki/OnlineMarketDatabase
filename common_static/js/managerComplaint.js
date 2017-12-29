@@ -48,8 +48,9 @@ $(document).ready(function () {
         }
         $(".complaint_entry_main .complaint_entry_inner").append(complaint_node);
     }
-    addComplaintNode("wait", 12345, "2017/1/1", "远野后辈", 810810,
+    /*addComplaintNode("wait", 12345, "2017/1/1", "远野后辈", 810810,
         　"近年来，随着我国经济社会的快速发展，在办理经济犯罪案件中，涉案财物种类繁杂、数额巨大、涉及面广，处置难度在加大，也面临一些新问题。如何规范涉案财物处置程序，确保在严格依法办案的前提下，既保持打击犯罪的“力度”，又注重文明执法的“温度”，最高检、公安部在新规定中作出了明确要求。");
+    */
     function getComplaintNodes() {
         $.getJSON("/getComplaintWork", {}, function(data, status) {
             if (status === "success") {
