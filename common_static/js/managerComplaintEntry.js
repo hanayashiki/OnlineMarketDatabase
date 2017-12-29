@@ -66,17 +66,13 @@ $(document).ready(function () {
     addComplaintNode(1223, "wait", "2017/11/7",
         "该网友称：“邹市明及妻子到达上海虹桥机场，但是小妖发现此次现身机场的邹市明，身体方面出现了一些问题。邹市明走路需要妻子冉莹颖和助理搀扶，在遇到一个柱子时，邹市明并没有发现前方有异物直接撞了上去，视力明显出了问题。”目前邹市明已经被送往上海长征医院。",
         "近日，杜江、霍思燕、嗯哼一家三口亮相机场，嗯哼坐在行李箱上，爸爸妈妈在一旁保驾护航。嗯哼小小年纪就派头十足简直是戏精本人啦，临走前还突然回头向记者问好，超会圈粉。");
-    /*
-    addComplaintNode("done", "2017/11/7",
-        "该网友称：“邹市明及妻子到达上海虹桥机场，但是小妖发现此次现身机场的邹市明，身体方面出现了一些问题。邹市明走路需要妻子冉莹颖和助理搀扶，在遇到一个柱子时，邹市明并没有发现前方有异物直接撞了上去，视力明显出了问题。”目前邹市明已经被送往上海长征医院。",
-        "近日，杜江、霍思燕、嗯哼一家三口亮相机场，嗯哼坐在行李箱上，爸爸妈妈在一旁保驾护航。嗯哼小小年纪就派头");
-    */
 
     function getComplaintNodes() {
         $.getJSON("/getComplaintEntry/", {"complaint_id": complaint_id},
             function (data, status) {
                 if (status === "success") {
                     $.each(data, function(idx, data) {
+                        var complaint_id = data['complaint_id'];
                         var entry_status = data['status'];
                         var date = data['submit_date'];
                         if (entry_status === "done") {
@@ -87,7 +83,7 @@ $(document).ready(function () {
 
                         last_complaint_id = complaint_id;
 
-                        addComplaintNode(entry_status, date, text, reply);
+                        addComplaintNode(complaint_id, entry_status, date, text, reply);
                     })
                 }
             })

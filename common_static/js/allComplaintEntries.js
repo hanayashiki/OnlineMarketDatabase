@@ -1,8 +1,5 @@
 $(document).ready(function () {
     var complaint_seq_node = $(".complaint_entry_inner");
-    var complaint_id = $.getUrlParam("complaintId");
-    var last_complaint_id = complaint_id;
-
 
     function addComplaintNode(status, date, content, response, id) {
         var new_complaint_node = $("<li></li>");
@@ -33,7 +30,7 @@ $(document).ready(function () {
             reply_content_node.text(response);
             new_complaint_node.append(reply_content_node);
         }
-        utils.jump(new_complaint_node, "/complaintEntry.html?complaintId=" + id);
+        utils.jump(new_complaint_node, "complaintEntry.html?complaintId=" + id);
         complaint_seq_node.append(new_complaint_node);
     }
 
@@ -60,9 +57,7 @@ $(document).ready(function () {
                         var text = data['text'];
                         var reply = data['reply'];
 
-                        last_complaint_id = complaint_id;
-
-                        addComplaintNode(entry_status, date, text, reply, complaint_id);
+                        addComplaintNode(entry_status, date, text, reply, data['complaint_id']);
                     })
                 }
             })

@@ -19,9 +19,9 @@ utils = {
     },
     navigateSafe: function(dst) {
         if (dst === null) {
-            navigate("home.html");
+            this.navigate("home.html");
         } else {
-            navigate(dst);
+            this.navigate(dst);
         }
     },
     navigateNext: function(dst, next) {
@@ -36,10 +36,10 @@ utils = {
         "done": "已处理"
     },
     order_status_dict: {
-        "wait": "未处理",
+        "unpaid": "未处理",
         "paid": "已付款",
         "sent": "已发货",
-        "received": "已接收"
+        "got": "已接收"
     },
     home_page: "home.html",
     user_type: "tourist",

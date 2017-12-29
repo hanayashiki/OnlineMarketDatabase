@@ -63,9 +63,9 @@ $(document).ready(function () {
 
     $("#user_edit_btn").click(function() {
         if (check_validity()) {
-            $.post("/register/",
+            $.getJSON("/editCustomerInfo/",
                 {
-                    "name": username,
+                    "username": username,
                     "email": email,
                     "address": address,
                     "telephone": telephone,

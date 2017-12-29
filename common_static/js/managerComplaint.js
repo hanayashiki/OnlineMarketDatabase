@@ -60,7 +60,7 @@ $(document).ready(function () {
                         info['submit_date'],
                         info['customer_name'],
                         info['customer_id'],
-                        info['content']
+                        info['text']
                     );
                 });
             }

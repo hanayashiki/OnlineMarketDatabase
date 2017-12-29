@@ -37,6 +37,7 @@ $(document).ready(function() {
         {
             var status_node = $("<p></p>");
             status_node.attr('class', 'status');
+            status_node.attr('id', 'order_status');
             status_node.text("状态：" + utils.order_status_dict[status]);
             order_entry_node.append(status_node);
         }
@@ -84,6 +85,7 @@ $(document).ready(function() {
                 function(data, status) {
                     if (status === "success" && data['info'] === "success") {
                         alert("处理成功！");
+                        utils.navigate(window.location.href);
                     }
                 });
         });
@@ -100,6 +102,7 @@ $(document).ready(function() {
                     info['customer_name'],
                     info['customer_id'],
                     info['good_names'],
+                    info['good_nums'],
                     info['status'],
                     info['submit_date'],
                     info['total']);

@@ -121,8 +121,8 @@ $(document).ready(function() {
         $("#complaint_display").append(new_node);
     }
 
-    addComplaintEntry(123, "是的，遍历处理data，可以是数组、DOM、...",
-        "/static/complaintEntry.html", "2017/12/2", status_dict["done"]);
+    //addComplaintEntry(123, "是的，遍历处理data，可以是数组、DOM、...",
+    //    "/static/complaintEntry.html", "2017/12/2", status_dict["done"]);
 
     //$.getJSON("")
 });

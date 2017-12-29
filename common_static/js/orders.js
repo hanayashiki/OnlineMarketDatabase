@@ -1,10 +1,4 @@
 $(document).ready(function () {
-    var status_dict = {
-        "wait": "未处理",
-        "paid": "已付款",
-        "sent": "已发货",
-        "received": "已接收"
-    };
 
     function addOrderEntryNode(order_id, good_list, status, date, total) {
         var new_order_entry = $("<li></li>");
@@ -31,7 +25,7 @@ $(document).ready(function () {
         new_order_entry.append(new_good_list_node);
 
         var status_node = $("<p></p>");
-        var status_str = "状态：" + status_dict[status];
+        var status_str = "状态：" + utils.order_status_dict[status];
         status_node.text(status_str);
         status_node.attr('class', 'status');
         new_order_entry.append(status_node);
